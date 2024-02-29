@@ -1,0 +1,16 @@
+CurveComponentsInfo
+FieldComponents.FieldComponentsInfo
+GalapagosComponents.GalapagosInfo
+GhPython.Assemblies.PythonAssemblyInfo
+Grasshopper.Kernel.Components.GH_GrasshopperLibraryInfo
+IOComponents.IOComponentsInfo
+Kangaroo2Component.KangarooComponentInfo
+MathComponents.MathComponentsInfo
+MeshEdit.GH_GrasshopperLibraryInfo
+Noise.Noise4DInfo
+RhinoCodePluginGH.AssemblyInfo
+ScriptComponents.ScriptComponentInfo
+SurfaceComponents.SurfaceComponentsInfo
+TriangulationComponents.TriangulationInfo
+VectorComponents.VectorComponentsInfo
+XFormComponentsInfo

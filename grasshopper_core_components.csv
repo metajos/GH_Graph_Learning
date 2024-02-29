@@ -1,0 +1,1105 @@
+category,name,guid,nickname,description,type,library
+Curve,Arc,bb59bffc-f54c-4682-9778-f6c3fe74fce3,Arc,"Create an arc defined by base plane, radius and angle domain.",CurveComponents.Component_Arc,Curve Components
+Curve,Arc 3Pt,9fa1b081-b1c7-4a12-a163-0aa8da9ff6c4,Arc,Create an arc through three points.,CurveComponents.Component_Arc3Pt,Curve Components
+Curve,Arc SED,9d2583dd-6cf5-497c-8c40-c9a290598396,Arc,"Create an arc defined by start point, end point and a tangent vector.",CurveComponents.Component_ArcSED,Curve Components
+Curve,Bezier Span,30ce59ce-22a1-49ee-9e21-e6d16b3684a8,BzSpan,Construct a bezier span from endpoints and tangents.,CurveComponents.Component_BezierSpan,Curve Components
+Curve,BiArc,75f4b0fd-9721-47b1-99e7-9c098b342e67,BiArc,Create a bi-arc based on endpoints and tangents.,CurveComponents.Component_BiArc,Curve Components
+Curve,Blend Curve,5909dbcb-4950-4ce4-9433-7cf9e62ee011,BlendC,Create a blend curve between two curves.,CurveComponents.Component_BlendCurve,Curve Components
+Curve,Blend Curve Pt,14cf43b6-5eb9-460f-899c-bdece732213a,BlendCPt,Create a blend curve between two curves that intersects a point.,CurveComponents.Component_BlendCurveThroughPoint,Curve Components
+Curve,Catenary,275671d4-3e87-40bd-8aff-8e6a5fdbb892,Cat,Create a catenary chain between two points.,CurveComponents.Component_Catenary,Curve Components
+Curve,Catenary Ex,769f9064-17f5-4c4a-921f-c3a0ee05ba3a,CatEx,Create a variable catenary chain between two points.,CurveComponents.Component_Catenary2,Curve Components
+Curve,Circle,807b86e3-be8d-4970-92b5-f8cdcb45b06b,Cir,Create a circle defined by base plane and radius.,CurveComponents.Component_Circle,Curve Components
+Curve,Circle 3Pt,47886835-e3ff-4516-a3ed-1b419f055464,Circle,Create a circle defined by three points.,CurveComponents.Component_Circle3Pt,Curve Components
+Curve,Circle CNR,d114323a-e6ee-4164-946b-e4ca0ce15efa,Circle,"Create a circle defined by center, normal and radius.",CurveComponents.Component_CircleCNR,Curve Components
+Curve,Circle Fit,be52336f-a2e1-43b1-b5f5-178ba489508a,FCircle,Fit a circle to a collection of points.,CurveComponents.Component_CircleFitPoints,Curve Components
+Curve,Circle TanTan,50b204ef-d3de-41bb-a006-02fba2d3f709,CircleTT,Create a circle tangent to two curves.,CurveComponents.Component_CircleTanTan,Curve Components
+Curve,Circle TanTanTan,dcaa922d-5491-4826-9a22-5adefa139f43,CircleTTT,Create a circle tangent to three curves.,CurveComponents.Component_CircleTanTanTan,Curve Components
+Curve,Closed,323f3245-af49-4489-8677-7a2c73664077,Cls,Test if a curve is closed or periodic.,AnalysisComponents.Component_Closed,Curve Components
+Curve,Connect Curves,d0a1b843-873d-4d1d-965c-b5423b35f327,Connect,Connect a sequence of curves.,CurveComponents.Component_ConnectCurves,Curve Components
+Curve,Contour (ex),3e7e4827-6edd-4e10-93ac-cc234414d2b9,Contour,Create a set of Curve contours,SurfaceComponents.SolidComponents.Component_CurveContour2,Surface Components
+Curve,Control Points,424eb433-2b3a-4859-beaf-804d8af0afd7,CP,Extract the nurbs control points and knots of a curve.,AnalysisComponents.Component_ControlPoints,Curve Components
+Curve,Control Polygon,66d2a68e-2f1d-43d2-a53b-c6a4d17e627b,CPoly,Extract the nurbs control polygon of a curve.,AnalysisComponents.Component_ControlPolygon,Curve Components
+Curve,Curvature,aaa665bd-fd6e-4ccb-8d2c-c5b33072125d,Curvature,Evaluate the curvature of a curve at a specified parameter.,AnalysisComponents.Component_CurveCurvature,Curve Components
+Curve,Curvature Graph,7376fe41-74ec-497e-b367-1ffe5072608b,CrvGraph,Draws Rhino Curvature Graphs.,Grasshopper.Kernel.Components.GH_CurvatureGraphComponent,Grasshopper
+Curve,Curve Closest Point,2dc44b22-b1dd-460a-a704-6462d6e91096,Crv CP,Find the closest point on a curve.,AnalysisComponents.Component_CurveClosestPoint,Curve Components
+Curve,Curve Contour,88cff285-7f5e-41b3-96d5-9588ff9a52b1,Contour,Create a set of Curve contours,SurfaceComponents.SolidComponents.Component_CurveContour1,Surface Components
+Curve,Curve Depth,a583f722-240a-4fc9-aa1d-021720a4516a,Depth,Measure the depth of a curve.,AnalysisComponents.Component_CurveDepth,Curve Components
+Curve,Curve Domain,ccfd6ba8-ecb1-44df-a47e-08126a653c51,CrvDom,Measure and set the curve domain,AnalysisComponents.Component_CurveDomain,Curve Components
+Curve,Curve Frame,6b2a5853-07aa-4329-ba84-0a5d46b51dbd,Frame,Get the curvature frame of a curve at a specified parameter.,VectorComponents.DivisionComponents.Component_CurveFrame,Vector Components
+Curve,Curve Frames,0e94542a-2e46-4793-9f98-2200b06b28f4,Frames,Generate a number of equally spaced curve frames.,VectorComponents.DivisionComponents.Component_CurveFrames,Vector Components
+Curve,Curve Middle,ccc7b468-e743-4049-891f-299432545898,MidPt,Get the point in the middle of a curve,AnalysisComponents.Component_CurveMidPoint,Curve Components
+Curve,Curve Nearest Object,748f214a-bc64-4556-9da5-4fa59a30c5c7,CrvNear,Find the object nearest to a curve.,AnalysisComponents.Component_CurveNearestObject,Curve Components
+Curve,Curve On Surface,ffe2dbed-9b5d-4f91-8fe3-10c8961ac2f8,CrvSrf,Create an interpolated curve through a set of points on a surface.,CurveComponents.Component_InterpCurveOnSurface,Curve Components
+Curve,Curve Proximity,6b7ba278-5c9d-42f1-a61d-6209cbd44907,CrvProx,Find the pair of closest points between two curves.,AnalysisComponents.Component_CurveProximity,Curve Components
+Curve,Curve Side,bb2e13da-09ca-43fd-bef8-8d71f3653af9,Side,Find on which side of a curve a point exists,AnalysisComponents.Component_CurveSide,Curve Components
+Curve,Curve To Polyline,2956d989-3599-476f-bc92-1d847aff98b6,ToPoly,Convert a curve to a polyline.,CurveComponents.Component_CurveToPolyline,Curve Components
+Curve,Dash Pattern,95866bbe-648e-4e2b-a97c-7d04679e94e0,Dash,Convert a curve to a dash pattern.,CurveComponents.Component_DashCurve,Curve Components
+Curve,Deconstruct Arc,23862862-049a-40be-b558-2418aacbd916,DArc,"Retrieve the base plane, radius and angle domain of an arc.",AnalysisComponents.Component_DeconstructArc,Curve Components
+Curve,Deconstuct Rectangle,e5c33a79-53d5-4f2b-9a97-d3d45c780edc,DRec,Retrieve the base plane and side intervals of a rectangle.,AnalysisComponents.Component_DeconstructRectangle,Curve Components
+Curve,Derivatives,ab14760f-87a6-462e-b481-4a2c26a9a0d7,CDiv,Evaluate the derivatives of a curve at a specified parameter.,AnalysisComponents.Component_CurveDerivatives,Curve Components
+Curve,Discontinuity,269eaa85-9997-4d77-a9ba-4c58cb45c9d3,Disc,Find all discontinuities along a curve.,AnalysisComponents.Component_CurveDiscontinuity,Curve Components
+Curve,Divide By Deviation,6e9c0577-ae4a-4b21-8880-0ec3daf3eb4d,DivideDev,Divide a curve into segments with equal deviation,VectorComponents.DivisionComponents.Component_DivideCurveDeviation,Vector Components
+Curve,Divide Curve,2162e72e-72fc-4bf8-9459-d4d82fa8aa14,Divide,Divide a curve into equal length segments,VectorComponents.DivisionComponents.Component_DivideCurve,Vector Components
+Curve,Divide Distance,1e531c08-9c80-46d6-8850-1b50d1dae69f,DivDist,Divide a curve with a preset distance between points,VectorComponents.DivisionComponents.Component_DivideCurveDistance,Vector Components
+Curve,Divide Length,fdc466a9-d3b8-4056-852a-09dba0f74aca,DivLength,Divide a curve into segments with a preset length,VectorComponents.DivisionComponents.Component_DivideCurveLength,Vector Components
+Curve,Ellipse,46b5564d-d3eb-4bf1-ae16-15ed132cfd88,Ellipse,Create an ellipse defined by base plane and two radii.,CurveComponents.Component_Ellipse,Curve Components
+Curve,End Points,11bbd48b-bb0a-4f1b-8167-fa297590390d,End,Extract the end points of a curve.,AnalysisComponents.Component_EndPoints,Curve Components
+Curve,Evaluate Curve,fc6979e4-7e91-4508-8e05-37c680779751,Eval,Evaluate a curve at the specified parameter.,AnalysisComponents.Component_EvaluateCurve,Curve Components
+Curve,Evaluate Length,6b021f56-b194-4210-b9a1-6cef3b7d0848,Eval,Evaluate a curve at a certain factor along its length. Length factors can be supplied both in curve units and normalized units. Change the [N] parameter to toggle between the two modes.,AnalysisComponents.Component_ArcLengthPoint,Curve Components
+Curve,Explode,afb96615-c59a-45c9-9cac-e27acb1c7ca0,Explode,Explode a curve into smaller segments.,AnalysisComponents.Component_ExplodeCurve,Curve Components
+Curve,Extend Curve,62cc9684-6a39-422e-aefa-ed44643557b9,Ext,Extend a curve by a specified distance.,CurveComponents.Component_ExtendCurve,Curve Components
+Curve,Extremes,ebd6c758-19ae-4d74-aed7-b8a0392ff743,X-tremez,Find the extremes (highest and lowest points) on a curve.,AnalysisComponents.Component_CurveExtremes,Curve Components
+Curve,Fillet,2f407944-81c3-4062-a485-276454ec4b8c,Fillet,Fillet the sharp corners of a curve.,CurveComponents.Component_FilletCorners,Curve Components
+Curve,Fillet,c92cdfc8-3df8-4c4e-abc1-ede092a0aa8a,Fillet,Fillet a curve at a parameter.,CurveComponents.Component_FilletCurve,Curve Components
+Curve,Fillet Distance,6fb21315-a032-400e-a80f-248687f5507f,Fillet,Fillet the sharp corners of a curve by distance.,CurveComponents.Component_FilletCornersDistance,Curve Components
+Curve,Fit Curve,a3f9f19e-3e6c-4ac7-97c3-946de32c3e8e,Fit,Fit a curve along another curve.,CurveComponents.Component_FitCurve,Curve Components
+Curve,Fit Line,1f798a28-9de6-47b5-8201-cac57256b777,FLine,Fit a line to a collection of points.,CurveComponents.Component_LineFitPoints,Curve Components
+Curve,Flip Curve,22990b1f-9be6-477c-ad89-f775cd347105,Flip,Flip a curve using an optional guide curve.,CurveComponents.Component_FlipCurve,Curve Components
+Curve,Geodesic,ce5963b4-1cea-4f71-acd2-a3c28ab85662,Geodesic,Construct a surface geodesic between two points.,CurveComponents.Component_ShortPath,Curve Components
+Curve,Horizontal Frame,c048ad76-ffcd-43b1-a007-4dd1b2373326,HFrame,Get a horizontally aligned frame along a curve at a specified parameter.,VectorComponents.DivisionComponents.Component_CurveFrameHorizontal,Vector Components
+Curve,Horizontal Frames,8d058945-ce47-4e7c-82af-3269295d7890,HFrames,"Generate a number of equally spaced, horizontally aligned curve frames.",VectorComponents.DivisionComponents.Component_CurveFramesHorizontal,Vector Components
+Curve,InCircle,28b1c4d4-ab1c-4309-accd-1b7a954ed948,InCircle,Create the incircle of a triangle.,CurveComponents.Component_InCircle,Curve Components
+Curve,InEllipse,679a9c6a-ab97-4c20-b02c-680f9a9a1a44,InEllipse,Create the inscribed ellipse (Steiner ellipse) of a triangle.,CurveComponents.Component_InEllipse,Curve Components
+Curve,Interpolate,2b2a4145-3dff-41d4-a8de-1ea9d29eef33,IntCrv,Create an interpolated curve through a set of points.,CurveComponents.Component_InterpCurve,Curve Components
+Curve,Interpolate (t),75eb156d-d023-42f9-a85e-2f2456b8bcce,IntCrv(t),Create an interpolated curve through a set of points with tangents.,CurveComponents.Component_InterpCurveWithTangents,Curve Components
+Curve,Iso Curve,d1d57181-d594-41e8-8efb-041e29f8a5ca,Iso,Construct {uv} isocurves on a surface.,CurveComponents.Component_IsoCurve,Curve Components
+Curve,Join Curves,8073a420-6bec-49e3-9b18-367f6fd76ac3,Join,Join as many curves as possible,CurveComponents.Component_JoinCurves,Curve Components
+Curve,Kinky Curve,6f0993e8-5f2f-4fc0-bd73-b84bc240e78e,KinkCrv,Construct an interpolated curve through a set of points with a kink angle threshold.,CurveComponents.Component_KinkyCurve,Curve Components
+Curve,Knot Vector,846470bd-4918-4d00-9388-7e022b2cba73,Knots,Construct a nurbs curve knot vector.,CurveComponents.Component_NurbsKnotVector,Curve Components
+Curve,Length,c75b62fa-0a33-4da7-a5bd-03fd0068fd93,Len,Measure the length of a curve.,AnalysisComponents.Component_Length,Curve Components
+Curve,Length Domain,188edd02-14a9-4828-a521-34995b0d1e4a,LenD,Measure the length of a curve subdomain.,AnalysisComponents.Component_LengthDomain,Curve Components
+Curve,Length Parameter,a1c16251-74f0-400f-9e7c-5e379d739963,LenP,Measure the length of a curve to and from a parameter.,AnalysisComponents.Component_LengthParameter,Curve Components
+Curve,Line,4c4e56eb-2f04-43f9-95a3-cc46a14f495a,Ln,Create a line between two points.,CurveComponents.Component_Line,Curve Components
+Curve,Line 2Plane,510c4a63-b9bf-42e7-9d07-9d71290264da,Ln2Pl,Create a line between two planes.,CurveComponents.Component_Line2Plane,Curve Components
+Curve,Line 4Pt,b9fde5fa-d654-4306-8ee1-6b69e6757604,Ln4Pt,Create a line from four points.,CurveComponents.Component_Line4Pt,Curve Components
+Curve,Line SDL,4c619bc9-39fd-4717-82a6-1e07ea237bbe,Line,"Create a line segment defined by start point, tangent and length.}",CurveComponents.Component_LineSDL,Curve Components
+Curve,Match Curve,282bf4eb-668a-4a2c-81af-2432ac863ddd,MatchCrv,Match two curves.,CurveComponents.Component_MatchCurve,Curve Components
+Curve,Modified Arc,9d8dec9c-3fd1-481c-9c3d-75ea5e15eb1a,ModArc,Create an arc based on another arc.,CurveComponents.Component_Arc2,Curve Components
+Curve,Nurbs Curve,dde71aef-d6ed-40a6-af98-6b0673983c82,Nurbs,Construct a nurbs curve from control points.,CurveComponents.Component_Curve,Curve Components
+Curve,Nurbs Curve PWK,1f8e1ff7-8278-4421-b39d-350e71d85d37,NurbCrv,"Construct a nurbs curve from control points, weights and knots.",CurveComponents.Component_NurbsCurve,Curve Components
+Curve,Offset Curve,1a38d325-98de-455c-93f1-bca431bc1243,Offset,Offset a curve with a specified distance.,CurveComponents.Component_OffsetCurve,Curve Components
+Curve,Offset Curve Loose,80e55fc2-933b-4bfb-a353-12358786dba8,Offset (L),Offset the control-points of a curve with a specified distance.,CurveComponents.Component_OffsetCurveLoose,Curve Components
+Curve,Offset Loose 3D,c6fe61e7-25e2-4333-9172-f4e2a123fcfe,Offset (3D),Offset the control-points of a curve with a specified distance in 3D.,CurveComponents.Component_OffsetCurveLoose3D,Curve Components
+Curve,Offset Polyline,e2c6cab3-91ea-4c01-900c-646642d3e436,OP,Offset a 2D polyline,CurveComponents.Offset.OffsetPolylineComponent,Curve Components
+Curve,Offset on Srf,b6f5cb51-f260-4c74-bf73-deb47de1bf91,OffsetS,Offset a curve on a surface with a specified distance.,CurveComponents.Component_OffsetCurveOnSurface,Curve Components
+Curve,Perp Frame,69f3e5ee-4770-44b3-8851-ae10ae555398,PFrame,Solve the perpendicular (zero-twisting) frame at a specified curve parameter.,VectorComponents.DivisionComponents.Component_CurvePerpFrame,Vector Components
+Curve,Perp Frames,983c7600-980c-44da-bc53-c804067f667f,PFrames,"Generate a number of equally spaced, perpendicular frames along a curve.",VectorComponents.DivisionComponents.Component_CurvePerpFrames,Vector Components
+Curve,Planar,5816ec9c-f170-4c59-ac44-364401ff84cd,Planar,Test a curve for planarity.,AnalysisComponents.Component_Planar,Curve Components
+Curve,Point In Curve,a72b0bd3-c7a7-458e-875d-09ae1624638c,InCurve,Test a point for closed curve containment.,AnalysisComponents.Component_PointInRegion,Curve Components
+Curve,Point On Curve,7f6a9d34-0470-4bb7-aadd-07496bcbe572,CurvePoint,Evaluates a curve at a specific location,CurveComponents.Component_CurvePointAt,Curve Components
+Curve,Point in Curves,0b04e8b9-00d7-47a7-95c3-0d51e654fe88,InCurves,Test a point for multiple closed curve containment.,AnalysisComponents.Component_PointInRegions,Curve Components
+Curve,PolyArc,7159ef59-e4ef-44b8-8cb2-91231e278292,PArc,Create a polycurve consisting of arc and line segments.,CurveComponents.Component_PolyArc,Curve Components
+Curve,PolyLine,71b5b089-500a-4ea6-81c5-2f960441a0e8,PLine,Create a polyline connecting a number of points.,CurveComponents.Component_Polyline,Curve Components
+Curve,Polygon,845527a6-5cea-4ae9-a667-96ae1667a4e8,Polygon,Create a polygon with optional round edges.,CurveComponents.Component_Polygon,Curve Components
+Curve,Polygon Center,59e94548-cefd-4774-b3de-48142fc783fb,PCen,Find the center point (average) for a polyline.,AnalysisComponents.Component_PolygonCenterPoint,Curve Components
+Curve,Polygon Edge,f4568ce6-aade-4511-8f32-f27d8a6bf9e9,PolEdge,Create a polygon from a single edge.,CurveComponents.Component_PolygonEdge,Curve Components
+Curve,Polyline Collapse,be298882-28c9-45b1-980d-7192a531c9a9,PCol,Collapse short segments in a polyline curve.,CurveComponents.Component_CollapsePolylineSegments,Curve Components
+Curve,Project,d7ee52ff-89b8-4d1a-8662-3e0dd391d0af,Project,Project a curve onto a Brep.,CurveComponents.Component_ProjectCurve,Curve Components
+Curve,Pull Curve,6b5812f5-bb36-4d74-97fc-5a1f2f77452d,Pull,Pull a curve onto a surface.,CurveComponents.Component_PullCurve,Curve Components
+Curve,Rebuild Curve,9333c5b3-11f9-423c-bbb5-7e5156430219,ReB,Rebuild a curve with a specific number of control-points.,CurveComponents.Component_RebuildCurve,Curve Components
+Curve,Rectangle,d93100b6-d50b-40b2-831a-814659dc38e3,Rectangle,Create a rectangle on a plane,CurveComponents.Component_Rectangle,Curve Components
+Curve,Rectangle 2Pt,575660b1-8c79-4b8d-9222-7ab4a6ddb359,Rec 2Pt,Create a rectangle from a base plane and two points,CurveComponents.Component_Rectangle2Pt,Curve Components
+Curve,Rectangle 3Pt,9bc98a1d-2ecc-407e-948a-09a09ed3e69d,Rec 3Pt,Create a rectangle from three points,CurveComponents.Component_Rectangle3Pt,Curve Components
+Curve,Reduce,884646c3-0e70-4ad1-90c5-42601ee26450,RedPLine,Reduce a polyline by removing least significant vertices.,CurveComponents.Component_ReducePolyline,Curve Components
+Curve,Seam,42ad8dc1-b0c0-40df-91f5-2c46e589e6c2,Seam,Adjust the seam of a closed curve.,CurveComponents.Component_CurveSeam,Curve Components
+Curve,Segment Lengths,f88a6cd9-1035-4361-b896-4f2dfe79272d,LenSeg,Finds the shortest and longest segments of a curve.,AnalysisComponents.Component_CurveSegmentLengths,Curve Components
+Curve,Shatter,2ad2a4d4-3de1-42f6-a4b8-f71835f35710,Shatter,Shatter a curve into segments.,CurveComponents.Component_ShatterCurve,Curve Components
+Curve,Simplify Curve,922dc7e5-0f0e-4c21-ae4b-f6a8654e63f6,Simplify,Simplify a curve.,CurveComponents.Component_SimplifyCurve,Curve Components
+Curve,Smooth Polyline,5c5fbc42-3e1d-4081-9cf1-148d0b1d9610,SmoothPLine,Smooth the vertices of a polyline curve.,CurveComponents.Component_SmoothPolyline,Curve Components
+Curve,Sub Curve,429cbba9-55ee-4e84-98ea-876c44db879a,SubCrv,Construct a curve from the sub-domain of a base curve.,CurveComponents.Component_SubCurve,Curve Components
+Curve,Swing Arc,3edc4fbd-24c6-43de-aaa8-5bdf0704373d,Swing,Create a polycurve consisting of arcs defined by center points.,CurveComponents.Component_SwingArc,Curve Components
+Curve,Tangent Arcs,f1c0783b-60e9-42a7-8081-925bc755494c,TArc,Create tangent arcs between circles,CurveComponents.Component_TangentArcs,Curve Components
+Curve,Tangent Curve,f73498c5-178b-4e09-ad61-73d172fa6e56,TanCurve,Create a curve through a set of points with tangents.,CurveComponents.Component_InterpTangentialCurve,Curve Components
+Curve,Tangent Lines,ea0f0996-af7a-481d-8099-09c041e6c2d5,Tan,Create tangent lines between a point and a circle,CurveComponents.Component_TangentLines,Curve Components
+Curve,Tangent Lines (Ex),d6d68c93-d00f-4cd5-ba89-903c7f6be64c,TanEx,Create external tangent lines between circles,CurveComponents.Component_TangentLinesEx,Curve Components
+Curve,Tangent Lines (In),e0168047-c46a-48c6-8595-2fb3d8574f23,TanIn,Create internal tangent lines between circles,CurveComponents.Component_TangentLinesIn,Curve Components
+Curve,Torsion,dbe9fce4-b6b3-465f-9615-34833c4763bd,Torsion,Evaluate the torsion of a curve at a specified parameter.,AnalysisComponents.Component_CurveTorsion,Curve Components
+Curve,Tween Curve,139619d2-8b18-47b6-b3b9-bf4fec0d6eb1,TweenCrv,Tween between two curves.,CurveComponents.Component_TweenCurves,Curve Components
+Curve,TwoByFourJam,c21e7bd5-b1f2-4448-ac56-206f98f90aa7,2x4 Jam,Jam a two-by-four into a crooked room,CurveComponents.ComponentTwoByFourJam,Curve Components
+Display,Aligned Dimension,3de3d3a0-1a1b-488c-b3d9-3fba0fdf07a8,AlignDim,Create a distance annotation between two points,DimensionComponents.Component_AlignedDimension,Curve Components
+Display,Angular Dimension,fc6b519e-df6d-4ce1-a1f4-083f1c217c14,AngleDim,Create an angle annotation between points.,DimensionComponents.Component_AngularSimpleDimension,Curve Components
+Display,Angular Dimensions (Mesh),91f3bde5-26e6-432e-a5fe-a2938b2a94f9,AngleDimMesh,Create angle annotations for all mesh corners.,DimensionComponents.Component_MeshAngularDimension,Curve Components
+Display,Arc Dimension,1bd97813-4fec-4453-9645-4ac920844f9d,ArcDim,Create an angle annotation based on an arc.,DimensionComponents.Component_AngularArcDimension,Curve Components
+Display,Bar Graph,e1905a16-da43-4705-bd65-41d34328c4e6,Bar Graph,Bar graph representation of a set of numbers,Grasshopper.Kernel.Special.GH_BarGraph,Grasshopper
+Display,Circular Dimension,7e9489e0-122d-401a-aba8-f1dae0217c40,CircleDim,Create an angle annotation projected to a circle.,DimensionComponents.Component_AngularCircleDimension,Curve Components
+Display,Cloud Display,059b72b0-9bb3-4542-a805-2dcd27493164,Cloud,Draw a collection of points as a fuzzy cloud,VectorComponents.PointComponents.Component_CloudDisplay,Vector Components
+Display,Colour CMYK,17af01a5-a846-4769-9478-de1df65a0afa,CMYK,Create a colour from floating point {CMYK} channels.,MathComponents.ColourComponents.Component_ColourCMYK,Math Components
+Display,Colour HSL,a45d68b3-c299-4b17-bdae-7975f216cec6,HSL,Create a colour from floating point {HSL} channels.,MathComponents.ColourComponents.Component_ColourHSL,Math Components
+Display,Colour HSV,5958a658-20c2-4a2b-86ba-4d1b81bf5348,HSV,Create a colour from floating point {HSV} channels.,MathComponents.ColourComponents.Component_ColourHSV,Math Components
+Display,Colour L*ab,f922ed44-6e4a-44a0-8b4b-4b4a46bdfe29,L*AB,Create a colour from floating point {CIE L*ab} channels.,MathComponents.ColourComponents.Component_ColourLAB,Math Components
+Display,Colour LCH,75a07554-8a2c-4d87-81b9-d854f498509d,LCH,Create a colour from floating point {CIE LCH} channels.,MathComponents.ColourComponents.Component_ColourLCH,Math Components
+Display,Colour RGB,49d2e200-b34e-4e1c-82a3-07feb4cb9378,RGB,Create a colour from {RGB} channels.,MathComponents.ColourComponents.Component_ColourRGB,Math Components
+Display,Colour RGB (f),f35132c0-c298-4b9c-b446-42e960f52677,fRGB,Create a colour from floating point {RGB} channels.,MathComponents.ColourComponents.Component_ColourRGB_Fractional,Math Components
+Display,Colour XYZ,77185dc2-2f18-469d-9686-00f5b6049195,XYZ,Create a colour from floating point {XYZ} channels (CIE 1931 spec).,MathComponents.ColourComponents.Component_ColourXYZ,Math Components
+Display,Create Material,76975309-75a6-446a-afed-f8653720a9f2,Material,Create an OpenGL material.,MathComponents.ColourComponents.Component_CreateOGLMaterial,Math Components
+Display,Custom Curve Preview,eeb8f5d3-2c5e-46bd-a368-10f0f9576fe9,Curve Preview,Custom Curve Preview,IOComponents.Rhinoceros.Display.Component_CustomCurveDisplay,IO Components
+Display,Custom Preview,537b0419-bbc2-4ff4-bf08-afe526367b2c,Preview,Allows for customized geometry previews,Grasshopper.Kernel.Components.GH_CustomPreviewComponent,Grasshopper
+Display,Deconstruct Material,38e8f2e0-b77e-4fca-a503-1ca350dd8791,DMaterial,Deconstruct a display material (ie. shader) into its various attributes,MathComponents.ColourComponents.Component_DeconstructOGLMaterial,Math Components
+Display,Dot Display,6b1bd8b2-47a4-4aa6-a471-3fd91c62a486,Dots,Draw a collection of coloured dots,VectorComponents.PointComponents.Component_DotDisplay,Vector Components
+Display,Fancy Curves,da959126-6d4b-48fd-a51c-56bebba2c2a4,Fancy Curves,Test new curve options,CurveComponents.TestFancyCurvesComponent,Curve Components
+Display,Gradient Hatch,6ce90407-9eac-4a1a-a81a-949b601f18f3,GHatch,Create a gradient hatch,HatchComponents.GradientHatchComponent,Curve Components
+Display,Image Gallery,54ab3f01-a769-4742-a7bf-cec48a1acb6f,Gallery,Display a sequence of images,OtherComponents.ImageGallery,Curve Components
+Display,Legend,f6867cdd-2216-4451-9134-7da94bdcd5af,Legend,Display a legend consisting of Tags and Colours,Grasshopper.Kernel.Special.GH_Legend,Grasshopper
+Display,Line Dimension,d78f026a-0109-4bcc-bf91-d08475711466,LineDim,Create a distance annotation along a line.,DimensionComponents.Component_LineDimension,Curve Components
+Display,Linear Dimension,5018bf8d-8566-4917-a6e3-5a623bda8079,LinearDim,"Create a distance annotation between points, projected to a line.",DimensionComponents.Component_LinearDimension,Curve Components
+Display,Make2D,96e40f6b-ba46-4102-bf15-ebf90471f4a0,Make2D,Create a hidden line drawing from geometry,CurveComponents.Make2DComponent,Curve Components
+Display,Make2D Parallel View,3fc08088-d75d-43bc-83cc-7a654f156cb7,M2D Parallel,Define a parallel view for a Make2D solution,CurveComponents.Make2DParallelViewComponent,Curve Components
+Display,Make2D Perspective View,33359c6d-984e-42f3-a869-0c3364ab33b6,M2D Perspective,Define a perspective view for a Make2D solution,CurveComponents.Make2DPerspectiveComponent,Curve Components
+Display,Make2D Rhino View,4ac24770-e38b-4363-be38-551a3b134707,M2D Rhino,Import a Rhino view for a Make2D solution,CurveComponents.Make2DNamedViewComponent,Curve Components
+Display,Marker Dimension,c5208969-16f9-48af-8a86-e500c033fb76,MarkDim,Create a text annotation at a point,DimensionComponents.Component_MarkerDimension,Curve Components
+Display,Pattern Hatch,5f9e4549-8135-4a90-97c8-8a34bf05e99a,PHatch,Create a patterned hatch,HatchComponents.PatternHatchComponent,Curve Components
+Display,Pie Chart,952c2bcc-b5ec-480a-a0d7-27f016632e33,Pie,Displays a set of text fragments as a pie chart,Grasshopper.Kernel.Special.GH_PieChart,Grasshopper
+Display,Point List,1f18e802-4ab9-444f-bf3c-3e7e421a2acf,Points,Displays the indices in lists of points,Grasshopper.Kernel.Components.GH_PointListComponent,Grasshopper
+Display,Point List,cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb,Points,Displays details about lists of points,DimensionComponents.Component_PointListDisplay,Curve Components
+Display,Point Order,0ad9f1ab-2204-45bb-b282-474469e2fa7b,Order,Displays the order of a list of points,DimensionComponents.Component_PointOrderDisplay,Curve Components
+Display,Quick Graph,2b69bf71-4e69-43aa-b7be-4f6ce7e45bef,Graph,Display a set of y-values as a graph,Grasshopper.Kernel.Special.GH_QuickGraph,Grasshopper
+Display,Serial Dimension,7dd42002-75bb-4f41-857f-472a140b3b28,SerialDim,"Create a distance annotation between multiple points, projected to a line.",DimensionComponents.Component_SerialDimension,Curve Components
+Display,Split AHSL,0a1331c8-c58d-4b3f-a886-47051532e35e,AHSL,Split a colour into floating point {AHSL} channels,MathComponents.ColourComponents.Component_ColourSplitAHSL,Math Components
+Display,Split AHSV,d84d2c2a-2813-4667-afb4-46642581e5f9,AHSV,Split a colour into floating point {AHSV} channels,MathComponents.ColourComponents.Component_ColourSplitAHSV,Math Components
+Display,Split ARGB,350f7d03-a48f-4121-bcee-328cfe1ed9ef,ARGB,Split a colour into floating point {ARGB} channels.,MathComponents.ColourComponents.Component_ColourSplitARGB,Math Components
+Display,Symbol (Advanced),e5c82975-8011-412c-b56d-bb7fc9e7f28d,SymAdv,Advanced symbol display properties,FieldComponents.Component_CreateAdvancedPointShaderDisplay,Field Components
+Display,Symbol (Simple),79747717-1874-4c34-b790-faef53b50569,SymSim,Simple symbol display properties,FieldComponents.Component_CreateSimplePointShaderDisplay,Field Components
+Display,Symbol Display,62d5ead4-53c4-4d0b-b5ce-6bd6e0850ab8,Symbol,Display symbols,FieldComponents.Component_SymbolDisplay,Field Components
+Display,Test Crash,f3c769fd-aa9b-4695-a1ce-3ad4c53d1440,Test Crash,Test crashing of GH,CurveComponents.TestCrashComponent,Curve Components
+Display,Text Tag,3b220754-4114-4170-b6c3-b286b86ed524,Tag,Represents a list of text tags in a Rhino viewport,Grasshopper.Kernel.Components.GH_TextTagComponent,Grasshopper
+Display,Text Tag 3D,5a41528b-12b9-40dc-a3f2-842034d267c4,Tag,Represents a list of 3D text tags in a Rhino viewport,Grasshopper.Kernel.Components.GH_TextTag3DComponent,Grasshopper
+Display,Value Tracker,615367b4-c9d0-4cb7-986c-cb861226136f,Tracker,Track a collection of numeric values over time,Grasshopper.Kernel.Special.GH_ValueTracker,Grasshopper
+Display,Vector Display,2a3f7078-2e25-4dd4-96f7-0efb491bd61c,VDis,Preview vectors in the viewport,VectorComponents.VectorComponents.Component_VectorDisplay,Vector Components
+Display,Vector Display Ex,11e95a7b-1e2c-4b66-bd95-fcad51f8662a,VDisEx,Preview vectors in the viewport,VectorComponents.VectorComponents.Component_VectorDisplay2,Vector Components
+Display,Viewport Display,b78d95bc-dffb-414c-b177-c611c92580b9,Viewport Display,Display viewport on canvas,CurveComponents.ViewportDisplayComponent,Curve Components
+Intersect,Boundary Volume,b57bf805-046a-4360-ad76-51aeddfe9720,BVol,Create a closed polysurface from boundary surfaces,SurfaceComponents.SolidComponents.Component_CreateSolid,Surface Components
+Intersect,Box Slits,2d3b6ef3-5c26-4e2f-bcb3-8ffb9fb0f7c3,Slits,Add slits to a collection of intersecting boxes,SurfaceComponents.SolidComponents.Component_BoxSlits,Surface Components
+Intersect,Brep | Brep,904e4b56-484a-4814-b35f-aa4baf362117,BBX,Solve intersection events for two Breps.,SurfaceComponents.SolidComponents.Component_BRepIntersection,Surface Components
+Intersect,Brep | Curve,20ef81e8-df15-4a0c-acf1-993a7607cafb,BCX,Solve intersection events for a Brep and a curve.,SurfaceComponents.SolidComponents.Component_BRepCurveIntersect,Surface Components
+Intersect,Brep | Line,ed0742f9-6647-4d95-9dfd-9ad17080ae9c,BLX,Solve intersection events for a Brep and a line.,SurfaceComponents.SolidComponents.Component_BRepLineIntersect,Surface Components
+Intersect,Brep | Plane,4fe828e8-fa95-4cc5-9a8c-c33856ecc783,Sec,Solve intersection events for a Brep and a plane (otherwise known as section).,SurfaceComponents.SolidComponents.Component_BRepSection,Surface Components
+Intersect,Clash,4439a51b-8d24-4924-b8e2-f77e7f8f5bec,Clash,Perform clash analysis on a set of shapes.,ClashComponents.ClashComponent,Transform Components
+Intersect,Collision Many|Many,2168853c-acd8-4a63-9c9b-ecde9e239eae,ColMM,Test for many|many collision between objects,SurfaceComponents.AnalysisComponents.Component_CollisionManyToMany,Surface Components
+Intersect,Collision One|Many,bb6c6501-0500-4678-859b-b838348981d1,ColOM,Test for one|many collision between objects,SurfaceComponents.AnalysisComponents.Component_CollisionOneToMany,Surface Components
+Intersect,Contour,3b112fb6-3eba-42d2-ba75-0f903c18faab,Contour,Create a set of Brep or Mesh contours,SurfaceComponents.SolidComponents.Component_Contour1,Surface Components
+Intersect,Contour (ex),246cda78-5e88-4087-ba09-ae082bbc4af8,Contour,Create a set of Brep or Mesh contours,SurfaceComponents.SolidComponents.Component_Contour2,Surface Components
+Intersect,Curve | Curve,84627490-0fb2-4498-8138-ad134ee4cb36,CCX,Solve intersection events for two curves.,CurveComponents.Component_CurveIntersection,Curve Components
+Intersect,Curve | Line,0e3173b6-91c6-4845-a748-e45d4fdbc262,CLX,Solve intersection events for a curve and a line.,CurveComponents.Component_CurveLineIntersection,Curve Components
+Intersect,Curve | Plane,b7c12ed1-b09a-4e15-996f-3fa9f3f16b1c,PCX,Solve intersection events for a curve and a plane.,CurveComponents.Component_CurvePlaneIntersection,Curve Components
+Intersect,Curve | Self,0991ac99-6a0b-47a9-b07d-dd510ca57f0f,CX,Solve all self intersection events for a curve.,CurveComponents.Component_CurveSelfIntersection,Curve Components
+Intersect,IsoVist,cab92254-1c79-4e5a-9972-0a4412b35c88,IVist,Compute an isovist sampling at a location,TriangulationComponents.Component_Isovist,Triangulation Components
+Intersect,IsoVist Ray,93d0dcbc-6207-4745-aaf7-fe57a880f959,IVRay,Compute a single isovist sample at a location,TriangulationComponents.Component_IsovistRay,Triangulation Components
+Intersect,Line | Line,6d4b82a7-8c1d-4bec-af7b-ca321ba4beb1,LLX,Solve intersection events for two lines.,CurveComponents.Component_LineLineIntersection,Curve Components
+Intersect,Line | Plane,75d0442c-1aa3-47cf-bd94-457b42c16e9f,PLX,Solve intersection event for a line and a plane.,CurveComponents.Component_LinePlaneIntersection,Curve Components
+Intersect,Mesh Difference,4f3147f4-9fcd-4a7e-be0e-b1841caa5f97,MDif,Perform a solid difference on two sets of meshes,SurfaceComponents.MeshComponents.Component_MeshBooleanDifference,Surface Components
+Intersect,Mesh Intersection,95aef4f6-66fc-477e-b8f8-32395a837831,MInt,Perform a solid intersection on a set of meshes,SurfaceComponents.MeshComponents.Component_MeshBooleanIntersection,Surface Components
+Intersect,Mesh Split,afbf2fe0-4965-48d2-8470-9e991540093b,MSplit,Mesh Mesh split,SurfaceComponents.MeshComponents.Component_MeshMeshSplit,Surface Components
+Intersect,Mesh Union,88060a82-0bf7-46bb-9af8-bdc860cf7e1d,MUnion,Perform a solid union on a set of meshes,SurfaceComponents.MeshComponents.Component_MeshBooleanUnion,Surface Components
+Intersect,Mesh | Curve,19632848-4b95-4e5e-9e86-b79b47987a46,MCX,Mesh Curve intersection,SurfaceComponents.MeshComponents.Component_MeshCurveIntersect,Surface Components
+Intersect,Mesh | Mesh,21b6a605-9568-4bf8-acc1-631565d609d7,MMX,Mesh Mesh intersection,SurfaceComponents.MeshComponents.Component_MeshMeshIntersect,Surface Components
+Intersect,Mesh | Plane,3b1ae469-0e9b-461d-8c30-fa5a7de8b7a9,Sec,Solve intersection events for a Mesh and a Plane (otherwise known as section).,SurfaceComponents.SolidComponents.Component_MeshSection,Surface Components
+Intersect,Mesh | Ray,4c02a168-9aba-4f42-8951-2719f24d391f,MeshRay,Intersect a mesh with a semi-infinite ray,SurfaceComponents.SolidComponents.Component_MeshRayIntersect,Surface Components
+Intersect,Multiple Curves,931e6030-ccb3-4a7b-a89a-99dcce8770cd,MCX,Solve intersection events for multiple curves.,CurveComponents.Component_CurvesIntersection,Curve Components
+Intersect,Plane Region,80e3614a-25ae-43e7-bb0a-760e68ade864,PlReg,Create a bounded region from intersecting planes.,VectorComponents.PlaneComponents.Component_PlaneSliceRegion,Vector Components
+Intersect,Plane | Plane,290cf9c4-0711-4704-851e-4c99e3343ac5,PPX,Solve the intersection event of two planes.,VectorComponents.PlaneComponents.Component_PlanePlaneIntersect,Vector Components
+Intersect,Plane | Plane | Plane,f1ea5a4b-1a4f-4cf4-ad94-1ecfb9302b6e,3PX,Solve the intersection events of three planes.,VectorComponents.PlaneComponents.Component_3PlaneIntersect,Vector Components
+Intersect,Point Cloud Contour,a45e648e-a4f5-4408-a222-9b67f64a8622,PC Contour,Create a series of planar curves by intersecting planes with a cloud of points,IOComponents.Rhinoceros.PointClouds.Component_PointCloudContour,IO Components
+Intersect,Point Cloud Section,e28fa9c3-aed2-4595-bbd3-497255f7280c,PC Section,Create a planar section by intersecting a plane with a cloud of points,IOComponents.Rhinoceros.PointClouds.Component_PointCloudSection,IO Components
+Intersect,Region Difference,f72c480b-7ee6-42ef-9821-c371e9203b44,RDiff,Difference between two sets of planar closed curves (regions),SurfaceComponents.SolidComponents.Component_CurveBooleanDifference,Surface Components
+Intersect,Region Intersection,477c2e7b-c5e5-421e-b8b2-ba60cdf5398b,RInt,Intersection between two sets of planar closed curves (regions),SurfaceComponents.SolidComponents.Component_CurveBooleanIntersection,Surface Components
+Intersect,Region Slits,0feeeaca-8f1f-4d7c-a24a-8e7dd68604a2,RSlits,Add slits to a collection of intersecting planar regions,SurfaceComponents.SolidComponents.Component_RegionSlits,Surface Components
+Intersect,Region Union,1222394f-0d33-4f31-9101-7281bde89fe5,RUnion,Union of a set of planar closed curves (regions),SurfaceComponents.SolidComponents.Component_CurveBooleanUnion,Surface Components
+Intersect,Solid Difference,fab11c30-2d9c-4d15-ab3c-2289f1ae5c21,SDiff,Perform a solid difference on two Brep sets.,SurfaceComponents.SolidComponents.Component_BooleanDifference,Surface Components
+Intersect,Solid Intersection,5723c845-cafc-442d-a667-8c76532845e6,SInt,Perform a solid intersection on two Brep sets.,SurfaceComponents.SolidComponents.Component_BooleanIntersection,Surface Components
+Intersect,Solid Union,10434a15-da85-4281-bb64-a2b3a995b9c6,SUnion,Perform a solid union on a set of Breps.,SurfaceComponents.SolidComponents.Component_BooleanUnion,Surface Components
+Intersect,Split Brep,ef6b26f4-f820-48d6-b0c5-85898ef8888b,Split,Split one brep with another.,SurfaceComponents.SolidComponents.Component_SplitBrep,Surface Components
+Intersect,Split Brep Multiple,03f22640-ff80-484e-bb53-a4025c5faa07,SplitMul,Split one brep with a bunch of others.,SurfaceComponents.SolidComponents.Component_SplitBrepMultiple,Surface Components
+Intersect,Split with Brep,4bdc2eb0-24ed-4c90-a27b-a32db069eaef,Split,Split a curve with a Brep.,CurveComponents.Component_SplitCurveBRep,Curve Components
+Intersect,Split with Breps,5b742537-9bcb-4f06-9613-866da5bf845e,Split,Split a curve with multiple Breps.,CurveComponents.Component_SplitCurveMultipleBReps,Curve Components
+Intersect,Surface Split,7db14002-c09c-4d7b-9f80-e4e2b00dfa1d,SrfSplit,Split a surface with a bunch of curves.,SurfaceComponents.SolidComponents.Component_SurfaceCurveSplit,Surface Components
+Intersect,Surface | Curve,68546dd0-aa82-471c-87e9-81cb16ac50ed,SCX,Solve intersection events for a surface and a curve.,SurfaceComponents.SolidComponents.Component_SurfaceCurveIntersect,Surface Components
+Intersect,Surface | Line,a834e823-ae01-44d8-9066-c138eeb6f391,SLX,Solve intersection events for a surface and a line.,SurfaceComponents.SolidComponents.Component_SurfaceLineIntersect,Surface Components
+Intersect,Trim Solid,f0b70e8e-7337-4ce4-a7bb-317fc971f918,Trim,Cut holes into a shape with a set of solid cutters.,SurfaceComponents.SolidComponents.Component_BooleanTrim,Surface Components
+Intersect,Trim with Brep,3eba04bc-00e8-416d-b58f-a3dc8b3e22e2,Trim,Trim a curve with a Brep.,CurveComponents.Component_TrimCurveBRep,Curve Components
+Intersect,Trim with Breps,916e7ebc-524c-47ce-8936-e50a09a7b43c,Trim,Trim a curve with multiple Breps.,CurveComponents.Component_TrimCurveMultipleBReps,Curve Components
+Intersect,Trim with Region,3092caf0-7cf9-4885-bcc0-e635d878832a,Trim,Trim a curve with a region.,CurveComponents.Component_TrimCurveRegion,Curve Components
+Intersect,Trim with Regions,26949c81-9b50-43b7-ac49-3203deb6eec7,Trim,Trim a curve with multiple regions.,CurveComponents.Component_TrimCurveMultipleRegions,Curve Components
+Kangaroo2,AlignFaces,eda40a97-17ec-4a46-99bc-21d952b80ece,AlignFaces,Align faces of a pair of rigid bodies,Kangaroo2Component.GoalComponents.AlignFacesComponent,Kangaroo2 Components
+Kangaroo2,Anchor,3c30b1a1-4473-4ad4-a700-ea9770726c03,Anchor,Anchor,Kangaroo2Component.GoalComponents.Anchor2Component,Kangaroo2 Components
+Kangaroo2,Anchor,b476d3d0-4daf-489c-b91a-49f5dd72a256,Anchor,Anchor,Kangaroo2Component.GoalComponents.AnchorComponent,Kangaroo2 Components
+Kangaroo2,AnchorXYZ,2128cde3-9694-40b0-874c-670c89341acd,AnchorXYZ,"Fix a point only along chosen world axes. If you need to reset the initial position, disconnect then reconnect the Point input.",Kangaroo2Component.GoalComponents.AnchorXYZComponent,Kangaroo2 Components
+Kangaroo2,Angle,f5f95b51-7431-4e80-a32f-d33e5dee53a5,Angle,Angle,Kangaroo2Component.GoalComponents.AngleComponent,Kangaroo2 Components
+Kangaroo2,AngleSnap,c5ca5c17-3d7c-4848-b994-a7406dc519ed,AS,Snap the angle between 2 lines to the closest whole number multiple of a given value,Kangaroo2Component.GoalComponents.AngleSnapComponent,Kangaroo2 Components
+Kangaroo2,Beam,3f8b0f83-6e8e-4a9d-b0ff-9474cc9eb89b,Beam,Beam resisting bending and torsion,Kangaroo2Component.GoalComponents.BeamComponent,Kangaroo2 Components
+Kangaroo2,Bipartite,8cb1880b-464e-470e-87af-ea27ae95132d,Bipartite,Attempt to assign a boolean to each vertex of a mesh such that no connected vertices share the same value,Kangaroo2Component.UtilityComponents.Bipartite,Kangaroo2 Components
+Kangaroo2,Bomb,2f3fd2e9-2cc4-47be-af5a-2f3916f76a92,B,Causes an explosion after a given number of iterations,Kangaroo2Component.GoalComponents.BombComponent,Kangaroo2 Components
+Kangaroo2,BouncySolver,0febdb68-70bd-4882-b5e4-f68d1cddc4ae,BouncySolver,Solver with momentum,Kangaroo2Component.KangarooBounce,Kangaroo2 Components
+Kangaroo2,ByParent,5a4ba654-7203-474d-83d6-7f1cdfc0a41f,ByParent,"Refine a Mesh, separating outputs by parent face",Kangaroo2Component.UtilityComponents.ByParent,Kangaroo2 Components
+Kangaroo2,Checkerboard,c0139ec9-4e5a-4978-ab5f-31f5deb9ba4e,Checkerboard,Attempt to assign a boolean to each face of a mesh such that no adjacent faces share the same value,Kangaroo2Component.UtilityComponents.Checkerboard,Kangaroo2 Components
+Kangaroo2,ClampAngle,d228945d-3133-412f-9283-d2ac418e82a2,ClampAngle,Keep an angle between 2 lines within a given range,Kangaroo2Component.GoalComponents.ClampAngleComponent,Kangaroo2 Components
+Kangaroo2,ClampLength,0822cf4a-be2e-4352-aed2-dad197f0611e,ClampLength,Keep length within given bounds,Kangaroo2Component.GoalComponents.ClampLengthComponent,Kangaroo2 Components
+Kangaroo2,CoCircular,6e9f7437-714b-4140-99e8-0842de58f59c,CoCircular,CoCircular,Kangaroo2Component.GoalComponents.CoCircularComponent,Kangaroo2 Components
+Kangaroo2,CoLinear,236d3928-a06f-4c60-bd2d-787691421391,CoLinear,CoLinear,Kangaroo2Component.GoalComponents.CoLinearComponent,Kangaroo2 Components
+Kangaroo2,CoPlanar,8f78572b-7fd0-4795-b444-3de3ca5933ae,CoPlanar,CoPlanar,Kangaroo2Component.GoalComponents.CoPlanarComponent,Kangaroo2 Components
+Kangaroo2,CoSpherical,dd500398-727a-466f-9b51-83634266a83a,CoSpherical,CoSpherical,Kangaroo2Component.GoalComponents.CoSphericalComponent,Kangaroo2 Components
+Kangaroo2,Coincident,c955cf0a-2294-423d-bf1a-fc5cba5d2103,C,Equivalent to a zero length constraint between a pair of points,Kangaroo2Component.GoalComponents.CoincidentComponent,Kangaroo2 Components
+Kangaroo2,Collide2d,4dd9ea95-2ec8-44e3-a772-0e5889d95344,C2d,Collisions between closed polygons in a given plane,Kangaroo2Component.GoalComponents.Collide2dComponent,Kangaroo2 Components
+Kangaroo2,Collider,94bf912d-4d0c-4764-a100-5813a98a8b73,Collider,Collisions between thickened line segments and spheres,Kangaroo2Component.GoalComponents.ColliderComponent,Kangaroo2 Components
+Kangaroo2,Combine&Clean,2491e794-8360-4317-b0ad-4950f6e0906a,Clean,"Combine and Clean a list of meshes, removing unused and duplicate vertices",Kangaroo2Component.UtilityComponents.MeshClean,Kangaroo2 Components
+Kangaroo2,Concentric,ec32b3f0-38ac-4c29-9af8-1043d66ff3c5,Concentric,Align axes of a pair of rigid bodies,Kangaroo2Component.GoalComponents.ConcentricComponent,Kangaroo2 Components
+Kangaroo2,Conicalize,54443347-13e2-4ad6-b68f-53c878d32c84,Conical,Adjust a quad mesh to make vertices conical - so the mesh has a face-face offset (See the paper 'The focal geometry of circular and conical meshes' for details). Use together with Planarize,Kangaroo2Component.GoalComponents.ConicalizeComponent,Kangaroo2 Components
+Kangaroo2,ConstantTension,c9cf79b9-eced-4591-8f8e-641739df0211,CT,An element which adapts its stiffness to maintain a constant force,Kangaroo2Component.GoalComponents.ConstantTensionComponent,Kangaroo2 Components
+Kangaroo2,CurveCollide,da30b731-7ec7-4cd5-88e6-a6009a681a13,CC,Collisions between closed curves in a given plane,Kangaroo2Component.GoalComponents.CurveCollideComponent,Kangaroo2 Components
+Kangaroo2,CurvePointCollide,02b1c69b-b3f7-4528-988e-449a59963e5e,CPC,Keep a set of points outside or inside a given 2d curve,Kangaroo2Component.GoalComponents.Curve2dPointComponent,Kangaroo2 Components
+Kangaroo2,CyclicQuad,15ab0db0-5093-4a37-854a-cee70457a847,CyclicQuad,Make a quadrilateral have a circumscribed circle,Kangaroo2Component.GoalComponents.CyclicQuadComponent,Kangaroo2 Components
+Kangaroo2,CyclicQuad,5d81faae-befc-4c12-b558-beaf2ebee8f1,CyclicQuad,Make a quadrilateral have a circumscribed circle,Kangaroo2Component.GoalComponents.CyclicQuadComponent2,Kangaroo2 Components
+Kangaroo2,Developablize,856bd786-9f29-4052-b721-0d64b7b3f3ea,Developablize,"Turn a triangular mesh into developable patches with creases. Based on the paper 'Developability of Triangle Meshes' by Stein, Grinspun & Crane",Kangaroo2Component.GoalComponents.DevelopablizeComponent,Kangaroo2 Components
+Kangaroo2,Diagonalize,77e9376b-a397-4010-9b2c-dd0326107a91,Diag,Replace each edge with a new face,Kangaroo2Component.UtilityComponents.Diagonalize,Kangaroo2 Components
+Kangaroo2,Direction,6d36a97d-811f-423a-a4a1-35a7a7637697,Direction,"Align a line segment with a given vector, or if none supplied, the closest of the World XYZ vectors",Kangaroo2Component.GoalComponents.DirectionComponent,Kangaroo2 Components
+Kangaroo2,DotDisplay,d27b55c6-9d5f-4d05-be7b-b91009aad383,Dot,Show points as round dots,Kangaroo2Component.UtilityComponents.DotDisplay,Kangaroo2 Components
+Kangaroo2,DynamicWeight1d,7db2c4c9-15b5-4378-8495-a8f9a8db5723,DW,"A load in the negative Z direction, which updates its magnitude according to the length of the line",Kangaroo2Component.GoalComponents.DynamicWeight1dComponent,Kangaroo2 Components
+Kangaroo2,EdgeLengths,24e2b0d2-d7b8-4478-8a83-1f04cba701a1,EdgeLengths,Set the edge lengths of a mesh,Kangaroo2Component.GoalComponents.EdgeLengthsComponent,Kangaroo2 Components
+Kangaroo2,EqualAngle,f8e123b6-517c-409a-9a2f-c3acf58617cd,EA,Equalize angles between multiple pairs of lines,Kangaroo2Component.GoalComponents.EqualAngleComponent,Kangaroo2 Components
+Kangaroo2,EqualLength,537e7b52-4f3e-4bb6-b5f5-98233a66b79d,EqualLength,EqualLength,Kangaroo2Component.GoalComponents.EqualLengthComponent,Kangaroo2 Components
+Kangaroo2,FaceFaceOffset,f3fcd287-f1f2-4b76-84ac-e7dd462979fa,FaceFace,Offset a conical mesh so that corresponding faces are constant distance apart,Kangaroo2Component.UtilityComponents.FaceFaceOffset,Kangaroo2 Components
+Kangaroo2,Floor,14ac13f4-c22d-487c-be01-c6daf952f1be,Floor,Floor,Kangaroo2Component.GoalComponents.FloorComponent,Kangaroo2 Components
+Kangaroo2,FloorFriction,780a08f2-c42d-4b8e-b8c9-8b3e09c318d0,Floor,Floor with static friction,Kangaroo2Component.GoalComponents.FrictionFloorComponent,Kangaroo2 Components
+Kangaroo2,FoldAngle,b09481df-b73c-4889-b2d7-6ed306beddad,FoldAngle,Measure the current angle between two triangles about their common edge,Kangaroo2Component.UtilityComponents.FoldAngle,Kangaroo2 Components
+Kangaroo2,G2,8abedb3c-ff82-46ea-8f77-fcb236b55d89,G2,Maintain curvature continuity between 2 nurbs curves,Kangaroo2Component.GoalComponents.G2CurvesComponent,Kangaroo2 Components
+Kangaroo2,Grab,3d13a415-6ac5-4b59-9677-3975e4696a85,Grab,This lets you drag Kangaroo particles in Rhino viewports,Kangaroo2Component.GoalComponents.GrabComponent_NoKey,Kangaroo2 Components
+Kangaroo2,Grab,4c53ba00-f4bd-4ede-8d26-55106278268d,Grab,"This lets you drag particles in Rhino. Hold Alt key and drag with LMB, or toggle anchors with LMB+RMB",Kangaroo2Component.GoalComponents.Grab3Component,Kangaroo2 Components
+Kangaroo2,Grab,4c90aad1-0748-4800-99db-a27d690bb1e1,Grab,"This lets you drag particles in Rhino. Hold Left Ctrl and drag with LMB, or toggle anchors with LMB+RMB",Kangaroo2Component.GoalComponents.GrabComponent,Kangaroo2 Components
+Kangaroo2,Grab,ea145d1d-7727-4d52-8db6-c9b7100ab7f9,Grab,"This lets you drag particles in Rhino. Hold Alt key and drag with LMB, or toggle anchors with LMB+RMB",Kangaroo2Component.GoalComponents.GrabXComponent,Kangaroo2 Components
+Kangaroo2,Hinge,b6b6632e-a164-491a-8874-9a214dcc79bc,Hinge,Hinge,Kangaroo2Component.GoalComponents.HingeComponent,Kangaroo2 Components
+Kangaroo2,HingePoints,24f82a13-a700-45e0-9528-8646323d4af2,HingePoints,Get the 4 points for each internal edge to use in a Hinge Force,Kangaroo2Component.UtilityComponents.HingePoints,Kangaroo2 Components
+Kangaroo2,ImageCircles,cb643f13-4969-4688-928f-5dd1dcbc8517,ImgCircles,Circle packing with sizes from image colours,Kangaroo2Component.GoalComponents.ImageCirclesComponent,Kangaroo2 Components
+Kangaroo2,Isothermic,9103348d-9ec2-4937-a04f-79c509f8093c,Iso,"Make a quad mesh S-Isothermic, as described in the paper 'Quasiisothermic Mesh Layout' by Sechelmann, Rörig & Bobenko",Kangaroo2Component.GoalComponents.IsothermicComponent,Kangaroo2 Components
+Kangaroo2,Length(Line),091bae84-8fa9-4b35-8aad-b25b859055f6,Length(Line),Length(Line),Kangaroo2Component.GoalComponents.SpringByLineComponent,Kangaroo2 Components
+Kangaroo2,Length(Pts),c681ef8e-fbf7-4277-a6a8-8a00d94cc953,Length(Pts),Length(Pts),Kangaroo2Component.GoalComponents.SpringComponent,Kangaroo2 Components
+Kangaroo2,LengthRatio,09fef083-0d7b-4e3d-a24c-928a19a71aed,LengthRatio,Maintain a fixed ratio between the lengths of a pair of lines,Kangaroo2Component.GoalComponents.LengthRatioComponent,Kangaroo2 Components
+Kangaroo2,LengthSnap,5fa0d301-9b28-47ce-a281-5292c1b1364b,LengthSnap,Snap length to whole number multiples of a given number,Kangaroo2Component.GoalComponents.LengthSnapComponent,Kangaroo2 Components
+Kangaroo2,LiveSoap,b2389d9a-c991-4175-a35f-0d23443a15d2,LS,For generating minimal and CMC (zero and constant mean curvature respectively) meshes which adapt their connectivity during relaxation to maintain triangle quality,Kangaroo2Component.GoalComponents.LiveSoapComponent,Kangaroo2 Components
+Kangaroo2,Load,2019c995-53af-4eb2-976d-95b1fdc823fa,Load,Load,Kangaroo2Component.GoalComponents.UnaryComponent2,Kangaroo2 Components
+Kangaroo2,Load,580a1a0c-314d-4033-a54c-c129400b4b58,Load,Load,Kangaroo2Component.GoalComponents.UnaryComponent,Kangaroo2 Components
+Kangaroo2,MagnetSnap,28bedc62-006a-4f19-b97d-e12b20aff875,MS,Snap points together according to proximity,Kangaroo2Component.GoalComponents.MagnetSnapComponent,Kangaroo2 Components
+Kangaroo2,MeshCorners,c8b01cec-6dd9-460b-b43f-254314ffdc2e,MC,Extract corners sharper than some angle,Kangaroo2Component.UtilityComponents.MeshCorners,Kangaroo2 Components
+Kangaroo2,MeshDirection,9c2695de-127b-4b46-a17b-f3a676891c0d,MD,Sort the face directions of a mesh,Kangaroo2Component.UtilityComponents.MeshDirections,Kangaroo2 Components
+Kangaroo2,MeshMap,ab723d11-5713-4df2-9d3c-b8bbb3bb5d61,MeshMap,Map points from one mesh to another,Kangaroo2Component.UtilityComponents.MeshMap,Kangaroo2 Components
+Kangaroo2,MeshTurn,bf54f98d-2fc0-4cb8-91b9-29619a2c6005,Turn,Rotate the vertex order of each face,Kangaroo2Component.UtilityComponents.MeshTurn,Kangaroo2 Components
+Kangaroo2,Möbius Transformation,51ea6cbf-9681-4a4b-8f66-20e0e2faf182,MB,3d Möbius Transformations of any geometry using 4d rotation,Kangaroo2Component.UtilityComponents.MoebiusTransform,Kangaroo2 Components
+Kangaroo2,NakedVertices,ddb24b31-1192-448f-ace3-b5b3d2399831,NV,Sorts the vertices of a mesh into 2 lists according to whether or not they are surrounded by faces,Kangaroo2Component.UtilityComponents.NakedVertices,Kangaroo2 Components
+Kangaroo2,NoFoldThrough,8f083dbb-357b-4172-80d0-b584b21b6d75,NoFoldThrough,To stop the sides of a hinge passing through each other,Kangaroo2Component.GoalComponents.NoFoldThroughComponent,Kangaroo2 Components
+Kangaroo2,OnCurve,8b4dbe32-0c6c-4304-972e-3f60ed613114,OnCurve,Keep a point on a given Curve,Kangaroo2Component.GoalComponents.OnCurveComponent,Kangaroo2 Components
+Kangaroo2,OnMesh,6c1c3018-487b-4573-afc5-3af263ae5808,OnMesh,Keep a point on a given Mesh,Kangaroo2Component.GoalComponents.OnMeshComponent,Kangaroo2 Components
+Kangaroo2,OnPlane,d4d13384-1914-42ed-b1f2-687c1959bd14,OnPlane,Keep a point on a given plane,Kangaroo2Component.GoalComponents.OnPlaneComponent,Kangaroo2 Components
+Kangaroo2,PlanarityAnalysis,97253642-cb05-43e6-bc79-4bd0306441e5,PA,Display face planarity as a coloured mesh,Kangaroo2Component.UtilityComponents.PlanarityDisplay,Kangaroo2 Components
+Kangaroo2,Planarize,e29cdc8a-b58e-4854-aa1d-f09b43a9b6a3,Planarize,Planarize,Kangaroo2Component.GoalComponents.PlanarizeComponent,Kangaroo2 Components
+Kangaroo2,PlasticAnchor,76469b0a-11f0-4b8e-ad65-31a555d4cddd,PlasticAnchor,PlasticAnchor,Kangaroo2Component.GoalComponents.PlasticAnchorComponent2,Kangaroo2 Components
+Kangaroo2,PlasticAnchor,c2d6c6db-37d4-4c95-928f-7afc27842a1e,PlasticAnchor,PlasticAnchor,Kangaroo2Component.GoalComponents.PlasticAnchorComponent,Kangaroo2 Components
+Kangaroo2,PlasticHinge,69a52798-b567-4a36-b5b4-7614bea071bc,PH,"Like Hinge, except folding beyond the plastic/elastic threshold will alter the rest angle",Kangaroo2Component.GoalComponents.PlasticHingeComponent,Kangaroo2 Components
+Kangaroo2,PlasticLength,030749a0-2773-45d3-9647-d37662d2ad4c,PL,"This tries to preserve the length of the line elastically, until it is deformed beyond the limit, then its rest length gets changed",Kangaroo2Component.GoalComponents.PlasticLengthComponent,Kangaroo2 Components
+Kangaroo2,PolygonArea,f4b4e68f-150f-4c3f-bc52-cf5ec4047f79,PolygonArea,PolygonArea,Kangaroo2Component.GoalComponents.PolygonAreaComponent,Kangaroo2 Components
+Kangaroo2,Pressure,2e1fb4fb-22a8-4853-a9f5-ab65602aad77,Pressure,"A force normal to each triangle, and proportional to its area",Kangaroo2Component.GoalComponents.PressureComponent,Kangaroo2 Components
+Kangaroo2,Refine,6003658a-c422-41cf-8a2f-8e106b09cc10,Refine,"Divide each quad into 4 quads, and each triangle into 4 triangles",GhKangaroo.Refine,Kangaroo2 Components
+Kangaroo2,RefineStrips,39a12e0c-25a7-43ce-9546-115f3a211a0c,Strips,"Directional subdivision, refines quads in one direction only",Kangaroo2Component.UtilityComponents.RefineStrips,Kangaroo2 Components
+Kangaroo2,RemeshByColour,f4d3e531-f23d-495d-8362-d7145e9f762e,RemeshByColour,Remeshing with edge lengths dependent on the vertex colours of the input mesh,Kangaroo2Component.KMeshMachine.RemeshByColour,Kangaroo2 Components
+Kangaroo2,RigidBody,559ec10e-2671-4bba-b5a7-11816e8fb17b,RigidBody,RigidBody,Kangaroo2Component.GoalComponents.RigidBodyComponent,Kangaroo2 Components
+Kangaroo2,RigidBody,76b38cca-507d-409e-a773-044b2577d0b4,RigidBody,RigidBody,Kangaroo2Component.GoalComponents.RigidBody2Component,Kangaroo2 Components
+Kangaroo2,RigidBody,e245de5b-6d3b-48d3-8092-3bf0202ebf8f,RigidBody,RigidBody,Kangaroo2Component.GoalComponents.RigidBody3Component,Kangaroo2 Components
+Kangaroo2,RigidBodyCollide,b01ceba0-0bff-4901-af2a-daca22f8fc07,RigidBodyCollide,Collision between a pair of rigid bodies,Kangaroo2Component.GoalComponents.SolidCollideComponent,Kangaroo2 Components
+Kangaroo2,RigidPointSet,8aa5774d-422a-433b-9a3f-667946bde157,RigidPointSet,A set of points which maintain their relative positions,Kangaroo2Component.GoalComponents.RigidPointSetComponent,Kangaroo2 Components
+Kangaroo2,Rod,51cbcf97-8cf9-4f52-9941-a9b484593db2,Rod,Bending and stretching resistant rod,Kangaroo2Component.GoalComponents.RodBendComponent,Kangaroo2 Components
+Kangaroo2,Show,0ed5e67d-539d-480e-88cb-d81fa795d66c,Show,Show,Kangaroo2Component.GoalComponents.GeometryComponent,Kangaroo2 Components
+Kangaroo2,Simple,d3ed43b3-73db-4259-82dd-26005879c0a2,Simple,Simple Target Length,Kangaroo2Component.KMeshMachine.SimpleTargetLengthComponent,Kangaroo2 Components
+Kangaroo2,SimpleRemesh,87c0cc0e-d792-481e-b219-cc16b3e7b7b9,SimpleRemesh,Isotropically remesh a Brep or Mesh,Kangaroo2Component.KMeshMachine.SimpleRemesh,Kangaroo2 Components
+Kangaroo2,Smooth,0b7b2ba2-7ecd-4f33-b138-883f6e96d08c,Smooth,Smooth,Kangaroo2Component.GoalComponents.SmoothComponent,Kangaroo2 Components
+Kangaroo2,SoapFilm,0c68b153-3c88-4e62-9827-f3793c013f88,SG,"Area minimizing triangle, for generating zero mean curvature meshes",Kangaroo2Component.GoalComponents.SoapFilmComponent,Kangaroo2 Components
+Kangaroo2,SoapFilm,76ab889c-8593-4892-861d-a80b5311a981,SG,For generating zero mean curvature meshes,Kangaroo2Component.GoalComponents.SoapFilmMeshComponent,Kangaroo2 Components
+Kangaroo2,Soft & Hard Solver,35c49588-244d-43a4-81b2-fd3ef59c1b1d,Soft&HardSolver,"Solver with separate inputs for soft goals, and hard constraint type goals",Kangaroo2Component.KangarooSoftHard,Kangaroo2 Components
+Kangaroo2,SoftBodyCollide,86cee9bc-ba05-49ff-ad55-895ae66cc978,SoftBodyCollide,Collisions between a collection of deformable meshes,Kangaroo2Component.GoalComponents.SoftBodyCollideComponent,Kangaroo2 Components
+Kangaroo2,SolidPlaneCollide,81cc6201-6cda-4954-8503-66be5363aac8,SolidPlaneCollide,Collision between a plane and a solid,Kangaroo2Component.GoalComponents.SolidPlaneCollideComponent,Kangaroo2 Components
+Kangaroo2,SolidPointCollide,763c5b56-3dc6-4fe0-be7b-6b60cd27f744,SPC,Keep a set of points outside or inside a given Mesh,Kangaroo2Component.GoalComponents.SolidPointComponent,Kangaroo2 Components
+Kangaroo2,Solver,313490f5-8e38-4dde-9e9a-05e4d739b35d,Solver,The main component where Goals are combined and applied,Kangaroo2Component.KangarooGH3,Kangaroo2 Components
+Kangaroo2,Solver,8f9f19c0-207a-419d-90f6-2fcadaa845f9,Solver,The main component where Goals are combined and applied,Kangaroo2Component.KangarooGH2,Kangaroo2 Components
+Kangaroo2,Solver,a54d250e-e285-4f38-9fb3-8dd9c886c659,Solver,The main component where Goals are combined and applied,Kangaroo2Component.KangarooGH,Kangaroo2 Components
+Kangaroo2,SphereCollide,4b106d6a-0e09-4edc-941c-27d734ac4d59,SC,Collisions between large numbers of equal sized spheres,Kangaroo2Component.GoalComponents.SphereCollideComponent,Kangaroo2 Components
+Kangaroo2,SplitAtCorners,74953dd1-9af7-4736-983c-f258302de692,SplitAtCorners,Break a polyline into multiple parts based on angle,Kangaroo2Component.UtilityComponents.SplitAtCorners,Kangaroo2 Components
+Kangaroo2,StepSolver,fa27771b-cf25-4a21-bf31-8bb20a7822b3,StepSolver,Solver which advances only when input refreshed. Useful for making animations,Kangaroo2Component.StepSolver,Kangaroo2 Components
+Kangaroo2,Stripper,c8514ca2-3243-487a-becc-c07a4083db94,Stripper,Divide a mesh into strips,Kangaroo2Component.UtilityComponents.Stripper,Kangaroo2 Components
+Kangaroo2,Support,0b3b7956-f88b-4ca3-99f6-b6508a8dac3f,Support,Set support conditions for a beam end or rigid body,Kangaroo2Component.GoalComponents.Support2Component,Kangaroo2 Components
+Kangaroo2,Support,c41696fc-e8e8-42c9-89b2-a5a6aac030b0,Support,Set support conditions for a beam end or rigid body,Kangaroo2Component.GoalComponents.SupportComponent,Kangaroo2 Components
+Kangaroo2,TangentCircles,bdda1028-13e6-41ee-b410-701234f9d39f,TC,"Generate face incircles, circle packing centred on vertices, or incircular dual",Kangaroo2Component.UtilityComponents.TangentCircles,Kangaroo2 Components
+Kangaroo2,TangentIncircles,3962cf86-9b9e-41d7-94f9-42bd0326291d,TangentIncircles,TangentIncircles,Kangaroo2Component.GoalComponents.TangentIncircles2Component,Kangaroo2 Components
+Kangaroo2,TangentIncircles,56e9e40d-6d2f-4daf-9316-034f30cf24a0,TangentIncircles,TangentIncircles,Kangaroo2Component.GoalComponents.TangentIncirclesComponent,Kangaroo2 Components
+Kangaroo2,TangentialSmooth,72dadfdd-3be9-44e3-a352-9343f3d5d3b1,TSmooth,Smooth a mesh only in the local tangent planes. Used in conjunction with SoapFilm,Kangaroo2Component.GoalComponents.TangentialSmoothComponent,Kangaroo2 Components
+Kangaroo2,Transform,5002d2f7-7878-4965-98ab-2403503891ab,Transform,Keep a given transformation between 2 points,Kangaroo2Component.GoalComponents.TransformerComponent,Kangaroo2 Components
+Kangaroo2,Unroller,dca330b6-f705-4d5e-b9d4-ea90c915ddaf,Unroller,Unroll a strip of quads,Kangaroo2Component.UtilityComponents.Unroller,Kangaroo2 Components
+Kangaroo2,VertexLoads,2b3f5029-cfec-4f95-96d1-757bd9c51da1,VertexLoads,Apply equal vertical loads to all vertices of a mesh,Kangaroo2Component.GoalComponents.VertexLoadsComponent,Kangaroo2 Components
+Kangaroo2,VertexNeighbours,fecd8879-9e63-4ff9-a16e-fe85bb0de884,VN,Returns the positions of the vertices connected the given vertex by an edge,Kangaroo2Component.UtilityComponents.VertexNeighbours,Kangaroo2 Components
+Kangaroo2,Volume,26efde70-0c5c-4181-af3e-1a767d64b449,Volume,Set the total volume of a mesh,Kangaroo2Component.GoalComponents.VolumeComponent,Kangaroo2 Components
+Kangaroo2,WarpWeft,cb7c0f04-123f-4b12-8f81-583b9fc793be,WarpWeft,Separate the edges of a mesh into 2 lists according to Warp and Weft direction,Kangaroo2Component.UtilityComponents.WarpWeft,Kangaroo2 Components
+Kangaroo2,Wind,928b2951-2a01-4b6b-8ccb-6fbeb3e490ad,Wind,Wind,Kangaroo2Component.GoalComponents.WindComponent,Kangaroo2 Components
+Kangaroo2,ZombieSolver,4408343b-577e-4fd8-96ff-df7549189186,ZombieSolver,"A version of the solver component which keeps all iterations internal, and outputs the final result",Kangaroo2Component.KangarooZombie,Kangaroo2 Components
+Kangaroo2,interconnectPoints,a412ddf4-4899-4456-8325-f3f9a8134a25,inter,Draws one line between every pair of points in a list,GhKangaroo.Interconnect.InterconnectPoints,Kangaroo2 Components
+Kangaroo2,remesher,9f055808-c262-4462-b429-7e20d4ca3a5e,remesher,Remeshing tool,Kangaroo2Component.KMeshMachine.remesher,Kangaroo2 Components
+Kangaroo2,removeDuplicateLines,5b882297-9063-439e-82b9-70961f743c5d,dupLn,Removes similar lines from a list.,Kangaroo2Component.UtilityComponents.RemoveDuplicateLines,Kangaroo2 Components
+Kangaroo2,removeDuplicatePts,5e2f9e3f-d467-46f6-870c-6fa7cd01e1ed,dupPt,Removes similar points from a list,GhKangaroo.RemoveDuplicatePts,Kangaroo2 Components
+Maths,Absolute,28124995-cf99-4298-b6f4-c75a8e379f18,Abs,Compute the absolute of a value.,MathComponents.FunctionComponents.OperatorAbsolute,Math Components
+Maths,Addition,a0d62394-a118-422d-abb3-6af115c75b25,A+B,Mathematical addition,MathComponents.OperatorComponents.Component_VariableAddition,Math Components
+Maths,ArcCosine,49584390-d541-41f7-b5f6-1f9515ac0f73,ACos,Compute the angle whose cosine is the specified value.,MathComponents.FunctionComponents.FuncACos,Math Components
+Maths,ArcSine,cc15ba56-fae7-4f05-b599-cb7c43b60e11,ASin,Compute the angle whose sine is the specified value.,MathComponents.FunctionComponents.FuncASin,Math Components
+Maths,ArcTangent,b4647919-d041-419e-99f5-fa0dc0ddb8b6,ATan,Compute the angle whose tangent is the specified value.,MathComponents.FunctionComponents.FuncATan,Math Components
+Maths,Average,7986486c-621a-48fb-8f27-a28a22c91cc9,Avr,Solve the arithmetic average for a set of items,MathComponents.OperatorComponents.Component_Average,Math Components
+Maths,Blur Numbers,57e1d392-e3fb-4de9-be98-982854a92351,NBlur,Blur a list of numbers by averaging neighbours,MathComponents.OperatorComponents.Component_BlurNumbers,Math Components
+Maths,Bounds,f44b92b0-3b5b-493a-86f4-fd7408c3daf3,Bnd,Create a numeric domain which encompasses a list of numbers.,MathComponents.DomainComponents.Component_NumericBounds,Math Components
+Maths,Bounds 2D,dd53b24c-003a-4a04-b185-a44d91633cbe,Bnd,Create a numeric two-dimensional domain which encompasses a list of coordinates.,MathComponents.DomainComponents.Component_NumericBounds2D,Math Components
+Maths,CSharp Script,b6ba1144-02d6-4a2d-b53c-ec62e290eeb7,CS,CSharp scripting component,RhinoCodePluginGH.Components.CSharpComponent,RhinoCodePluginGH
+Maths,Centroid,afbcbad4-2a2a-4954-8040-d999e316d2bd,Centroid,Generate the triangle centroid from medians.,XformComponents.TriangleCentroid,Transform Components
+Maths,Circumcentre,21d0767c-5340-4087-aa09-398d0e706908,CCentre,Generate the triangle circumcentre from perpendicular bisectors.,XformComponents.TriangleCircumcentre,Transform Components
+Maths,Clamp,116df248-630e-4045-8c81-58693d1ff3a4,Clamp,Restrict a number between two numeric extremes.,CurveComponents.Component_Clamp,Curve Components
+Maths,CoSecant,d222500b-dfd5-45e0-933e-eabefd07cbfa,Csc,Compute the co-secant (reciprocal of the Sine) of an angle.,MathComponents.FunctionComponents.FuncCosecant,Math Components
+Maths,CoTangent,1f602c33-f38e-4f47-898b-359f0a4de3c2,Cot,Compute the co-tangent (reciprocal of the Tangent) of an angle.,MathComponents.FunctionComponents.FuncCoTangent,Math Components
+Maths,Combine Date & Time,31534405-6573-4be6-8bf8-262e55847a3a,CDate,Combine a pure date and a pure time into a single date,MathComponents.TimeComponents.Component_CombineDateTime,Math Components
+Maths,Complex Argument,be715e4c-d6d8-447b-a9c3-6fea700d0b83,Arg,Get the argument of a Complex number,MathComponents.ComplexComponents.Component_ComplexArgument,Math Components
+Maths,Complex Components,1f384257-b26b-4160-a6d3-1dcd89b64acd,Complex,Extract the Real and Imaginary components from a complex number,MathComponents.ComplexComponents.Component_ComplexComponent,Math Components
+Maths,Complex Conjugate,7d2a6064-51f0-45b2-adc4-f417b30dcd15,z*,Create the conjugate of a Complex number,MathComponents.ComplexComponents.Component_ComplexConjugate,Math Components
+Maths,Complex Modulus,88fb33f9-f467-452b-a0e3-44bdb78a9b06,CMod,Get the modulus of a Complex number,MathComponents.ComplexComponents.Component_ComplexModulus,Math Components
+Maths,Consecutive Domains,95992b33-89e1-4d36-bd35-2754a11af21e,Consec,Create consecutive domains from a list of numbers,MathComponents.DomainComponents.Component_MakeConsecutiveDomains,Math Components
+Maths,Construct Date,0c2f0932-5ddc-4ece-bd84-a3a059d3df7a,Date,Construct a date and time instance.,MathComponents.TimeComponents.Component_CreateDate,Math Components
+Maths,Construct Domain,d1a28e95-cf96-4936-bf34-8bf142d731bf,Dom,Create a numeric domain from two numeric extremes.,MathComponents.DomainComponents.Component_ConstructDomain,Math Components
+Maths,Construct Domain²,8555a743-36c1-42b8-abcc-06d9cb94519f,Dom²,Create a two-dimensional domain from two simple domains.,MathComponents.DomainComponents.Component_Construct2DInterval,Math Components
+Maths,Construct Domain²,9083b87f-a98c-4e41-9591-077ae4220b19,Dom²Num,Create a two-dimensinal domain from four numbers.,MathComponents.DomainComponents.Component_Construct2DInterval_Numeric,Math Components
+Maths,Construct Exotic Date,e5ff52c5-40df-4f43-ac3b-d2418d05ae32,DateEx,Construct a date using a specific calendar,MathComponents.TimeComponents.Component_CreateDateExotic,Math Components
+Maths,Construct Matrix,54ac80cf-74f3-43f7-834c-0e3fe94632c6,Matrix,Construct a matrix from initial values,MathComponents.MatrixComponents.Component_ConstructMatrix,Math Components
+Maths,Construct Smooth Time,f151b0b9-cef8-4809-96fc-9b14f1c3a7b9,SmTime,Construct a time instance from smooth components,MathComponents.TimeComponents.Component_CreateSmoothTime,Math Components
+Maths,Construct Time,595aded2-8916-402d-87a3-a825244bbe3d,Time,Construct a time instance,MathComponents.TimeComponents.Component_CreateTime,Math Components
+Maths,Cosine,d2d2a900-780c-4d58-9a35-1f9d8d35df6f,Cos,Compute the cosine of a value,MathComponents.FunctionComponents.FuncCos,Math Components
+Maths,Create Complex,63d12974-2915-4ccf-ac26-5d566c3bac92,Complex,Create a complex number from a Real and an Imaginary component,MathComponents.ComplexComponents.Component_CreateComplex,Math Components
+Maths,Cube,7e3185eb-a38c-4949-bcf2-0e80dee3a344,Cube,Compute the cube of a value,MathComponents.FunctionComponents.FuncCube,Math Components
+Maths,Cube Root,5b0be57a-31f5-4446-a11a-ae0d348bca90,Cbrt,Compute the cube root of a value,MathComponents.FunctionComponents.FuncCubeRoot,Math Components
+Maths,Date Range,38a4e722-ad5a-4229-a170-e27ae1345538,RDate,Create a range of successive dates or times,MathComponents.TimeComponents.Component_DateRange,Math Components
+Maths,Deconstruct Date,d5e28df8-495b-4892-bca8-60748743d955,DDate,"Deconstruct a date into years, months, days, hours, minutes and seconds",MathComponents.TimeComponents.Component_DeconstructDate,Math Components
+Maths,Deconstruct Domain,825ea536-aebb-41e9-af32-8baeb2ecb590,DeDomain,Deconstruct a numeric domain into its component parts.,MathComponents.DomainComponents.Component_DeconstructDomain,Math Components
+Maths,Deconstruct Domain²,47c30f9d-b685-4d4d-9b20-5b60e48d5af8,DeDom2Num,Deconstruct a two-dimensional domain into four numbers,MathComponents.DomainComponents.Component_Deconstruct2DInterval_Numeric,Math Components
+Maths,Deconstruct Domain²,f0adfc96-b175-46a6-80c7-2b0ee17395c4,DeDom2,Deconstruct a two-dimensional domain into its component parts,MathComponents.DomainComponents.Component_Deconstruct2DInterval,Math Components
+Maths,Deconstruct Matrix,3aa2a080-e322-4be3-8c6e-baf6c8000cf1,DeMatrix,Deconstruct a matrix into its component parts,MathComponents.MatrixComponents.Component_DeconstructMatrix,Math Components
+Maths,Degrees,0d77c51e-584f-44e8-aed2-c2ddf4803888,Deg,Convert an angle specified in radians to degrees,MathComponents.FunctionComponents.FuncToDegrees,Math Components
+Maths,Display Matrix,b6d27aa4-a61f-4d08-b76e-1105fef0e9e4,Matrix,Display a matrix,XformComponents.DisplayMatrix,Transform Components
+Maths,Divide Domain,75ef4190-91a2-42d9-a245-32a7162b0384,Div,Divide a domain into equal segments.,MathComponents.DomainComponents.Component_DivideInterval,Math Components
+Maths,Divide Domain²,75ac008b-1bc2-4edd-b967-667d628b9d24,Divide,Divides a two-dimensional domain into equal segments.,MathComponents.DomainComponents.Component_Divide2DInterval,Math Components
+Maths,Division,9c85271f-89fa-4e9f-9f4a-d75802120ccc,A/B,Mathematical division,MathComponents.OperatorComponents.Operator_Division,Math Components
+Maths,DotNET C# Script (LEGACY),88c3f2b5-27f7-48a2-9528-1397fad62b93,C#,A C#.NET scriptable component,ScriptComponents.Legacy.ComponentLegacyCsScript,Script Components
+Maths,DotNET VB Script (LEGACY),fb6aba99-fead-4e42-b5d8-c6de5ff90ea6,VB,A VB.NET scriptable component,ScriptComponents.Legacy.ComponentLegacyVbScript,Script Components
+Maths,Epsilon,deadf87d-99a6-4980-90c3-f98350aa6f0f,Eps,Returns a factor of double precision floating point epsilon.,MathComponents.FunctionComponents.Component_Epsilon,Math Components
+Maths,Equality,5db0fb89-4f22-4f09-a777-fa5e55aed7ec,Equals,Test for (in)equality of two numbers,MathComponents.OperatorComponents.Component_EqualTo,Math Components
+Maths,Evaluate,cc2b626f-6eff-4d08-9829-2877560693f4,Eval,Evaluate an expression with a flexible number of variables.,MathComponents.ExpressionComponents.Component_Evaluate,Math Components
+Maths,Expression,9df5e896-552d-4c8c-b9ca-4fc147ffa022,Expression,Evaluate an expression,MathComponents.ExpressionComponents.Component_Expression,Math Components
+Maths,Extremes,37084b3f-2b66-4f3a-9737-80d0b0b7f0cb,Extrz,Find the extremes in a list of values,MathComponents.OperatorComponents.Component_Extremes,Math Components
+Maths,Factorial,a0a38131-c5fc-4984-b05d-34cf57f0c018,Fac,Returns the factorial of an integer.,MathComponents.FunctionComponents.Component_Factorial,Math Components
+Maths,Find Domain,0b5c7fad-0473-41aa-bf52-d7a861dcaa29,FDom,Find the first domain that contains a specific value,MathComponents.DomainComponents.Component_FindDomain,Math Components
+Maths,Gate And,040f195d-0b4e-4fe0-901f-fedb2fd3db15,And,Perform boolean conjunction (AND gate).,MathComponents.BooleanOperators.Component_AndGate,Math Components
+Maths,Gate Majority,78669f9c-4fea-44fd-ab12-2a69eeec58de,Vote,Calculates the majority vote among three booleans.,MathComponents.BooleanOperators.Component_BooleanMajorityVote,Math Components
+Maths,Gate Nand,5ca5de6b-bc71-46c4-a8f7-7f30d7040acb,Nand,Perform boolean alternative denial (NAND gate).,MathComponents.BooleanOperators.Component_NandGate,Math Components
+Maths,Gate Nor,548177c2-d1db-4172-b667-bec979e2d38b,Nor,Perform boolean joint denial (NOR gate).,MathComponents.BooleanOperators.Component_NorGate,Math Components
+Maths,Gate Not,cb2c7d3c-41b4-4c6d-a6bd-9235bd2851bb,Not,Perform boolean negation (NOT gate).,MathComponents.BooleanOperators.Component_NotGate,Math Components
+Maths,Gate Or,5cad70f9-5a53-4c5c-a782-54a479b4abe3,Or,Perform boolean disjunction (OR gate).,MathComponents.BooleanOperators.Component_OrGate,Math Components
+Maths,Gate Xnor,b6aedcac-bf43-42d4-899e-d763612f834d,Xnor,Perform boolean biconditional (XNOR gate).,MathComponents.BooleanOperators.Component_XnorGate,Math Components
+Maths,Gate Xor,de4a0d86-2709-4564-935a-88bf4d40af89,Xor,Perform boolean exclusive disjunction (XOR gate).,MathComponents.BooleanOperators.Component_XorGate,Math Components
+Maths,Golden Ratio,cb22d3ed-93d8-4629-bdf2-c0c7c25afd2c,Phi,Returns a factor of the golden ratio (Phi).,MathComponents.FunctionComponents.Component_Phi,Math Components
+Maths,Incentre,c3342ea2-e181-46aa-a9b9-e438ccbfb831,ICentre,Generate the triangle incentre from angle bisectors.,XformComponents.TriangleIncentre,Transform Components
+Maths,Includes,f217f873-92f1-47ae-ad71-ca3c5a45c3f8,Inc,Test a numeric value to see if it is included in the domain,MathComponents.DomainComponents.Component_Includes,Math Components
+Maths,Integer Division,54db2568-3441-4ae2-bcef-92c4cc608e11,A\B,Mathematical integer division,MathComponents.OperatorComponents.Operator_IntegerDivision,Math Components
+Maths,Interpolate Date,4083802b-3dd9-4b13-9756-bf5441213e70,IntDate,Interpolate between two dates or times.,MathComponents.TimeComponents.Component_InterpolateDate,Math Components
+Maths,Interpolate data,e168ff6b-e5c0-48f1-b831-f6996bf3b459,Interp,Interpolate a collection of data.,MathComponents.SetComponents.Component_InterpolateData,Math Components
+Maths,Invert Matrix,f986e79a-1215-4822-a1e7-3311dbdeb851,MInvert,Invert a matrix,MathComponents.MatrixComponents.Component_InvertMatrix,Math Components
+Maths,IronPython 2 Script,97aa26ef-88ae-4ba6-98a6-ed6ddeca11d1,IPy2,IronPython 2 scripting component,RhinoCodePluginGH.Components.IronPython2Component,RhinoCodePluginGH
+Maths,Larger Than,30d58600-1aab-42db-80a3-f1ea6c4269a0,Larger,Larger than (or equal to),MathComponents.OperatorComponents.Component_LargerThan,Math Components
+Maths,Log N,7ab8d289-26a2-4dd4-b4ad-df5b477999d8,LogN,Return the N-base logarithm of a number.,MathComponents.OperatorComponents.Component_NBaseLogarithm,Math Components
+Maths,Logarithm,27d6f724-a701-4585-992f-3897488abf08,Log,Compute the Base-10 logarithm of a value.,MathComponents.FunctionComponents.FuncLog10,Math Components
+Maths,Mass Addition,5b850221-b527-4bd6-8c62-e94168cd6efa,MA,Perform mass addition of a list of items,MathComponents.OperatorComponents.Component_MassAddition,Math Components
+Maths,Mass Multiplication,e44c1bd7-72cc-4697-80c9-02787baf7bb4,MM,Perform mass multiplication of a list of items,MathComponents.OperatorComponents.Component_MassMultiplication,Math Components
+Maths,Maximum,0d1e2027-f153-460d-84c0-f9af431b08cb,Max,Return the greater of two items.,MathComponents.OperatorComponents.Operator_Maximum,Math Components
+Maths,Minimum,57308b30-772d-4919-ac67-e86c18f3a996,Min,Return the lesser of two items.,MathComponents.OperatorComponents.Operator_Minimum,Math Components
+Maths,Modulus,431bc610-8ae1-4090-b217-1a9d9c519fe2,Mod,Divides two numbers and returns only the remainder.,MathComponents.OperatorComponents.Operator_Modulus,Math Components
+Maths,Multiplication,ce46b74e-00c9-43c4-805a-193b69ea4a11,A×B,Mathematical multiplication,MathComponents.OperatorComponents.Component_VariableMultiplication,Math Components
+Maths,Natural logarithm,23afc7aa-2d2f-4ae7-b876-bf366246b826,Ln,Compute the natural logarithm of a value.,MathComponents.FunctionComponents.FuncLog,Math Components
+Maths,Natural logarithm,b6cac37c-21b9-46c6-bd0d-17ff67796578,E,Returns a factor of the natural number (e).,MathComponents.FunctionComponents.Component_E,Math Components
+Maths,Negative,a3371040-e552-4bc8-b0ff-10a840258e88,Neg,Compute the negative of a value.,MathComponents.FunctionComponents.OperatorSign,Math Components
+Maths,One Over X,797d922f-3a1d-46fe-9155-358b009b5997,1/x,Compute one over x.,MathComponents.FunctionComponents.FuncOneOverX,Math Components
+Maths,Orthocentre,36dd5551-b6bd-4246-bd2f-1fd91eb2f02d,OCentre,Generate the triangle orthocentre from altitudes.,XformComponents.TriangleOrthocentre,Transform Components
+Maths,Pi,0d2ccfb3-9d41-4759-9452-da6a522c3eaa,Pi,Returns a factor of Pi.,MathComponents.FunctionComponents.Component_Pi,Math Components
+Maths,Power,78fed580-851b-46fe-af2f-6519a9d378e0,Pow,Raise a value to a power.,MathComponents.OperatorComponents.Operator_Power,Math Components
+Maths,Power of 10,2ebb82ef-1f90-4ac9-9a71-1fe0f4ef7044,10º,Raise 10 to the power of N.,MathComponents.FunctionComponents.Func10Power,Math Components
+Maths,Power of 2,7a1e5fd7-b7da-4244-a261-f1da66614992,2º,Raise 2 to the power of N.,MathComponents.FunctionComponents.Func2Power,Math Components
+Maths,Power of E,c717f26f-e4a0-475c-8e1c-b8f77af1bc99,Eº,Raise E to the power of N.,MathComponents.FunctionComponents.FuncExponential,Math Components
+Maths,Python 3 Script,719467e6-7cf5-4848-99b0-c5dd57e5442c,Py3,Python 3 scripting component,RhinoCodePluginGH.Components.Python3Component,RhinoCodePluginGH
+Maths,Radians,a4cd2751-414d-42ec-8916-476ebf62d7fe,Rad,Convert an angle specified in degrees to radians,MathComponents.FunctionComponents.FuncToRadians,Math Components
+Maths,Relative Differences,dd17d442-3776-40b3-ad5b-5e188b56bd4c,RelDif,Compute relative differences for a list of data,MathComponents.OperatorComponents.Component_RelativeDifferences,Math Components
+Maths,Remap Numbers,2fcc2743-8339-4cdf-a046-a1f17439191d,ReMap,Remap numbers into a new numeric domain,MathComponents.DomainComponents.Component_RemapNumbers,Math Components
+Maths,Right Trigonometry,e75d4624-8ee2-4067-ac8d-c56bdc901d83,RTrig,Right triangle trigonometry,XformComponents.RightTriangleTrig,Transform Components
+Maths,Round,a50c4a3b-0177-4c91-8556-db95de6c56c8,Round,Round a floating point value.,MathComponents.OperatorComponents.Function_Round,Math Components
+Maths,Script,c9b2d725-6f87-4b07-af90-bd9aefef68eb,S,Scripting component,RhinoCodePluginGH.Components.ScriptComponent,RhinoCodePluginGH
+Maths,Script Library,b256e55c-572b-4b8a-83bf-1cb0015968f0,L,Script library parameter,RhinoCodePluginGH.Parameters.ScriptLibraryParam,RhinoCodePluginGH
+Maths,Script Library (Deconstruct),ae3b6678-0856-4e38-8100-3e31ceb6779b,DSL,Deconstruct script library,RhinoCodePluginGH.Components.DeconstructScriptLibrary,RhinoCodePluginGH
+Maths,Script Source,0b057941-4ed8-4cde-9c90-bacf7ba51cb7,S,Script source parameter,RhinoCodePluginGH.Parameters.ScriptParam,RhinoCodePluginGH
+Maths,Script Source (Deconstruct),6a69a1bf-e2f6-4022-a407-08e93ac601ea,DS,Deconstruct script source,RhinoCodePluginGH.Components.DeconstructScript,RhinoCodePluginGH
+Maths,Secant,60103def-1bb7-4700-b294-3a89100525c4,Sec,Compute the secant (reciprocal of the Cosine) of an angle.,MathComponents.FunctionComponents.FuncSecant,Math Components
+Maths,Series Addition,586706a8-109b-43ec-b581-743e920c951a,SA,Perform serial addition until a goal has been reached,MathComponents.OperatorComponents.Component_AdditionSeries,Math Components
+Maths,Similarity,40177d8a-a35c-4622-bca7-d150031fe427,Similar,Test for similarity of two numbers,MathComponents.OperatorComponents.Component_Similarity,Math Components
+Maths,Sinc,a2d9503d-a83c-4d71-81e0-02af8d09cd0c,Sinc,Compute the sinc (Sinus Cardinalis) of a value.,MathComponents.FunctionComponents.FuncSinc,Math Components
+Maths,Sine,7663efbb-d9b8-4c6a-a0da-c3750a7bbe77,Sin,Compute the sine of a value,MathComponents.FunctionComponents.FuncSin,Math Components
+Maths,Smaller Than,ae840986-cade-4e5a-96b0-570f007d4fc0,Smaller,Smaller than (or equal to),MathComponents.OperatorComponents.Component_SmallerThan,Math Components
+Maths,Smooth Numbers,5b424e1c-d061-43cd-8c20-db84564b0502,Smooth,Smooth out changing numbers over time,Grasshopper.Kernel.Components.GH_SmoothNumbersComponent,Grasshopper
+Maths,Square,2280dde4-9fa2-4b4a-ae2f-37d554861367,Sqr,Compute the square of a value,MathComponents.FunctionComponents.FuncSquare,Math Components
+Maths,Square Root,ad476cb7-b6d1-41c8-986b-0df243a64146,Sqrt,Compute the square root of a value,MathComponents.FunctionComponents.FuncSquareRoot,Math Components
+Maths,Subtraction,9c007a04-d0d9-48e4-9da3-9ba142bc4d46,A-B,Mathematical subtraction,MathComponents.OperatorComponents.Component_VariableSubtraction,Math Components
+Maths,Swap Columns,4cebcaf7-9a6a-435b-8f8f-95a62bacb0f2,SwapC,Swap two columns in a matrix,MathComponents.MatrixComponents.Component_SwapMatrixColumns,Math Components
+Maths,Swap Rows,8600a3fc-30f0-4df6-b126-aaa79ece5bfe,SwapR,Swap two rows in a matrix,MathComponents.MatrixComponents.Component_SwapMatrixRows,Math Components
+Maths,Tangent,0f31784f-7177-4104-8500-1f4f4a306df4,Tan,Compute the tangent of a value,MathComponents.FunctionComponents.FuncTan,Math Components
+Maths,Transpose Matrix,0e90b1f3-b870-4e09-8711-4bf819675d90,Transpose,Transpose a matrix (swap rows and columns),MathComponents.MatrixComponents.Component_TransposeMatrix,Math Components
+Maths,Triangle Trigonometry,92af1a02-9b87-43a0-8c45-0ce1b81555ec,Trig,Generic triangle trigonometry,XformComponents.TriangleTrig,Transform Components
+Maths,Truncate,bd96f893-d57b-4f04-90d0-dca0d72ff2f9,Trunc,Perform truncation of numerical extremes,MathComponents.OperatorComponents.Component_Truncate,Math Components
+Maths,VB Script,079bd9bd-54a0-41d4-98af-db999015f63d,VB,A VB.NET scriptable component,ScriptComponents.Component_VBNET_Script,Script Components
+Maths,Variable,84fa917c-1ed8-4db3-8be1-7bdc4a6495a2,var,Contains a collection of script-friendly data,Grasshopper.Kernel.Parameters.Param_ScriptVariable,Grasshopper
+Maths,Weighted Average,338666eb-14c5-4d9b-82e2-2b5be60655df,Wav,Solve the arithmetic weighted average for a set of items,MathComponents.OperatorComponents.Component_WeightedAverage,Math Components
+Maths,var,08908df5-fa14-4982-9ab2-1aa0927566aa,var,Contains a collection of script-friendly data,RhinoCodePluginGH.Parameters.ScriptVariableParam,RhinoCodePluginGH
+Mesh,Align Vertices,db661dd7-63a4-44c6-91f2-6faab2471383,AlignVert,Align nearby vertices in a mesh,SurfaceComponents.MeshComponents.Component_MeshAlignVertices,Surface Components
+Mesh,Blur Mesh,48a9fa10-8d3c-4767-aca6-81232271f6e0,MBlur,Blur the colours on a mesh,SurfaceComponents.MeshComponents.Component_MeshBlur,Surface Components
+Mesh,Construct Mesh,e2c0f9db-a862-4bd9-810c-ef2610e7a56f,ConMesh,"Construct a mesh from vertices, faces and optional colours.",SurfaceComponents.MeshComponents.Component_Mesh,Surface Components
+Mesh,Convex Hull,9d0c5284-ea24-4f9f-a183-ef57fc48b5b8,Hull,"Compute the planar, convex hull for a collection of points",TriangulationComponents.Component_ConvexHull,Triangulation Components
+Mesh,Cull Faces,57edd208-760a-4f0f-87e6-ca1bbd74133b,CullF,Cull faces from a mesh,SurfaceComponents.MeshComponents.Component_MeshCullFaces,Surface Components
+Mesh,Cull Vertices,9d50bf9b-46bc-403a-9ec9-1052f51dd6b6,CullV,Cull vertices from a mesh,SurfaceComponents.MeshComponents.Component_MeshCullVertices,Surface Components
+Mesh,Deconstruct Face,aab142b1-b870-46de-8e86-654c9a554d90,DeFace,Deconstruct a mesh face into its four corner indices.,SurfaceComponents.MeshComponents.Component_DeconstructFace,Surface Components
+Mesh,Deconstruct Mesh,ba2d8f57-0738-42b4-b5a5-fe4d853517eb,DeMesh,Deconstruct a mesh into its component parts.,SurfaceComponents.MeshComponents.Component_DeconstructMesh,Surface Components
+Mesh,Delaunay Edges,db2a4d25-23fa-4887-8983-ee5293cc82c0,Con,Delaunay connectivity,TriangulationComponents.Component_Connectivity,Triangulation Components
+Mesh,Delaunay Mesh,1eb4f6ff-3547-4184-bead-1b01e7cfd668,Del,Delaunay triangulation,TriangulationComponents.Component_Delaunay,Triangulation Components
+Mesh,Delete Faces,d0f1311b-8287-4484-b2ea-1475c6770926,DeleteF,Delete faces from a mesh,SurfaceComponents.MeshComponents.Component_MeshDeleteFaces,Surface Components
+Mesh,Delete Vertices,23d715f7-4bc6-4e69-b76d-7c04ca2ebf5f,DeleteV,Delete vertices from a mesh,SurfaceComponents.MeshComponents.Component_MeshDeleteVertices,Surface Components
+Mesh,Disjoint Mesh,4dce5963-dc1a-4710-8991-9437ea23888d,Disjoint,Split a mesh into disjoint pieces.,SurfaceComponents.MeshComponents.Component_MeshSplitDisjoint,Surface Components
+Mesh,Exposure,a78e3fbc-d199-4bd9-8df0-fc4c2743eb31,Exposure,Solve mesh exposure for a collection of energy rays and obstructions.,SurfaceComponents.ShadingComponents.Component_Exposure,Surface Components
+Mesh,Face Boundaries,0b4ac802-fc4a-4201-9c66-0078b837c1eb,FaceB,Convert all mesh faces to polylines,SurfaceComponents.MeshComponents.Component_MeshFaceBoundaries,Surface Components
+Mesh,Face Circles,d8cf1555-a0d5-43cb-8a10-46f8c014db3a,FaceC,Solve the circumscribed circles for all mesh faces,SurfaceComponents.MeshComponents.Component_MeshFaceCircles,Surface Components
+Mesh,Face Normals,cb4ca22c-3419-4962-a078-ad4ff7f1f929,FaceN,Extract the normals and center points of all faces in a mesh,SurfaceComponents.MeshComponents.Component_MeshFaceNormals,Surface Components
+Mesh,Facet Dome,190c0070-8cbf-4347-94c2-d84bbb488d55,Facet,Create a facetted dome,TriangulationComponents.Component_FacetDome,Triangulation Components
+Mesh,Flip Mesh,47fbc929-e88a-4a13-882e-dad84763256d,FlipM,Flip the normal vectors of a mesh,SurfaceComponents.MeshComponents.GH_MeshFlip,Surface Components
+Mesh,Mesh Box,2696bd14-3fb5-4750-827f-86df6c31d664,MBox,Create a mesh box.,SurfaceComponents.MeshComponents.Component_MeshBox,Surface Components
+Mesh,Mesh Brep,60e7defa-8b21-4ee1-99aa-a9223d6134ff,Mesh,Create a mesh that approximates Brep geometry,SurfaceComponents.MeshComponents.Component_MeshBRep,Surface Components
+Mesh,Mesh Closest Point,a559fee2-4b76-4370-8042-c7440cd75049,MeshCP,Finds the closest point on a mesh,SurfaceComponents.MeshComponents.Component_MeshClosestPoint,Surface Components
+Mesh,Mesh Colours,d2cedf38-1149-4adc-8dbf-b06571cb5106,MCol,Assign a repeating colour pattern to a mesh object.,SurfaceComponents.MeshComponents.Component_MeshColour,Surface Components
+Mesh,Mesh Depth,07a3b2a0-c4d0-4638-9044-39ac4681e782,MDepth,Validate the depth of a mesh.,SurfaceComponents.MeshComponents.Component_MeshDepth,Surface Components
+Mesh,Mesh Edges,2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb,MEdges,Get all the edges of a mesh,SurfaceComponents.MeshComponents.Component_MeshEdges,Surface Components
+Mesh,Mesh Eval,b2dc090f-b022-4264-8889-87e22979336e,MEval,Evaluate a mesh at a given parameter,SurfaceComponents.MeshComponents.Component_MeshEvaluate,Surface Components
+Mesh,Mesh Inclusion,01e3991d-18bd-474f-9fbd-076a8700159f,MInc,Test a point for Mesh inclusion,SurfaceComponents.MeshComponents.Component_MeshInclusion,Surface Components
+Mesh,Mesh Join,4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b,MJoin,Join a set of meshes into a single mesh,SurfaceComponents.MeshComponents.Component_MeshJoin,Surface Components
+Mesh,Mesh Plane,8adbf481-7589-4a40-b490-006531ea001d,MPlane,Create a mesh plane.,SurfaceComponents.MeshComponents.Component_MeshPlane,Surface Components
+Mesh,Mesh Quad,1cb59c86-7f6b-4e52-9a0c-6441850e9520,Quad,Create a mesh quad.,SurfaceComponents.MeshComponents.Component_QuadFace,Surface Components
+Mesh,Mesh Shadow,c3dce3e8-c9cc-413c-a93f-732434282fdd,MShadow,Compute the shadow outline for a mesh object,SurfaceComponents.MeshComponents.Component_MeshShadow,Surface Components
+Mesh,Mesh Sphere,0a391eac-5048-443c-9c1b-f592299b6dd6,MSphere,Create a mesh sphere.,SurfaceComponents.MeshComponents.Component_MeshSphere,Surface Components
+Mesh,Mesh Sphere Ex,76f85ee4-5a88-4511-8ba7-30df07e50533,MSphereEx,Create a mesh sphere from square patches.,SurfaceComponents.MeshComponents.Component_MeshSphere2,Surface Components
+Mesh,Mesh Split Plane,330eb9c9-0098-4375-9078-e00a419d49fb,MSplit,Split a mesh with an infinite plane.,SurfaceComponents.MeshComponents.Component_MeshSplitPlane,Surface Components
+Mesh,Mesh Spray,edcf10e1-02a0-48a4-ae2d-70c50d903dc8,MSpray,Assign colours to a mesh based on spray points.,SurfaceComponents.MeshComponents.Component_MeshColourSpray,Surface Components
+Mesh,Mesh Surface,58cf422f-19f7-42f7-9619-fc198c51c657,Mesh UV,Create a Surface UV mesh,SurfaceComponents.MeshComponents.Component_MeshSurfaceUV,Surface Components
+Mesh,Mesh Triangle,5a4ddedd-5af9-49e5-bace-12910a8b9366,Triangle,Create a mesh triangle.,SurfaceComponents.MeshComponents.Component_TriangleFace,Surface Components
+Mesh,MetaBall,dc934310-67eb-4d1d-8607-7cc62a501dd9,MetaBall,2D Metaball isocurve through point,Grasshopper.Kernel.Components.GH_MetaBallComponent,Grasshopper
+Mesh,MetaBall(t),c48cf4d4-432c-41b6-b77a-77650479a31f,MetaBall(t),2D Metaball isosurface by threshold,Grasshopper.Kernel.Components.GH_MetaBallComponentThreshold,Grasshopper
+Mesh,MetaBall(t) Custom,c4373505-a4cf-4992-8db1-fd6e6bb5850d,MetaBall(t),2D Metaball isosurface by threshold and custom charge values,Grasshopper.Kernel.Components.GH_MetaBallComponentThresholdEx,Grasshopper
+Mesh,OcTree,a59a68ad-fdd6-41dd-88f0-d7a6fb8d2e16,OcT,A three-dimensional oc-tree structure,TriangulationComponents.Component_OcTree,Triangulation Components
+Mesh,Occlusion,1583bd7e-4ab7-4439-b922-d6f8cd63c399,Occ,Solve occlusion for a collection of view rays and obstructions.,SurfaceComponents.ShadingComponents.Component_Occlusion,Surface Components
+Mesh,Proximity 2D,458ed0e0-19a3-419b-8ead-f524925b8a35,Prox,Search for two-dimensional proximity within a point list,TriangulationComponents.Component_Proximity2D,Triangulation Components
+Mesh,Proximity 3D,e504d619-4467-437a-92fa-c6822d16b066,Prox,Search for three-dimensional proximity within a point list,TriangulationComponents.Component_Proximity3D,Triangulation Components
+Mesh,Quad Remesh,1a17d3f0-c8f8-4ee9-8dab-ea1c29db6a49,QRMesh,Perform quad-remeshing on a shape.,QuadRemeshComponents.QuadRemeshComponent,Transform Components
+Mesh,Quad Remesh Settings,f562505b-4c49-49d1-932d-c8804b3fcec6,QRSettings,Create setting for Quad-remeshing.,QuadRemeshComponents.QuadRemeshSettingsComponent,Transform Components
+Mesh,QuadTree,8102032b-9699-4949-ab12-3017a31d1062,QT,A two-dimensional quadtree structure,TriangulationComponents.Component_QuadTree,Triangulation Components
+Mesh,Quadmesh Settings,b7cbe6eb-0608-4038-88e0-50495a559a41,QMS,A collection of Quad-Remeshing settings,QuadRemeshComponents.QuadRemeshSettingsParameter,Transform Components
+Mesh,Quadrangulate,9266a2bb-918f-4675-9c91-f67d0dd33eac,Quad,Quadrangulate as many triangles as possible in a mesh,SurfaceComponents.MeshComponents.Component_MeshQuadrangulate,Surface Components
+Mesh,Settings (Custom),4a0180e5-d8f9-46e7-bd34-ced804601462,Custom Mesh Settings,Represents custom mesh settings.,SurfaceComponents.MeshComponents.Component_MeshSettingsCustom,Surface Components
+Mesh,Settings (Quality),1b0ee096-cc76-4847-8941-04a9e256de76,Smooth,Represents 'Smooth & slower' mesh settings.,SurfaceComponents.MeshComponents.Component_MeshSettingsSmoothAndSlower,Surface Components
+Mesh,Settings (Speed),255ca3e9-2c1e-443a-a404-e76b5c63f4cb,Jagged,Represents 'Jagged & faster' mesh settings.,SurfaceComponents.MeshComponents.Component_MeshSettingsJaggedAndFaster,Surface Components
+Mesh,ShrinkWrap,af684a85-eb3c-4d62-8931-cc2820855100,Wrap,ShrinkWrap a mesh or point cloud object,CurveComponents.Component_ShrinkWrap,Curve Components
+Mesh,Simple Mesh,c3f9cea5-6fd4-4db5-959b-08cd08ed9fe1,SMesh,Create a mesh that represents a Brep as simply as possible,SurfaceComponents.MeshComponents.Component_MeshBrepSimple,Surface Components
+Mesh,Smooth Mesh,e45aa4a0-e40d-421c-a335-5185dd131836,MSmooth,Smooth the vertices of a mesh,TriangulationComponents.Component_SmoothMesh,Triangulation Components
+Mesh,Substrate,415750fd-c0ec-4411-84d0-01f28ab23066,Substrate,Substrate algorithm inspired by Jared Tarbell (Complexification.net),TriangulationComponents.Component_Substrate,Triangulation Components
+Mesh,TriRemesh,866222ee-6093-4af8-8944-2f9264885385,TriRemesh,Convert a Brep or Mesh into a mesh of near equilateral triangles,Kangaroo2Component.KMeshMachine.TriRemesh,Kangaroo2 Components
+Mesh,Triangulate,3fba11d5-b30a-4146-8d80-d591e7a0a287,Tri,Triangulate all quads in a mesh,SurfaceComponents.MeshComponents.Component_MeshTriangulate,Surface Components
+Mesh,Unify Mesh,ca6a48f4-b681-4989-b0c1-301a2929a84c,UniM,Unify the normals of a mesh,SurfaceComponents.MeshComponents.GH_MeshUnify,Surface Components
+Mesh,Unweld Mesh,47814a17-ca9e-4305-9400-3a9c8d71c19d,Unweld,Unweld (split) creases in a mesh,SurfaceComponents.MeshComponents.Component_MeshUnweld,Surface Components
+Mesh,Voronoi,a4011be0-1c91-45bd-8280-17dd3a9f46f1,Voronoi,Planar voronoi diagram for a collection of points,TriangulationComponents.Component_PlanarVoronoi,Triangulation Components
+Mesh,Voronoi 3D,ba9bb57a-61cf-4207-a1c4-994e371ba4f9,Voronoi³,Volumetric voronoi diagram for a collection of points,TriangulationComponents.Component_VolumeVoronoi,Triangulation Components
+Mesh,Voronoi Cell,7b181be1-30e7-4a97-915a-1b461741aef8,VCell,Compute a single 3D Voronoi cell,TriangulationComponents.Component_VoronoiCell,Triangulation Components
+Mesh,Voronoi Groups,9d4854fe-70db-4863-967b-4120d0b6d2e4,VorGroup,Compute a custom set of nested voronoi diagrams.,TriangulationComponents.Component_RecursivePlanarVoronoi,Triangulation Components
+Mesh,Weld Mesh,9f6d85c9-1143-4538-bca7-69dcb11a74ef,Weld,Weld (merge) creases in a mesh,SurfaceComponents.MeshComponents.Component_MeshWeld,Surface Components
+Params,Angular Dimension,1eb74534-dba3-4d5b-b177-264c9dd58549,Angular Dimension,Contains a collection of angular dimensions,Grasshopper.Kernel.Parameters.Param_AngularDimension,Grasshopper
+Params,Annotation Dot,2773c606-0a71-46d2-9921-e63e22e09e3b,Annotation Dot,Contains a collection of annotation dots,Grasshopper.Kernel.Parameters.Param_TextDot,Grasshopper
+Params,Arrow,a6035ecc-5551-4ea2-ac00-56ec5c6b0dcf,Arrow,Arrow type,Grasshopper.Rhinoceros.Annotations.Params.Param_AnnotationArrow,Grasshopper
+Params,Arrow Settings,1a3cc1fa-9f8b-4537-b0ac-74f1688cd6fd,Arrows,Contains a collection of arrows and their properties,Grasshopper.Rhinoceros.Annotations.Params.Param_AnnotationArrowSettings,Grasshopper
+Params,Atom,a80395af-f134-4d6a-9b89-15edf3161619,Atom,Contains a collection of atoms,IOComponents.ImporterPDB.AtomParam,IO Components
+Params,Atom Data,7b371d04-53e3-47d8-b3dd-7b113c48bc59,Atom,Get detailed information for an atom,IOComponents.ImporterPDB.AtomExtractor,IO Components
+Params,Attribute Key,17223436-22ea-4192-a683-0f97f9014d8c,Attribute,Contains a collection of attribute keys,Grasshopper.Rhinoceros.Params.Param_ModelAttributeKey,Grasshopper
+Params,Block Instance,6e669311-7c38-400b-94bd-cc3684c71204,Block Instance,Contains a collection of block instances,Grasshopper.Kernel.Parameters.Param_InstanceReference,Grasshopper
+Params,Boolean,cb95db89-6165-43b6-9c41-5702bc5bf137,Bool,Contains a collection of boolean values,Grasshopper.Kernel.Parameters.Param_Boolean,Grasshopper
+Params,Boolean Toggle,2e78987b-9dfb-42a2-8b76-3923ac8bd91a,Toggle,Boolean (true/false) toggle,Grasshopper.Kernel.Special.GH_BooleanToggle,Grasshopper
+Params,Box,c9482db6-bea9-448d-98ff-fed6d69a8efc,Box,Contains a collection of boxes,Grasshopper.Kernel.Parameters.Param_Box,Grasshopper
+Params,Brep,919e146f-30ae-4aae-be34-4d72f555e7da,Brep,Contains a collection of Breps (Boundary REPresentations),Grasshopper.Kernel.Parameters.Param_Brep,Grasshopper
+Params,Button,a8b97322-2d53-47cd-905e-b932c3ccd74e,Button,Button object with two values,Grasshopper.Kernel.Special.GH_ButtonObject,Grasshopper
+Params,Calendar,ab898d46-b8b3-4ed5-b28f-4f8047920262,,Represents a calendar,MathComponents.TimeComponents.CalendarObject,Math Components
+Params,Centermark,71dfdc22-9723-4c6a-a541-a7b25c66b1a2,Centermark,Contains a collection of centermarks,Grasshopper.Kernel.Parameters.Param_Centermark,Grasshopper
+Params,Cherry Picker,0ab6acbf-40a6-40e1-a14e-cf0c06268e68,Item,Pick a single item from a data tree,Grasshopper.Kernel.Special.GH_ItemPicker,Grasshopper
+Params,Circle,d1028c72-ff86-4057-9eb0-36c687a4d98c,Circle,Contains a collection of circles,Grasshopper.Kernel.Parameters.Param_Circle,Grasshopper
+Params,Circular Arc,04d3eace-deaa-475e-9e69-8f804d687998,Arc,Contains a collection of circular arcs,Grasshopper.Kernel.Parameters.Param_Arc,Grasshopper
+Params,Clock,f8a94819-1e2b-4d67-9100-9e983ac493cc,,Represents a 24 hour clock,MathComponents.TimeComponents.ClockObject,Math Components
+Params,Cluster,f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a,Cluster,Contains a cluster of Grasshopper components,Grasshopper.Kernel.Special.GH_Cluster,Grasshopper
+Params,Cluster Input,448de216-3a12-43cf-a135-e3bfafc87744,Input,Represents a cluster input parameter,Grasshopper.Kernel.Special.GH_ClusterInputHook,Grasshopper
+Params,Cluster Output,a4b285fe-2e13-4204-b65c-189aa6704da5,Output,Represents a cluster output parameter,Grasshopper.Kernel.Special.GH_ClusterOutputHook,Grasshopper
+Params,Color Gradient,ffa1d4f8-1dd2-4495-8f2f-2e741aba7c54,Gradient,Contains a collection of color gradients,Grasshopper.Rhinoceros.Display.Params.Param_DisplayColorGradient,Grasshopper
+Params,Color Stop,ad13f223-bb9e-48d8-a5ab-51b2557bd69e,Color Stop,Contains a collection of color stops,Grasshopper.Rhinoceros.Display.Params.Param_DisplayColorStop,Grasshopper
+Params,Colour,203a91c3-287a-43b6-a9c5-ebb96240a650,Col,Contains a collection of RGB colours,Grasshopper.Kernel.Parameters.Param_Colour,Grasshopper
+Params,Colour Picker,339c0ee1-cf11-444f-8e10-65c9150ea755,Colour,Provides a colour picker object,Grasshopper.Kernel.Special.GH_ColourPickerObject,Grasshopper
+Params,Colour Swatch,9c53bac0-ba66-40bd-8154-ce9829b9db1a,Swatch,Colour (palette) swatch,Grasshopper.Kernel.Special.GH_ColourSwatch,Grasshopper
+Params,Colour Wheel,51a2ede9-8f8c-4fdf-a375-999c2062eab7,Wheel,Creates a palette of related colours,Grasshopper.Kernel.Special.GH_ColourWheel,Grasshopper
+Params,Complex,476c0cf8-bc3c-4f1c-a61a-6e91e1f8b91e,C,Contains a collection of complex numbers,Grasshopper.Kernel.Parameters.Param_Complex,Grasshopper
+Params,Constant,4ad6703b-84cd-4957-a1b3-f1c6ec270d9c,constant,Define a document-wide constant for use in Expressions,Grasshopper.Kernel.Special.GH_ConstantObject,Grasshopper
+Params,Context Bake,ae2531b4-bab2-4bb1-b5bf-f2143d10c132,Context Bake,Geometry for baking at the end of the GrasshopperPlayer command.,ContextualComponents.ContextBakeComponent,Curve Components
+Params,Context Print,73215ec5-0eb5-4f85-9e07-b09c4590ce2b,Context Print,Textual data to print at the end of the GrasshopperPlayer command.,ContextualComponents.ContextPrintComponent,Curve Components
+Params,Control Knob,bcac2747-348b-4edd-ae1f-77a782cebbdd,Knob,A radial dial knob for settings numbers,Grasshopper.Kernel.Special.GH_DialKnob,Grasshopper
+Params,Culture,7fa15783-70da-485c-98c0-a099e6988c3e,Culture,Contains a collection of culture specifiers,Grasshopper.Kernel.Parameters.Param_Culture,Grasshopper
+Params,Curve,d5967b9f-e8ee-436b-a8ad-29fdcecf32d5,Crv,Contains a collection of generic curves,Grasshopper.Kernel.Parameters.Param_Curve,Grasshopper
+Params,Data,8ec86459-bf01-4409-baee-174d0d2b13d0,Data,Contains a collection of generic data,Grasshopper.Kernel.Parameters.Param_GenericObject,Grasshopper
+Params,Data Dam,65283518-ad00-49d3-87fb-f76823ebb162,Dam,Delay data on its way through the document,Grasshopper.Kernel.Components.GH_DataDamComponent,Grasshopper
+Params,Data Input,d8033e3f-8387-4ffc-ab99-929218e8c740,Input,Read a bunch of data from a file.,IOComponents.DataIO.DataInputComponent,IO Components
+Params,Data Output,dcd23728-8e0e-4241-94b3-7cc3985031dd,Output,Write a bunch of data to a file.,IOComponents.DataIO.DataOutputComponent,IO Components
+Params,Data Path,56c9c942-791f-4eeb-a4f0-82b93f1c0909,Path,Contains a collection of data-tree paths,Grasshopper.Kernel.Parameters.Param_StructurePath,Grasshopper
+Params,Data Recorder,401aa475-997a-4139-991d-f980ffdcf908,Rec,Records data over time,Grasshopper.Kernel.Special.GH_DataRecorder,Grasshopper
+Params,Date Time Format,92fb7644-3d25-4ba1-ab06-469bd58add90,Format,Contains a collection of date time format strings,Grasshopper.Rhinoceros.Annotations.Params.Param_DateTimeFormat,Grasshopper
+Params,Digit Scroller,33bcf975-a0b2-4b54-99fd-585c893b9e88,,Numeric scroller for single numbers,Grasshopper.Kernel.Special.GH_DigitScroller,Grasshopper
+Params,Dimension Settings,5de23a52-b490-4d85-9c87-fbc0e353ecaf,Dimension,Contains a collection of dimension settings,Grasshopper.Rhinoceros.Annotations.Params.Param_AnnotationDimensionSettings,Grasshopper
+Params,Domain,15b7afe5-d0d0-43e1-b894-34fcfe3be384,Domain,Contains a collection of numeric domains,Grasshopper.Kernel.Parameters.Param_Interval,Grasshopper
+Params,Domain²,90744326-eb53-4a0e-b7ef-4b45f5473d6e,Domain²,Contains a collection of 2D number domains,Grasshopper.Kernel.Parameters.Param_Interval2D,Grasshopper
+Params,Expression,bc6c097c-6cc2-479c-b5aa-af99fbb72b88,Exp,A textual expression,MathComponents.ExpressionComponents.ExpressionParameter,Math Components
+Params,Extrusion,f638f034-5ce2-4536-8fa5-2c6ab8e9456c,Extrusion,Contains a collection of Extrusions,Grasshopper.Kernel.Parameters.Param_Extrusion,Grasshopper
+Params,Field,3175e3eb-1ae0-4d0b-9395-53fd3e8f8a28,Field,Contains a collection of vector fields,Grasshopper.Kernel.Parameters.Param_Field,Grasshopper
+Params,File Path,06953bda-1d37-4d58-9b38-4b3c74e54c8f,Path,Contains a collection of file paths,Grasshopper.Kernel.Parameters.Param_FilePath,Grasshopper
+Params,Fitness Landscape,fe9db51e-1ac6-4298-b9dc-6acf3008c8f2,LScape,Display a 2.5D fitness landscape,GalapagosComponents.GalapagosFitnessLandscape,Galapagos
+Params,Font Settings,608e1d69-2b19-4a59-a752-871686ec29b4,Font,Contains a collection of fonts and their properties,Grasshopper.Rhinoceros.Annotations.Params.Param_AnnotationTextSettings,Grasshopper
+Params,Galapagos,e6dd2904-14bc-455b-8376-948bf2e3a7bc,Galapagos,Interface with Galapagos evolutionary solver,GalapagosComponents.GalapagosObject,Galapagos
+Params,Gene Pool,21553c44-ea62-475e-a8bb-62b2a3ee5ca5,Genes,Contains a collection of genes (i.e. variables),GalapagosComponents.GalapagosGeneListObject,Galapagos
+Params,Geometry,ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278,Geo,Contains a collection of generic geometry,Grasshopper.Kernel.Parameters.Param_Geometry,Grasshopper
+Params,Geometry Cache,f91778ca-2700-42fc-8ee6-74049a2292b5,,Bake or Load geometry to and from the Rhino document,Grasshopper.Kernel.Special.GH_GeometryCache,Grasshopper
+Params,Geometry Pipeline,b341e2e5-c4b3-49a3-b3a4-b4e6e2054516,Pipeline,Defines a geometry pipeline from Rhino to Grasshopper,Grasshopper.Kernel.Special.GH_GeometryPipeline,Grasshopper
+Params,Get Boolean,51ef601d-f86e-4ee4-bcf2-3d459d3e95e9,Get Boolean,Contextual boolean input.,ContextualComponents.GetBooleanParameter,Curve Components
+Params,Get Data,0878bf9a-f241-4cb4-9d17-8fd55ce24da5,Get Data,Contextual generic data input.,ContextualComponents.GetDataParameter,Curve Components
+Params,Get File Path,e83dd8b2-42aa-41e6-9254-882cddec0a2e,Get File Path,Contextual file path input.,ContextualComponents.GetFilePathParameter,Curve Components
+Params,Get Geometry,41dd7ba9-1f53-49d9-af42-a9270b0e9454,Get Geometry,Contextual geometry input.,ContextualComponents.GetGeometryParameter,Curve Components
+Params,Get Integer,b228887e-0852-4d9f-bd46-2591646e0d7c,Get Integer,Contextual integer input.,ContextualComponents.GetIntegerParameter,Curve Components
+Params,Get Line,af519c71-7dc1-4524-b8cc-add5544e2ef6,Get Line,Contextual line input.,ContextualComponents.GetLineParameter,Curve Components
+Params,Get Number,7b36b876-9451-46f5-8220-a200d969cc66,Get Number,Contextual numeric input.,ContextualComponents.GetNumberParameter,Curve Components
+Params,Get Object,522cee36-b61e-4e5a-a581-371795cb5d21,Get Object,Contextual object input.,ContextualComponents.GetModelObjectParameter,Curve Components
+Params,Get Plane,88bd0e1d-363a-469f-9104-57d3aac5d6b8,Get Plane,Contextual plane input.,ContextualComponents.GetPlaneParameter,Curve Components
+Params,Get Point,997704ba-c1d3-4262-9090-927c81347ce6,Get Point,Contextual point input.,ContextualComponents.GetPointParameter,Curve Components
+Params,Get String,fed87bdd-8327-49cd-949c-09d70f3c345c,Get String,Contextual text input.,ContextualComponents.GetStringParameter,Curve Components
+Params,Gradient,6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7,Gradient,Represents a multiple colour gradient,Grasshopper.Kernel.Special.GH_GradientControl,Grasshopper
+Params,Graph Mapper,bc984576-7aa6-491f-a91d-e444c33675a7,Graph,Represents a numeric mapping function,Grasshopper.Kernel.Special.GH_GraphMapper,Grasshopper
+Params,Group,b0851fc0-ab55-47d8-bdda-cc6306a40176,Grp,Contains a collection of geometric groups,Grasshopper.Kernel.Parameters.Param_Group,Grasshopper
+Params,Group,c552a431-af5b-46a9-a8a4-0fcbc27ef596,Group,A group of Grasshopper objects,Grasshopper.Kernel.Special.GH_Group,Grasshopper
+Params,Guid,faf6e3bb-4c84-4cbf-bd88-6d6a0db5667a,ID,Contains a collection of Globally Unique Identifiers,Grasshopper.Kernel.Parameters.Param_Guid,Grasshopper
+Params,Hatch,a4bfb03e-700d-4517-8c6b-1e88b466a781,Hatch,Contains a collection of hatches,Grasshopper.Kernel.Parameters.Param_Hatch,Grasshopper
+Params,Hatch Line,778e8a8d-3ae6-4253-bd63-f0e725cb852e,Hatch Line,Contains a collection of model hatch lines,Grasshopper.Rhinoceros.Drafting.Params.Param_ModelHatchLine,Grasshopper
+Params,Image Resource,216bccd8-bf29-4d3c-b791-54c89a180db3,,A previewable image uri.,IOComponents.ImageUri.ImageUriResource,IO Components
+Params,Image Sampler,d69a3494-785b-4beb-969b-d2373f65abfd,Image,Provides image (bitmap) sampling routines.,Grasshopper.Kernel.Special.GH_ImageSampler,Grasshopper
+Params,Import 3DM,317f1cb2-820d-4a8f-b5c8-5de3594ddfba,3DM,Import geometry into a RhinoDoc,IOComponents.Importer3DM.Import3dmComponent,IO Components
+Params,Import Coordinates,b8a66384-fc66-4574-a8a9-ad18e610d623,Coords,Import point coordinates from generic text files.,IOComponents.ImporterPoints.PointImporter,IO Components
+Params,Import Image,c2c0c6cf-f362-4047-a159-21a72e7c272a,IMG,"Import image data from bmp, jpg or png files.",IOComponents.ImporterImage.ImageImporter,IO Components
+Params,Import PDB,383929c0-6515-4899-8b4b-3bd0d0b32471,PDB,Import data from Protein Data Bank *.pdb files.,IOComponents.ImporterPDB.PDBFileImporter,IO Components
+Params,Import SHP,aa538b89-3df8-436f-9ae4-bc44525984de,SHP,Import data from GIS *.shp files.,IOComponents.ImporterSHP.ShapeFileImporter,IO Components
+Params,Integer,2e3ab970-8545-46bb-836c-1c11e5610bce,Int,Contains a collection of integer numbers,Grasshopper.Kernel.Parameters.Param_Integer,Grasshopper
+Params,Jump,86720a45-ee9e-49d6-b65e-494c06f66e59,,Jump between different locations,Grasshopper.Kernel.Special.GH_JumpObject,Grasshopper
+Params,Leader,445f328a-45b3-4c67-a784-dc354a8992cd,Leader,Contains a collection of leaders,Grasshopper.Kernel.Parameters.Param_Leader,Grasshopper
+Params,Leader Settings,9f6e7314-7a4b-4b93-ad0d-54e1375ec24a,Leaders,Contains a collection of leader settings,Grasshopper.Rhinoceros.Annotations.Params.Param_AnnotationLeaderSettings,Grasshopper
+Params,Line,8529dbdf-9b6f-42e9-8e1f-c7a2bde56a70,Line,Contains a collection of line segments,Grasshopper.Kernel.Parameters.Param_Line,Grasshopper
+Params,Linear Dimension,ba477838-8571-4bfe-8e3c-cd71bd946d7d,Linear Dimension,Contains a collection of linear dimensions,Grasshopper.Kernel.Parameters.Param_LinearDimension,Grasshopper
+Params,Location,87391af3-35fe-4a40-b001-2bd4547ccd45,Loc,Contains a collection of latitude-longitude coordinates,Grasshopper.Kernel.Parameters.Param_LatLonLocation,Grasshopper
+Params,MD Slider,318dacd7-9073-4ede-b043-a0c132eb77e0,MD Slider,A multidimensional slider,Grasshopper.Kernel.Special.GH_MultiDimensionalSlider,Grasshopper
+Params,Marshalling signal parameter,4018985c-f9e8-4a8f-8d4d-518aec276f60,Data,Contains a collection of generic data,GhPython.Assemblies.MarshalParam,
+Params,Match Text,d0abb9f4-6c6b-47d3-993b-58507ed13071,Match Text,Specialized parameter to compare string input against different comparison engines,Grasshopper.Rhinoceros.Params.Param_MatchText,Grasshopper
+Params,Matrix,bd4a8a18-a3cc-40ba-965b-3be91fee563b,Matrix,Contains a collection of numeric matrices,Grasshopper.Kernel.Parameters.Param_Matrix,Grasshopper
+Params,Mesh,1e936df3-0eea-4246-8549-514cb8862b7a,Mesh,Contains a collection of polygon meshes,Grasshopper.Kernel.Parameters.Param_Mesh,Grasshopper
+Params,Mesh Face,e02b3da5-543a-46ac-a867-0ba6b0a524de,Face,Contains a collection of triangle or quad mesh faces,Grasshopper.Kernel.Parameters.Param_MeshFace,Grasshopper
+Params,Mesh Point,fa20fe95-5775-417b-92ff-b77c13cbf40c,MPoint,Contains a collection of mesh points,SurfaceComponents.MeshComponents.GH_MeshPointParameter,Surface Components
+Params,Mesher Settings,c3407fda-b505-4686-9165-38fe7a9274cf,Mesh,Represents a list of Meshing settings.,Grasshopper.Kernel.Parameters.Param_MeshParameters,Grasshopper
+Params,Meshing Parameters,c5b9e91e-e0a9-4789-89ca-aa5d3e410580,Meshing Parameters,Contains a collection of meshing parameters,Grasshopper.Rhinoceros.Params.Param_ModelMeshingParameters,Grasshopper
+Params,Model Annotation Style,5ca0914d-b372-4a5e-aef3-137bd34abb6f,Style,Contains a collection of model annotation styles,Grasshopper.Rhinoceros.Annotations.Params.Param_ModelAnnotationStyle,Grasshopper
+Params,Model Block Definition,988fbdfd-d3eb-4ead-ab83-d0db9f2a36d9,Block Definition,Contains a collection of model block definitions,Grasshopper.Rhinoceros.Model.Params.Param_ModelInstanceDefinition,Grasshopper
+Params,Model Content,39304976-7d5b-4dbc-b913-147bc3340e32,Content,Contains a collection of model content elements,Grasshopper.Rhinoceros.Params.Param_ModelContent,Grasshopper
+Params,Model Display Mode,64539bd9-e33e-4cff-91dc-4987e8040d48,Display Mode,Contains a collection of model display modes,Grasshopper.Rhinoceros.Display.Params.Param_ModelDisplayMode,Grasshopper
+Params,Model Font,91cba8ac-25ed-4ce5-9c14-59e806e573eb,Font,Contains a collection of fonts,Grasshopper.Rhinoceros.Params.Param_ModelFont,Grasshopper
+Params,Model Hatch Pattern,347f62f4-3c6e-4156-a92e-49cb5ade89dc,Hatch Pattern,Contains a collection of model hatch patterns,Grasshopper.Rhinoceros.Drafting.Params.Param_ModelHatchPattern,Grasshopper
+Params,Model Layer,1c0601b4-7b16-4712-b764-18751be7298a,Layer,Contains a collection of model layers,Grasshopper.Rhinoceros.Model.Params.Param_ModelLayer,Grasshopper
+Params,Model Linetype,c2c85a16-98f4-4f29-b1e4-9ea45744f80e,Linetype,Contains a collection of model linetypes,Grasshopper.Rhinoceros.Drafting.Params.Param_ModelLinetype,Grasshopper
+Params,Model Material,0b0088b7-9572-4e07-8f79-bff2dee3978a,Material,Contains a collection of model materials,Grasshopper.Rhinoceros.Render.Params.Param_ModelRenderMaterial,Grasshopper
+Params,Model Print Width,fc8387c3-cc00-4d2d-b3f8-4f2bfa894d6d,Print Width,Contains a collection of model print widths,Grasshopper.Rhinoceros.Drafting.Params.Param_ModelLineWidth,Grasshopper
+Params,Number,3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312,Num,Contains a collection of floating point numbers,Grasshopper.Kernel.Parameters.Param_Number,Grasshopper
+Params,Number Set,6d62dc91-25dc-415c-a3b3-03d0a39c575a,NumSet,A set of mutable numerics,GalapagosComponents.Galapagos_NumberCollection,Galapagos
+Params,Number Slider,57da07bd-ecab-415d-9d86-af36d7073abc,,Numeric slider for single values,Grasshopper.Kernel.Special.GH_NumberSlider,Grasshopper
+Params,Object Details,c7b5c66a-6360-4f5f-aa17-a918d0b1c314,ObjDet,Retrieve some details about referenced Rhino objects.,IOComponents.Importer3DM.ReferencedObjectDetailsComponent,IO Components
+Params,Object Display,ce3d0672-fbed-4332-84b9-6f895dad48fa,Display,Contains a collection of object display attributes,Grasshopper.Rhinoceros.Display.Params.Param_ObjectDisplay,Grasshopper
+Params,Object Drafting,ae26c08c-3ca4-4fd5-af73-497dbcd626a3,Drafting,Contains a collection of object drafting attributes,Grasshopper.Rhinoceros.Drafting.Params.Param_ObjectDrafting,Grasshopper
+Params,Object Render,3abbde21-9106-4846-882a-d1f8ca791cc0,Render,Contains a collection of object render attributes,Grasshopper.Rhinoceros.Render.Params.Param_ObjectRender,Grasshopper
+Params,Object Visibility,7132aa5e-db44-4ad4-afbc-f5d9e424d254,Visibility,Contains a collection of object visibility attributes,Grasshopper.Rhinoceros.Display.Params.Param_ObjectVisibility,Grasshopper
+Params,Oh noes!,bbb4de00-6316-46f5-bf18-b8b8a61092d7,LolCat,We're sorry but LolCat images are no longer available,OtherComponents.LolCat,Curve Components
+Params,Ordinate Dimension,b23c41cf-6b36-46f1-9843-bcc0d9d69301,Ordinate Dimension,Contains a collection of ordinate dimensions,Grasshopper.Kernel.Parameters.Param_OrdinateDimension,Grasshopper
+Params,Page Layout,4e007c9e-6521-4819-b16f-bdd3e768e003,Layout,Contains a collection of rhino layouts,Grasshopper.Rhinoceros.Display.Params.Param_ModelPageViewport,Grasshopper
+Params,Panel,59e0b89a-e487-49f8-bab8-b5bab16be14c,,A panel for custom notes and text values,Grasshopper.Kernel.Special.GH_Panel,Grasshopper
+Params,Param Viewer,72a29b54-2e48-474b-a400-d2124c4edf79,Viewer,A viewer for data structures.,Grasshopper.Kernel.Special.GH_ParamViewer,Grasshopper
+Params,Plane,4f8984c4-7c7a-4d69-b0a2-183cbb330d20,Pln,Contains a collection of three-dimensional axis-systems,Grasshopper.Kernel.Parameters.Param_Plane,Grasshopper
+Params,Point,fbac3e32-f100-4292-8692-77240a42fd1a,Pt,Contains a collection of three-dimensional points,Grasshopper.Kernel.Parameters.Param_Point,Grasshopper
+Params,Point Cloud,850b6368-ff26-48ce-9773-ac554ffbaeef,PCloud,Contains a collection of point clouds,Grasshopper.Kernel.Parameters.Param_PointCloud,Grasshopper
+Params,Predicate,fb3e1397-9f12-4f57-89bb-3c12a57b6d70,Predicate,A predicate defines the criteria and determines whether a specified object meets those criteria,Grasshopper.Kernel.Parameters.Param_Predicate,Grasshopper
+Params,Radial Dimension,9b1495a1-6c40-447a-b8fb-60b7ea71b47f,Radial Dimension,Contains a collection of radial dimensions,Grasshopper.Kernel.Parameters.Param_RadialDimension,Grasshopper
+Params,Read File,6587fcbf-e3cf-480a-b2f5-641794474194,File,Read the contents of a file,Grasshopper.Kernel.Components.GH_ReadFileComponent,Grasshopper
+Params,Receiver,f19b8c33-dff2-4cc2-b95b-b4005ff3c10c,Receiver,A data receiver object.,Grasshopper.Kernel.Parameters.GH_Receiver,Grasshopper
+Params,Rectangle,abf9c670-5462-4cd8-acb3-f1ab0256dbf3,Rec,Contains a collection of rectangles,Grasshopper.Kernel.Parameters.Param_Rectangle,Grasshopper
+Params,Relay,b6236720-8d88-4289-93c3-ac4c99f9b97b,,A wire relay object,Grasshopper.Kernel.Special.GH_Relay,Grasshopper
+Params,Scribble,7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe,Scribble,A quick note,Grasshopper.Kernel.Special.GH_Scribble,Grasshopper
+Params,Shader,288cfe66-f3dc-4c9a-bb96-ef81f47fe724,Shader,Contains a collection of display materials,Grasshopper.Kernel.Parameters.Param_OGLShader,Grasshopper
+Params,Sketch,2844fec5-142d-4381-bd5d-4cbcef6d6fed,Sketch,A series of doodles,Grasshopper.Kernel.Special.GH_Markup,Grasshopper
+Params,SubD,89cd1a12-0007-4581-99ba-66578665e610,SubD,Contains a collection of SubDs,Grasshopper.Kernel.Parameters.Param_SubD,Grasshopper
+Params,Suirify,5d4e1eeb-482e-42a7-aa2f-e5deb8a1018e,Suirify,Suire-style simplification of data trees.,Grasshopper.Kernel.Special.GH_SuireSimplifyNode,Grasshopper
+Params,Surface,deaf8653-5528-4286-807c-3de8b8dad781,Srf,Contains a collection of generic surfaces,Grasshopper.Kernel.Parameters.Param_Surface,Grasshopper
+Params,Symbol Display,2bcd153c-c964-4199-b8e4-4a19dfd34967,SymDis,Symbol display properties,FieldComponents.Parameter_SymbolDisplayProperties,Field Components
+Params,Text,3ede854e-c753-40eb-84cb-b48008f14fd4,Txt,Contains a collection of text fragments,Grasshopper.Kernel.Parameters.Param_String,Grasshopper
+Params,Text Balloon,5dcad41a-2cc6-4f24-a0e2-fbe949e0a7ee,Balloon,A thought balloon for annotation,Grasshopper.Kernel.Special.GH_TextBalloon,Grasshopper
+Params,Text Entity,79a2eb73-658a-41a1-99e6-c12fe3357de0,Text Entity,Contains a collection of text entities,Grasshopper.Kernel.Parameters.Param_TextEntity,Grasshopper
+Params,Time,81dfff08-0c83-4f1b-a358-14791d642d9e,Time,Contains a collection of times and dates,Grasshopper.Kernel.Parameters.Param_Time,Grasshopper
+Params,Timeline,33eb59b9-5f81-4ef5-8c89-46e6e744522b,Timeline,A timeline of values,Grasshopper.Kernel.Special.GH_ValueTimeline,Grasshopper
+Params,Tolerance Settings,345fd8f8-5fb0-4907-99fd-f21f3963e9b3,Tolerances,Contains a collection of tolerance settings,Grasshopper.Rhinoceros.Annotations.Params.Param_AnnotationToleranceSettings,Grasshopper
+Params,Transform,28f40e48-e739-4211-91bd-f4aefa5965f8,Transform,Contains a collection of three-dimensional transformations,Grasshopper.Kernel.Parameters.Param_Transform,Grasshopper
+Params,Trigger,5a2b0735-ba98-4b7d-a7d3-c1dfc04475ad,,Manually or cyclically trigger updates of certain components.,Grasshopper.Kernel.Special.GH_Timer,Grasshopper
+Params,Twisted Box,6db039c4-cad1-4549-bd45-e31cb0f71692,TBox,Contains a collection of twisted boxes,SquishyXMorphs.Parameter_TwistedBox,Transform Components
+Params,Unit System,92bc91e8-b235-4eed-86d5-0aced5c9c4bf,Unit System,Contains a collection of model unit systems,Grasshopper.Rhinoceros.Params.Param_ModelUnitSystem,Grasshopper
+Params,Units Settings,d16a6a70-bfb7-41fd-90c6-62734d1dd016,Units,Contains a collection of units settings,Grasshopper.Rhinoceros.Annotations.Params.Param_AnnotationUnitsSettings,Grasshopper
+Params,Value List,00027467-0d24-4fa7-b178-8dc0ac5f42ec,List,Provides a list of preset values to choose from,Grasshopper.Kernel.Special.GH_ValueList,Grasshopper
+Params,Variant,ba80fd98-91a1-4958-b6a7-a94e40e52bdb,Var,An expression variant,MathComponents.ExpressionComponents.VariantParameter,Math Components
+Params,Vector,16ef3e75-e315-4899-b531-d3166b42dac9,Vec,Contains a collection of three-dimensional vectors,Grasshopper.Kernel.Parameters.Param_Vector,Grasshopper
+Params,View,7069208c-c471-4b82-bae6-e938f16dacb0,View,Contains a collection of view frames,Grasshopper.Rhinoceros.Display.Params.Param_ModelView,Grasshopper
+Params,Viewport,2aab104a-5b20-4d8f-a918-fda5f016c828,Viewport,Contains a collection of rhino viewports,Grasshopper.Rhinoceros.Display.Params.Param_ModelStandardViewport,Grasshopper
+Rhino,Aligned Dimension,76c87974-75f6-40b1-a6f6-3ced07a6c903,Aligned Dimension,Aligned Dimension,IOComponents.Rhinoceros.Annotations.Component_AlignedDimension,IO Components
+Rhino,Angle Dimension (Arc),14a26cd3-abe2-4651-b1f9-0b9177bcc220,Arc Dimension,Angle Dimension From Arcs,IOComponents.Rhinoceros.Annotations.Component_AngularDimensionFromArc,IO Components
+Rhino,Angle Dimension (Lines),08a8ba79-88b0-47c7-8e8b-be30d6ce6b50,Angle Dimension,Angle Dimension From Lines,IOComponents.Rhinoceros.Annotations.Component_AngularDimensionFromLines,IO Components
+Rhino,Angle Dimension (Points),20a1c36b-4ee3-449f-a910-ef50b4adddf7,Angle Dimension From Points,Angle Dimension,IOComponents.Rhinoceros.Annotations.Component_AngularDimensionFromPoints,IO Components
+Rhino,Annotation Arrow Settings,169fee80-074f-4b6a-9e60-cde26129d10b,AS-Arrows,Annotation Style Arrow Settings,IOComponents.Rhinoceros.Annotations.Component_AnnotationStyleArrows,IO Components
+Rhino,Annotation Dimension Settings,28f6d54b-68cf-4044-a1ff-6949aae1921b,AS-Dimension,Annotation Style Dimension Settings,IOComponents.Rhinoceros.Annotations.Component_AnnotationStyleDimensions,IO Components
+Rhino,Annotation Dot,2da6cc22-3b17-40ff-909a-162f77a7d532,Annotation Dot,Annotation Dot,IOComponents.Rhinoceros.Annotations.Component_TextDot,IO Components
+Rhino,Annotation Leader Settings,ba19c081-5242-47f7-9555-caea0467a3e6,AS-Leaders,Annotation Style Leader Settings,IOComponents.Rhinoceros.Annotations.Component_AnnotationStyleLeaders,IO Components
+Rhino,Annotation Style,62f8596e-ad64-4012-91d4-9fde13b96442,Annotation Style,Annotation Style,IOComponents.Rhinoceros.Annotations.Component_ModelAnnotationStyle,IO Components
+Rhino,Annotation Style Overrides,55fb8124-766b-4d36-935a-ebb182d867dc,A-Style,Get-Set annotation style and overriden attributes,IOComponents.Rhinoceros.Annotations.Component_AnnotationAttributes,IO Components
+Rhino,Annotation Text Overrides,08877dc8-0192-4052-aa81-eb9092bc2b9d,A-Text,Manage annotation text attributes,IOComponents.Rhinoceros.Annotations.Component_AnnotationText,IO Components
+Rhino,Annotation Text Settings,67f33fe0-84aa-4c2d-869b-bcd9506d1174,AS-Text,Annotation Style Text Settings,IOComponents.Rhinoceros.Annotations.Component_AnnotationStyleText,IO Components
+Rhino,Annotation Tolerance Settings,3cfd77d3-30d0-45f6-adeb-ea8defed58d3,AS-Tolerance,Annotation Style Tolerance Settings,IOComponents.Rhinoceros.Annotations.Component_AnnotationStyleTolerances,IO Components
+Rhino,Annotation Units Settings,2eccca8b-b190-4eef-9ead-0659ac1ef900,AS-Units,Annotation Style Units Settings,IOComponents.Rhinoceros.Annotations.Component_AnnotationStyleUnits,IO Components
+Rhino,Centermark,413327a1-b01a-4de2-a9f1-71cfdce98e47,Centermark,Centermark,IOComponents.Rhinoceros.Annotations.Component_Centermark,IO Components
+Rhino,Colour Gradient,298e0adf-625a-4207-9d0f-c22212480c4c,Colour Gradient,Colour Gradient,IOComponents.Rhinoceros.Display.Component_DisplayColorGradient,IO Components
+Rhino,Contains Text Filter,e59e1368-a7c3-4a35-9f1d-8cf2cf67dc1b,Contains,Create a filter that determines if a piece of text occurs within another text,IOComponents.Rhinoceros.Filtering.Component_FilterRule_Contains,IO Components
+Rhino,Content Cache,1fae4c7a-d84a-4f04-8400-179e13193381,Cache,Push or Pull content to and from a Rhino model,IOComponents.Rhinoceros.Cache.Component_ContentCache,IO Components
+Rhino,Content Details,ed9fbfde-1a0d-4469-a03f-feb54ac3e5cf,Details,Retrieve some details about Rhino content elements.,IOComponents.Rhinoceros.Content.Component_ContentDetails,IO Components
+Rhino,Content Information,f03f9435-810e-4afa-8a9b-ed4132554730,Information,Get or set some information about Rhino content elements.,IOComponents.Rhinoceros.Content.Component_ContentIdentity,IO Components
+Rhino,Convert Units,a3a15b59-10f5-4625-8086-7d36f90e7c3c,C-Units,Performs a unit conversion on input Data,IOComponents.Rhinoceros.Content.Component_ConvertUnits,IO Components
+Rhino,Display Attributes,e843424b-2b2e-4a3f-8528-18e3c188a474,Display,Object display attributes,IOComponents.Rhinoceros.ObjectAttribs.Component_ObjectDisplayAttributes,IO Components
+Rhino,Display Colour,7fe5b7ab-f156-48e2-bc80-b97a046e109f,Display Colour,Object display colour attributes,IOComponents.Rhinoceros.ObjectAttribs.Component_ObjectDisplayColor,IO Components
+Rhino,Drafting Attributes,3ec83758-5dcf-4f26-9400-f8232f471b88,Drafting,Object drafting attributes,IOComponents.Rhinoceros.ObjectAttribs.Component_ObjectDraftingAttributes,IO Components
+Rhino,Equality Filter,2ec65d2f-c274-4ea9-a2a3-cb20e77b533f,Equals,Create a filter that determines if a value is equal to another,IOComponents.Rhinoceros.Filtering.Component_FilterRule_Equality,IO Components
+Rhino,Evaluate Annotation Text,8e9ce0ba-8819-48fe-bc74-9b139914f219,Evaluate,Get the annotation value with text field expressions evaluated,IOComponents.Rhinoceros.Annotations.Component_EvaluateAnnotation,IO Components
+Rhino,Evaluate Text Fields,f28708ed-145f-4269-a75a-e592dc202f61,Evaluate,Evaluates fields expressions of a text.,IOComponents.Rhinoceros.UserText.Component_EvaluateTextField,IO Components
+Rhino,Explode Object,f0574152-cab4-49e4-8b48-f02326970625,Explode,Explode Object,IOComponents.Rhinoceros.Model.Component_ExplodeModelObject,IO Components
+Rhino,Export Model Block Definition,72030d3d-12fc-4f1f-8565-c924781eef67,Export Definition,Export a block definition as a Rhino (*.3dm) file.,IOComponents.Rhinoceros.Content.Component_ExportInstanceDefinition,IO Components
+Rhino,Filter Content,d6cb16a3-a3d9-4506-b5c3-f82e48fd20b9,Filter,Separate content by filter condition,IOComponents.Rhinoceros.Filtering.Component_FilterByPredicate,IO Components
+Rhino,Gradient Colour Stop,f0d3ee56-9425-4417-a39e-1b08327ef6a4,Colour Stop,Gradient Colour Stop,IOComponents.Rhinoceros.Display.Component_DisplayColorStop,IO Components
+Rhino,Greater Than Filter,54241147-44f9-4019-a0a1-27a66871a867,Greater,Create a filter that determines if a value is greater than another,IOComponents.Rhinoceros.Filtering.Component_FilterRule_LargerThan,IO Components
+Rhino,Group Content,709cb378-b1fa-4b92-aff4-8138831b0cdf,Group,Group content by key,IOComponents.Rhinoceros.Filtering.Component_GroupByAttribute,IO Components
+Rhino,Hatch Line,3ed4d673-02f6-48f7-aa81-69587f83e201,Hatch Line,Hatch Line,IOComponents.Rhinoceros.Drafting.Component_ModelHatchLine,IO Components
+Rhino,Hide Model Layer,9ee31ba5-81a6-4f94-b256-7383f66a33ab,L-Hide,Controls layer visibility on model viewports and new details.,IOComponents.Rhinoceros.Model.Component_HideModelLayer,IO Components
+Rhino,Import Content,4cb37955-a5a7-4251-8675-aa136cf9b84d,Import,Import a model from file,IOComponents.Rhinoceros.Content.Component_ImportModel,IO Components
+Rhino,Import Hatch Pattern,e8220404-e41f-4845-b733-db281b49e73b,Hatch,Import Hatch Pattern,IOComponents.Rhinoceros.Drafting.Component_ImportHatchPattern,IO Components
+Rhino,Import Model Block Definition,c4e64c79-9e77-410c-96f5-877928c65850,Import Definition,Import a file and create a new block definition.,IOComponents.Rhinoceros.Content.Component_ImportInstanceDefinition,IO Components
+Rhino,Intersection Filter,4f4fc2ac-98ac-485a-b88b-f23965e16de8,Intersection,Combine multiple filters together into an intersection which returns true only if all input filters evaluate to true.,IOComponents.Rhinoceros.Filtering.Component_FilterRule_Intersection,IO Components
+Rhino,Leader,c9b4ad52-1e01-4317-bbde-3ababcc31bea,Leader,Leader,IOComponents.Rhinoceros.Annotations.Component_Leader,IO Components
+Rhino,Less Than Filter,335e597f-cf4e-40f6-8734-17896ea42a9f,Less,Create a filter that determines if a value is less than another,IOComponents.Rhinoceros.Filtering.Component_FilterRule_SmallerThan,IO Components
+Rhino,Linear Dimension,e3d2df3d-8ef3-4b2d-8b05-ce68656aaa3a,Linear Dimension,Linear Dimension,IOComponents.Rhinoceros.Annotations.Component_LinearDimension,IO Components
+Rhino,Logical And Filter,7f3681b2-84bb-4da1-ba7a-c19bce165595,And,Combine two filters together using a logical AND operator,IOComponents.Rhinoceros.Filtering.Component_FilterRule_AndOperator,IO Components
+Rhino,Logical Not Filter,d7f090c3-f5c5-42ff-801b-19a4c2cd9274,Not,Create a filter as the logical NOT of another.,IOComponents.Rhinoceros.Filtering.Component_FilterRule_NotOperator,IO Components
+Rhino,Logical Or Filter,488c5ae8-f802-4994-b1d1-31a467a77399,Or,Combine two filters together using a logical OR operator.,IOComponents.Rhinoceros.Filtering.Component_FilterRule_OrOperator,IO Components
+Rhino,Match Text Filter,8f209ecb-f743-4e21-813f-17f8705dd8f1,Match,Create a filter that determines if a text value matches a pattern.,IOComponents.Rhinoceros.Filtering.Component_FilterRule_TextMatch,IO Components
+Rhino,Model Block Definition,eacece94-a2fa-4c51-9461-2baa582bc403,Block Definition,Block Definition,IOComponents.Rhinoceros.Content.Component_ModelInstanceDefinition,IO Components
+Rhino,Model Block Instance,6354d626-df14-488d-885d-ed51b2efe97f,Block Instance,Block Instance,IOComponents.Rhinoceros.Model.Component_InstanceReference,IO Components
+Rhino,Model Font,522ffa00-cf42-4e34-90b6-eb375d901c74,Font,Typography Font,IOComponents.Rhinoceros.Annotations.Component_ModelFont,IO Components
+Rhino,Model Hatch,3bbd57f0-d6d7-4863-ab2b-d094015b286c,Hatch,Model Hatch,IOComponents.Rhinoceros.Drafting.Component_Hatch,IO Components
+Rhino,Model Hatch Pattern,67b2a54a-e2f9-4911-a0cc-eae7e7e06f65,Hatch Pattern,Model Hatch Pattern,IOComponents.Rhinoceros.Drafting.Component_ModelHatchPattern,IO Components
+Rhino,Model Layer,b4610792-5911-4b2e-b564-724d9b5b1494,Layer,Model Layer,IOComponents.Rhinoceros.Model.Component_ModelLayer,IO Components
+Rhino,Model Linetype,40abbc84-7bc1-4b05-bb32-10976d2e7157,Linetype,Model Linetype,IOComponents.Rhinoceros.Drafting.Component_ModelLinetype,IO Components
+Rhino,Model Material,7062df7c-7f0e-484b-9354-902a8762499a,Material,Model Material,IOComponents.Rhinoceros.Render.Component_ModelMaterial,IO Components
+Rhino,Model Object,1c30cbca-3907-4e28-9003-b06352f5459c,Object,Contains a collection of model objects,Grasshopper.Rhinoceros.Model.Params.Param_ModelObject,Grasshopper
+Rhino,Model Object,d7071c97-bc7f-4966-beba-b7110064eebf,Object,Model Object,IOComponents.Rhinoceros.Model.Component_ModelObject,IO Components
+Rhino,Model Space Scale,accca90f-6fb7-4c68-b8f4-dcfa3a68dd6c,Ms-Scale,Get or set the model space scale factor for linetypes and/or hatch patterns.,IOComponents.Rhinoceros.Drafting.Component_ModelSpaceScale,IO Components
+Rhino,Model View,17f44ecd-76b0-4074-87f0-d96aa62a13ac,View,Model View,IOComponents.Rhinoceros.Viewports.Component_ModelView,IO Components
+Rhino,Model Viewport,d79e5455-9dc8-4ecb-9fa2-fe511258841e,Model Viewport,Model Viewport,IOComponents.Rhinoceros.Viewports.Component_ModelViewport,IO Components
+Rhino,Object Display Colour,3653cf51-4fa3-473b-b742-746c59a33796,Display Colour,Contains a collection of object display colours,Grasshopper.Rhinoceros.Display.Params.Param_ObjectDisplayColor,Grasshopper
+Rhino,Object Display Mode,8aa197e1-20fc-4662-8c05-1474668d3636,Display Mode,Contains a collection of object display modes,Grasshopper.Rhinoceros.Display.Params.Param_ObjectDisplayMode,Grasshopper
+Rhino,Object Linetype,41995f16-087e-425a-97c4-ec4fa0f78e1c,Object Linetype,Object linetype attributes,IOComponents.Rhinoceros.ObjectAttribs.Component_ObjectLinetype,IO Components
+Rhino,Object Linetype,8ff0c4b8-0798-49c0-8f2e-e726edfe1b48,Linetype,Contains a collection of object linetypes,Grasshopper.Rhinoceros.Drafting.Params.Param_ObjectDraftingLinetype,Grasshopper
+Rhino,Object Material,c17f7249-7f62-477d-b66d-fb79ef67eae0,Object Material,Contains a collection of object materials,Grasshopper.Rhinoceros.Render.Params.Param_ObjectRenderMaterial,Grasshopper
+Rhino,Object Print Colour,3e972aa1-906f-4957-9e1f-956cb1429030,Print Colour,Contains a collection of object print colours,Grasshopper.Rhinoceros.Drafting.Params.Param_ObjectDraftingColor,Grasshopper
+Rhino,Object Print Width,22149be8-8a95-4018-af41-050d03d5709b,Print Width,Contains a collection of object print widths,Grasshopper.Rhinoceros.Drafting.Params.Param_ObjectDraftingLineWidth,Grasshopper
+Rhino,Order Content,91f1eafc-4804-4f9f-96ad-35be27178c36,Order,Order content by key,IOComponents.Rhinoceros.Filtering.Component_OrderByAttribute,IO Components
+Rhino,Ordinate Dimension,ffc6bd57-414f-49e6-999e-4c94ec8fa69f,Ordinate Dimension,Ordinate Dimension,IOComponents.Rhinoceros.Annotations.Component_OrdinateDimension,IO Components
+Rhino,Print Colour,bb2047a6-209d-4313-9b94-26ad886b0ec2,Print Colour,Object print colour attributes,IOComponents.Rhinoceros.ObjectAttribs.Component_ObjectPrintColor,IO Components
+Rhino,Print Width,52a53903-46bf-42c2-818f-c23344fc53c5,Print Width,Object print width attributes,IOComponents.Rhinoceros.ObjectAttribs.Component_ObjectPrintWidth,IO Components
+Rhino,Query Annotation Styles,0233a5e5-91d3-4cd6-be0f-6d7ce5de3202,Styles,Query a Rhino document for all available annotation styles,IOComponents.Rhinoceros.Query.QueryAnnotationStyles,IO Components
+Rhino,Query Directory,546298c8-bcb4-4fc9-8ba9-e793fce3e8e5,Directory,Query on the file system under the specified directory path.,IOComponents.FileSystem.QueryDirectory,IO Components
+Rhino,Query Installed Fonts,c6d7093d-90a1-4cad-9533-c066222b322b,Fonts,Query for all available fonts,IOComponents.Rhinoceros.Query.QueryInstalledFonts,IO Components
+Rhino,Query Model Block Definitions,960a32ab-3e64-4075-855d-df701ee924e7,Block Definition,Query a Rhino document for all available block definitions,IOComponents.Rhinoceros.Query.QueryInstanceDefinitions,IO Components
+Rhino,Query Model Hatch Patterns,ff5d442a-44f2-4631-9295-dbb43efecb7a,Hatches,Query a Rhino document for all available hatch patterns,IOComponents.Rhinoceros.Query.QueryHatchPatterns,IO Components
+Rhino,Query Model Layers,1778f81a-dbab-422c-9d84-98a5f6d260fb,Layers,Query a Rhino document for all available layers,IOComponents.Rhinoceros.Query.QueryLayers,IO Components
+Rhino,Query Model Linetypes,7e266319-a439-481e-afa5-daa09ab97417,Linetypes,Query a Rhino document for all available linetypes,IOComponents.Rhinoceros.Query.QueryLinetypes,IO Components
+Rhino,Query Model Materials,b4804676-05f8-4edd-80ac-7c7227066a6b,Materials,Query a Rhino document for all available render materials,IOComponents.Rhinoceros.Query.QueryRenderMaterials,IO Components
+Rhino,Query Model Objects,3ed98048-ed09-41ef-b378-74c60c8d3e9a,Objects,Query a Rhino document for all available rhino objects,IOComponents.Rhinoceros.Query.QueryObjects,IO Components
+Rhino,Query Pages,dd56e383-3492-4da2-b857-781faf3f6a39,Pages,Query a Rhino document for all available page layouts,IOComponents.Rhinoceros.Query.QueryPageLayouts,IO Components
+Rhino,Query Viewports,0fee6d09-eed8-4b01-ae29-de1806683baf,Viewports,Query a Rhino document for all available viewports,IOComponents.Rhinoceros.Query.QueryStandardViewports,IO Components
+Rhino,Radial Dimension,eba95904-9ef5-40f8-8590-079055192299,Radial Dimension,Radial Dimension,IOComponents.Rhinoceros.Annotations.Component_RadialDimension,IO Components
+Rhino,Render Attributes,6c814c77-ec1b-44d6-bf5a-e637d4b34256,Render,Object render attributes,IOComponents.Rhinoceros.ObjectAttribs.Component_ObjectRenderAttributes,IO Components
+Rhino,Render Material,2846e179-728a-4146-b0ce-a33e7d591873,Object Material,Object render material attributes,IOComponents.Rhinoceros.ObjectAttribs.Component_ObjectRenderMaterial,IO Components
+Rhino,Text Entity,64fda9ad-68a6-4871-8031-ca71f6ba2a21,Text Entity,Text Entity,IOComponents.Rhinoceros.Annotations.Component_TextEntity,IO Components
+Rhino,Text Field Expression,c7daf500-3ffd-43e9-9562-1f2b4e2596cf,Field Expression,Build a field expression which can be used as a text field on annotations or as a user text value.,IOComponents.Rhinoceros.UserText.Component_TextFieldExpression,IO Components
+Rhino,Union Filter,63781bc9-6705-4a8c-8704-010655dcad76,Union,Combine multiple filters together into a union which returns true if at least one input filter evaluates to true.,IOComponents.Rhinoceros.Filtering.Component_FilterRule_Union,IO Components
+Rhino,Unit System,c14e5cc8-aa4e-48ec-b95b-39f96dd36d79,U-System,Unit System,IOComponents.Rhinoceros.Content.Component_UnitSystem,IO Components
+Rhino,User Text,3da3fd40-b2fb-483c-8d1a-1b557eba66cd,U-Text,Modify the key/value pair text collection of a model element.,IOComponents.Rhinoceros.UserText.Component_UserText,IO Components
+Rhino,Visibility Attributes,e5b96cc1-4843-4ef2-9a5f-f7eba9146d81,Visibility,Object visibility attributes,IOComponents.Rhinoceros.ObjectAttribs.Component_ObjectVisibilityAttributes,IO Components
+Rhino,Zoom Extents,218d6810-99a9-4e39-89a1-a11560cfdbc5,Zoom Ext,Zoom view to show all objects,IOComponents.Rhinoceros.Viewports.Component_ZoomExtents,IO Components
+Sets,Carthesian Product,deffaf1e-270a-4c15-a693-9216b68afd4a,CProd,Create the Carthesian product for two sets of identical cardinality.,MathComponents.SetComponents.Component_SetCarthesianProduct,Math Components
+Sets,Char Sequence,01640871-69ea-40ac-9380-4660d6d28bd2,CharSeq,Create a sequence of textual characters.,MathComponents.FunctionComponents.Component_CharSequence,Math Components
+Sets,Characters,86503240-d884-43f9-9323-efe30488a6e1,Chars,Break text into individual characters,MathComponents.StringComponents.Component_TextToChars,Math Components
+Sets,Clean Tree,071c3940-a12d-4b77-bb23-42b5d3314a0d,Clean,Removed all null and invalid items from a data tree.,Grasshopper.Kernel.Components.GH_CleanTreeComponent,Grasshopper
+Sets,Clean Tree,7991bc5f-8a01-4768-bfb0-a39357ac6b84,Clean,Removed all null and invalid items from a data tree.,Grasshopper.Kernel.Components.GH_CleanTreeComponent_OSBOLETE_AS_WELL,Grasshopper
+Sets,Combine Data,e7c80ff6-0299-4303-be36-3080977c14a1,Combine,Combine non-null items out of several inputs,MathComponents.ArrayComponents.Component_CombineNonNulls,Math Components
+Sets,Concatenate,2013e425-8713-42e2-a661-b57e78840337,Concat,Concatenate some fragments of text,MathComponents.StringComponents.Component_Concatenate,Math Components
+Sets,Construct Path,946cb61e-18d2-45e3-8840-67b0efa26528,Path,Construct a data tree branch path.,MathComponents.ArrayComponents.Component_ConstructBranchPath,Math Components
+Sets,Create Set,98c3c63a-e78a-43ea-a111-514fcf312c95,CSet,Creates the valid set from a list of items (a valid set only contains distinct elements).,MathComponents.SetComponents.Component_CreateSet,Math Components
+Sets,Cross Reference,36947590-f0cb-4807-a8f9-9c90c9b20621,CrossRef,Cross Reference data from multiple lists,MathComponents.ArrayComponents.Component_MatchListCrossReference,Math Components
+Sets,Cull Index,501aecbb-c191-4d13-83d6-7ee32445ac50,Cull i,Cull (remove) indexed elements from a list.,MathComponents.ArrayComponents.Component_CullIndex,Math Components
+Sets,Cull Nth,932b9817-fcc6-4ac3-b5fd-c0e8eeadc53f,CullN,Cull (remove) every Nth element in a list.,MathComponents.ArrayComponents.Component_CullNthItem,Math Components
+Sets,Cull Pattern,008e9a6f-478a-4813-8c8a-546273bc3a6b,Cull,Cull (remove) elements in a list using a repeating bit mask.,MathComponents.ArrayComponents.Component_CullPattern,Math Components
+Sets,Deconstruct Path,df6d9197-9a6e-41a2-9c9d-d2221accb49e,DPath,Deconstruct a data tree path into individual integers.,MathComponents.ArrayComponents.Component_DeconstructBranchPath,Math Components
+Sets,Delete Consecutive,190d042c-2270-4bc1-81c0-4f90c170c9c9,DCon,Delete consecutive similar members in a set.,MathComponents.SetComponents.Component_RemoveConsecutive,Math Components
+Sets,Disjoint,81800098-1060-4e2b-80d4-17f835cc825f,Disjoint,Test whether two sets are disjoint.,MathComponents.SetComponents.Component_IsDisjoint,Math Components
+Sets,Dispatch,d8332545-21b2-4716-96e3-8559a9876e17,Dispatch,Dispatch the items in a list into two target lists.,MathComponents.ArrayComponents.Component_Dispatch,Math Components
+Sets,Duplicate Data,dd8134c0-109b-4012-92be-51d843edfff7,Dup,Duplicate data a predefined number of times.,MathComponents.ArrayComponents.Component_DuplicateData,Math Components
+Sets,Entwine,c9785b8e-2f30-4f90-8ee3-cca710f82402,Entwine,Flatten and combine a collection of data streams,MathComponents.MergeComponents.Component_Entwine,Math Components
+Sets,Explode Tree,74cad441-2264-45fe-a57d-85034751208a,BANG!,Extract all the branches from a tree,Grasshopper.Kernel.Components.GH_ExplodeTreeComponent,Grasshopper
+Sets,Fibonacci,fe99f302-3d0d-4389-8494-bd53f7935a02,Fib,Creates a Fibonacci sequence.,MathComponents.FunctionComponents.Component_Fibonacci,Math Components
+Sets,Find similar member,b4d4235f-14ff-4d4e-a29a-b358dcd2baf4,FSim,Find the most similar member in a set.,MathComponents.SetComponents.Component_FindNearest,Math Components
+Sets,Flatten Tree,f80cfe18-9510-4b89-8301-8e58faf423bb,Flatten,Flatten a data tree by removing all branching information.,Grasshopper.Kernel.Components.GH_FlattenTreeComponent,Grasshopper
+Sets,Flip Matrix,41aa4112-9c9b-42f4-847e-503b9d90e4c7,Flip,Flip a matrix-like data tree by swapping rows and columns.,Grasshopper.Kernel.Components.GH_FlipDataMatrixComponent,Grasshopper
+Sets,Format,758d91a0-4aec-47f8-9671-16739a8a2c5d,Format,Format some data using placeholders and formatting tags,MathComponents.StringComponents.Component_FormatText,Math Components
+Sets,Graft Tree,87e1d9ef-088b-4d30-9dda-8a7448a17329,Graft,Graft a data tree by adding an extra branch for every item.,Grasshopper.Kernel.Components.GH_GraftTreeComponent,Grasshopper
+Sets,Insert Items,e2039b07-d3f3-40f8-af88-d74fed238727,Ins,Insert a collection of items into a list.,MathComponents.ArrayComponents.Component_InsertItems,Math Components
+Sets,Item Index,a759fd55-e6be-4673-8365-c28d5b52c6c0,Index,Retrieve the index of a certain item in a list.,MathComponents.ArrayComponents.Component_ItemIndex,Math Components
+Sets,Jitter,f02a20f6-bb49-4e3d-b155-8ed5d3c6b000,Jitter,Randomly shuffles a list of values.,MathComponents.FunctionComponents.Component_Jitter,Math Components
+Sets,Key/Value Search,1edcc3cf-cf84-41d4-8204-561162cfe510,KeySearch,Extract an item from a collection using a key-value match,MathComponents.SetComponents.Component_KeyMemberSearch,Math Components
+Sets,List Item,59daf374-bc21-4a5e-8282-5504fb7ae9ae,Item,Retrieve a specific item from a list.,MathComponents.ArrayComponents.Component_ListItemVariable,Math Components
+Sets,List Length,1817fd29-20ae-4503-b542-f0fb651e67d7,Lng,Measure the length of a list.,MathComponents.ArrayComponents.Component_ListLength,Math Components
+Sets,Longest List,8440fd1b-b6e0-4bdb-aa93-4ec295c213e9,Long,Grow a collection of lists to the longest length amongst them,MathComponents.ArrayComponents.Component_MatchListLongest,Math Components
+Sets,Match Text,3756c55f-95c3-442c-a027-6b3ab0455a94,TMatch,Match a text against a pattern,MathComponents.StringComponents.Component_TextMatch,Math Components
+Sets,Match Tree,46372d0d-82dc-4acb-adc3-25d1fde04c4e,Match,Match one data tree with another.,Grasshopper.Kernel.Components.GH_MatchTreeComponent,Grasshopper
+Sets,Member Index,3ff27857-b988-417a-b495-b24c733dbd00,MIndex,Find the occurences of a specific member in a set.,MathComponents.SetComponents.Component_SetMemberIndex,Math Components
+Sets,Merge,3cadddef-1e2b-4c09-9390-0e8f78f7609f,Merge,Merge a bunch of data streams,MathComponents.MergeComponents.Component_MergeVariable,Math Components
+Sets,Merge,86866576-6cc0-485a-9cd2-6f7d493f57f7,Merge,Merge two streams into one.,MathComponents.MergeComponents.Component_Merge2,Math Components
+Sets,Merge 03,481f0339-1299-43ba-b15c-c07891a8f822,M3,Merge three streams into one.,MathComponents.MergeComponents.Component_Merge3,Math Components
+Sets,Merge 04,b5be5d1f-717f-493c-b958-816957f271fd,M4,Merge four streams into one.,MathComponents.MergeComponents.Component_Merge4,Math Components
+Sets,Merge 05,f4b0f7b4-5a10-46c4-8191-58d7d66ffdff,M5,Merge five streams into one.,MathComponents.MergeComponents.Component_Merge5,Math Components
+Sets,Merge 06,ac9b4faf-c9d5-4f6a-a5e9-58c0c2cac116,M6,Merge six streams into one.,MathComponents.MergeComponents.Component_Merge6,Math Components
+Sets,Merge 08,a70aa477-0109-4e75-ba73-78725dca0274,M8,Merge eight streams into one.,MathComponents.MergeComponents.Component_Merge8,Math Components
+Sets,Merge 10,22f66ff6-d281-453c-bd8c-36ed24026783,M10,Merge ten streams into one.,MathComponents.MergeComponents.Component_Merge10,Math Components
+Sets,Merge Multiple,0b6c5dac-6c93-4158-b8d1-ca3187d45f25,Merge,Merge multiple input streams into one,MathComponents.MergeComponents.Component_MergeN,Math Components
+Sets,Null Item,c74efd0e-7fe3-4c2d-8c9d-295c5672fb13,Null,Test a data item for null or invalidity,MathComponents.ArrayComponents.Component_IsNullOrInvalid,Math Components
+Sets,Partition List,5a93246d-2595-4c28-bc2d-90657634f92a,Partition,Partition a list into sub-lists,MathComponents.ArrayComponents.Component_PartitionList,Math Components
+Sets,Path Compare,1d8b0e2c-e772-4fa9-b7f7-b158251b34b8,Compare,Compare a path to a mask pattern,Grasshopper.Kernel.Components.GH_PathCompareComponent,Grasshopper
+Sets,Path Mapper,f9b89a46-bc5d-4f7a-9a6f-134f93ac3af9,Path Mapper,Perform lexical operations on data trees.,Grasshopper.Kernel.Special.GH_PathMapper,Grasshopper
+Sets,Pick'n'Choose,03b801eb-87cd-476a-a591-257fe5d5bf0f,P'n'C,Pick and choose from a set of input data.,MathComponents.ArrayComponents.Component_PickNChoose,Math Components
+Sets,Prune Tree,fe769f85-8900-45dd-ba11-ec9cd6c778c6,Prune,Remove small branches from a Data Tree.,Grasshopper.Kernel.Components.GH_PruneTreeComponent,Grasshopper
+Sets,Random,2ab17f9a-d852-4405-80e1-938c5e57e78d,Random,Generate a list of pseudo random numbers.,MathComponents.FunctionComponents.Component_Random,Math Components
+Sets,Random Reduce,455925fd-23ff-4e57-a0e7-913a4165e659,Reduce,Randomly remove N items from a list,MathComponents.ArrayComponents.Component_RandomReduce,Math Components
+Sets,RandomEx,a12dddbf-bb49-4ef4-aeb8-5653bc882cbd,RndEx,Generate random data between extremes.,XformComponents.Component_RandomVariableTypes,Transform Components
+Sets,Range,9445ca40-cc73-4861-a455-146308676855,Range,Create a range of numbers.,MathComponents.FunctionComponents.Component_Range,Math Components
+Sets,Relative Item,fac0d5be-e3ff-4bbb-9742-ec9a54900d41,RelItem,Retrieve a relative item combo from a data tree,MathComponents.ArrayComponents.Component_RelativeItem,Math Components
+Sets,Relative Items,2653b135-4df1-4a6b-820c-55e2ad3bc1e0,RelItem2,Retrieve a relative item combo from two data trees,MathComponents.ArrayComponents.Component_RelativeItem2,Math Components
+Sets,Repeat Data,c40dc145-9e36-4a69-ac1a-6d825c654993,Repeat,Repeat a pattern until it reaches a certain length.,MathComponents.ArrayComponents.Component_RepeatData,Math Components
+Sets,Replace Items,7a218bfb-b93d-4c1f-83d3-5a0b909dd60b,Replace,Replace certain items in a list.,MathComponents.ArrayComponents.Component_ReplaceItems,Math Components
+Sets,Replace Members,bafac914-ede4-4a59-a7b2-cc41bc3de961,Replace,Replace members in a set.,MathComponents.SetComponents.Component_ReplaceSetMembers,Math Components
+Sets,Replace Nulls,f3230ecb-3631-4d6f-86f2-ef4b2ed37f45,NullRep,Replace nulls or invalid data with other data,MathComponents.ArrayComponents.Component_ReplaceNull,Math Components
+Sets,Replace Paths,bfaaf799-77dc-4f31-9ad8-2f7d1a80aeb0,Replace,Find & replace paths in a data tree,Grasshopper.Kernel.Components.GH_ReplacePathComponent,Grasshopper
+Sets,Replace Text,4df8df00-3635-45bd-95e6-f9206296c110,Rep,Replace all occurences of a specific text fragment with another,MathComponents.StringComponents.Component_ReplaceText,Math Components
+Sets,Reverse List,6ec97ea8-c559-47a2-8d0f-ce80c794d1f4,Rev,Reverse the order of a list.,MathComponents.ArrayComponents.Component_ReverseList,Math Components
+Sets,Sequence,e9b2d2a6-0377-4c1c-a89e-b3f219a95b4d,Seq,Generate a sequence of numbers,MathComponents.FunctionComponents.Component_Sequence,Math Components
+Sets,Series,e64c5fb1-845c-4ab1-8911-5f338516ba67,Series,Create a series of numbers.,MathComponents.FunctionComponents.Component_Series,Math Components
+Sets,Set Difference,e3b1a10c-4d49-4140-b8e6-0b5732a26c31,Difference,Create the difference of two sets (the collection of objects present in A but not in B).,MathComponents.SetComponents.Component_SetDifference,Math Components
+Sets,Set Difference (S),d2461702-3164-4894-8c10-ed1fc4b52965,ExDiff,Create the symmetric difference of two sets (the collection of objects present in A or B but not both).,MathComponents.SetComponents.Component_SetSymmetricDifference,Math Components
+Sets,Set Intersection,82f19c48-9e73-43a4-ae6c-3a8368099b08,Intersection,Creates the intersection of two sets (the collection of unique objects present in both sets).,MathComponents.SetComponents.Component_SetIntersection,Math Components
+Sets,Set Majority,d4136a7b-7422-4660-9404-640474bd2725,Majority,Determine majority member presence amongst three sets.,MathComponents.SetComponents.Component_SetTripleMajority,Math Components
+Sets,Set Union,8eed5d78-7810-4ba1-968e-8a1f1db98e39,SUnion,Creates the union of two sets (the collection of unique objects present in either set).,MathComponents.SetComponents.Component_SetUnion,Math Components
+Sets,Shift List,4fdfe351-6c07-47ce-9fb9-be027fb62186,Shift,Offset all items in a list.,MathComponents.ArrayComponents.Component_ShiftList,Math Components
+Sets,Shift Paths,2d61f4e0-47c5-41d6-a41d-6afa96ee63af,PShift,Shift the indices in all data tree paths,Grasshopper.Kernel.Components.GH_ShiftDataPathComponent,Grasshopper
+Sets,Shortest List,5a13ec19-e4e9-43da-bf65-f93025fa87ca,Short,Shrink a collection of lists to the shortest length amongst them,MathComponents.ArrayComponents.Component_MatchListShortest,Math Components
+Sets,Sift Pattern,3249222f-f536-467a-89f4-f0353fba455a,Sift,Sift elements in a list using a repeating index pattern.,MathComponents.ArrayComponents.Component_SiftPattern,Math Components
+Sets,Simplify Tree,1303da7b-e339-4e65-a051-82c4dce8224d,Simplify,Simplify a data tree by removing the overlap shared amongst all branches.,Grasshopper.Kernel.Components.GH_SimplifyTreeComponent,Grasshopper
+Sets,Sort List,6f93d366-919f-4dda-a35e-ba03dd62799b,Sort,Sort a list of numeric keys.,MathComponents.ArrayComponents.Component_SortList,Math Components
+Sets,Sort Text,cec16c67-7b8b-41f7-a5a5-f675177e524b,TSort,Sort a collection of text fragments,MathComponents.StringComponents.Component_SortString,Math Components
+Sets,Split List,9ab93e1a-ebdf-4090-9296-b000cff7b202,Split,Split a list into separate parts.,MathComponents.ArrayComponents.Component_SplitList,Math Components
+Sets,Split Tree,d8b1e7ac-cd31-4748-b262-e07e53068afc,Split,Split a data tree into two parts using path masks.,Grasshopper.Kernel.Components.GH_TreeSplitComponent,Grasshopper
+Sets,Stack Data,5fa4e736-0d82-4af0-97fb-30a79f4cbf41,Stack,Duplicate individual items in a list of data,MathComponents.ArrayComponents.Component_StackData,Math Components
+Sets,Stream Filter,eeafc956-268e-461d-8e73-ee05c6f72c01,Filter,Filters a collection of input streams,Grasshopper.Kernel.Components.GH_StreamFilterComponent,Grasshopper
+Sets,Stream Gate,71fcc052-6add-4d70-8d97-cfb37ea9d169,Gate,Redirects a stream into specific outputs.,Grasshopper.Kernel.Components.GH_StreamGateComponent,Grasshopper
+Sets,Sub List,b333ff42-93bd-406b-8e17-15780719b6ec,SubSet,Extract a subset from a list.,MathComponents.ArrayComponents.Component_SubList,Math Components
+Sets,SubSet,4cfc0bb0-0745-4772-a520-39f9bf3d99bc,SubSet,Test two sets for inclusion.,MathComponents.SetComponents.Component_IsSubset,Math Components
+Sets,Text Case,b1991128-8bf1-4dea-8497-4b7188a64e9d,Case,Change the CaSiNg of a piece of text,MathComponents.StringComponents.Component_Casing,Math Components
+Sets,Text Distance,f7608c4d-836c-4adf-9d1f-3b04e6a2647d,TDist,Compute the Levenshtein distance between two fragments of text.,MathComponents.StringComponents.Component_TextDistance,Math Components
+Sets,Text Fragment,07e0811f-034a-4504-bca0-2d03b2c46217,Fragment,Extract a fragment (subset) of some text,MathComponents.StringComponents.Component_Fragment,Math Components
+Sets,Text Join,1274d51a-81e6-4ccf-ad1f-0edf4c769cac,Join,Join a collection of text fragments into one,MathComponents.StringComponents.Component_TextJoin,Math Components
+Sets,Text Length,dca05f6f-e3d9-42e3-b3bb-eb20363fb335,Len,Get the length (character count) of some text,MathComponents.StringComponents.Component_TextLength,Math Components
+Sets,Text On Surface,28504f1f-a8d9-40c8-b8aa-529413456258,TextSrf,Create a collection of textual symbols aligned on a surface.,FieldComponents.TextOnSurfaceComponent,Field Components
+Sets,Text Split,04887d01-504c-480e-b2a2-01ea19cc5922,Split,Split some text into fragments using separators,MathComponents.StringComponents.Component_TextSplit,Math Components
+Sets,Text Trim,e4cb7168-5e32-4c54-b425-5a31c6fd685a,Trim,Remove whitespace characters from the start and end of some text.,MathComponents.StringComponents.Component_TextTrim,Math Components
+Sets,Tree Branch,3a710c1e-1809-4e19-8c15-82adce31cd62,Branch,Retrieve a specific branch from a data tree.,MathComponents.ArrayComponents.Component_TreeBranch,Math Components
+Sets,Tree Item,c1ec65a3-bda4-4fad-87d0-edf86ed9d81c,Item,Retrieve a specific item from a data tree.,MathComponents.ArrayComponents.Component_TreeItem,Math Components
+Sets,Tree Statistics,99bee19d-588c-41a0-b9b9-1d00fb03ea1a,TStat,Get some statistics regarding a data tree.,MathComponents.ArrayComponents.Component_TreeStatistics,Math Components
+Sets,Trim Tree,1177d6ee-3993-4226-9558-52b7fd63e1e3,Trim,Reduce the complexity of a tree by merging the outermost branches.,Grasshopper.Kernel.Components.GH_TrimTreeComponent,Grasshopper
+Sets,Unflatten Tree,b8e2aa8f-8830-4ee1-bb59-613ea279c281,Unflatten,Unflatten a data tree by moving items back into branches.,Grasshopper.Kernel.Components.GH_UnflattenTreeComponent,Grasshopper
+Sets,Weave,50faccbd-9c92-4175-a5fa-d65e36013db6,Weave,Weave a set of input data using a custom pattern.,MathComponents.ArrayComponents.Component_Weave,Math Components
+Surface,4Point Surface,c77a8b3b-c569-4d81-9b59-1c27299a1c45,Srf4Pt,Create a surface connecting three or four corner points.,SurfaceComponents.SurfaceComponents.Component_4PointSurface,Surface Components
+Surface,Area,86b28a7e-94d9-4791-8306-e13e10d5f8d5,Area,"Solve area properties for breps, meshes and planar closed curves.",SurfaceComponents.AnalysisComponents.Component_AreaProperties,Surface Components
+Surface,Area Moments,1eb7b856-ec7d-40b6-a76c-f216a11df37c,AMoments,"Solve area moments for breps, meshes and planar closed curves.",SurfaceComponents.AnalysisComponents.Component_AreaMoments,Surface Components
+Surface,Boundary Surfaces,d51e9b65-aa4e-4fd6-976c-cef35d421d05,Boundary,Create planar surfaces from a collection of boundary edge curves.,SurfaceComponents.SurfaceComponents.Component_BoundarySurfaces,Surface Components
+Surface,Bounding Box,0bb3d234-9097-45db-9998-621639c87d3b,BBox,Solve oriented geometry bounding boxes.,SurfaceComponents.PrimitiveComponents.Component_BoundingBox,Surface Components
+Surface,Box 2Pt,2a43ef96-8f87-4892-8b94-237a47e8d3cf,Box,Create a box defined by two points.,SurfaceComponents.PrimitiveComponents.Component_Box2Points,Surface Components
+Surface,Box Corners,a10e8cdf-7c7a-4aac-aa70-ddb7010ab231,Box Corners,Extract all 8 corners of a box.,SurfaceComponents.AnalysisComponents.Component_BoxCorners,Surface Components
+Surface,Box Properties,af9cdb9d-9617-4827-bb3c-9efd88c76a70,BoxProp,Get some properties of a box,SurfaceComponents.AnalysisComponents.Component_BoxProperties,Surface Components
+Surface,Box Rectangle,d0a56c9e-2483-45e7-ab98-a450b97f1bc0,BoxRec,Create a box defined by a rectangle and a height.,SurfaceComponents.PrimitiveComponents.Component_BoxRectangle,Surface Components
+Surface,Brep Closest Point,4beead95-8aa2-4613-8bb9-24758a0f5c4c,Brep CP,Find the closest point on a brep,SurfaceComponents.AnalysisComponents.Component_BRepClosestPoint,Surface Components
+Surface,Brep Edges,0148a65d-6f42-414a-9db7-9a9b2eb78437,Edges,Extract the edge curves of a brep.,SurfaceComponents.AnalysisComponents.Component_BRepEdges,Surface Components
+Surface,Brep Join,1addcc85-b04e-46e6-bd4a-6f6c93bf7efd,Join,Join a number of Breps together,SurfaceComponents.SurfaceComponents.Component_BrepJoin,Surface Components
+Surface,Brep Topology,866ee39d-9ebf-4e1d-b209-324c56825605,Topology,Get and display the topology of a brep.,SurfaceComponents.AnalysisComponents.Component_BRepTopology,Surface Components
+Surface,Brep Wireframe,ac750e41-2450-4f98-9658-98fef97b01b2,Wires,Extract the wireframe curves of a brep.,SurfaceComponents.AnalysisComponents.Component_BRepWireframe,Surface Components
+Surface,Cap Holes,b648d933-ddea-4e75-834c-8f6f3793e311,Cap,Cap all planar holes in a Brep.,SurfaceComponents.SurfaceComponents.Component_CapPlanarHoles,Surface Components
+Surface,Cap Holes Ex,f6409a9c-3d2a-4b14-9f2c-e3c3f2cb72f8,CapEx,Cap as many holes as possible in a Brep.,SurfaceComponents.SurfaceComponents.Component_CapHoles,Surface Components
+Surface,Center Box,28061aae-04fb-4cb5-ac45-16f3b66bc0a4,Box,Create a box centered on a plane.,SurfaceComponents.PrimitiveComponents.Component_CenterBox,Surface Components
+Surface,Closed Edges,70905be1-e22f-4fa8-b9ae-e119d417904f,EdgesCls,Select closed edges.,FilletEdgeComponents.EdgesByClosednessComponent,Curve Components
+Surface,Cone,03e331ed-c4d1-4a23-afa2-f57b87d2043c,Cone,Create a conical surface,SurfaceComponents.PrimitiveComponents.Component_Cone,Surface Components
+Surface,Control Point Loft,5c270622-ee80-45a4-b07a-bd8ffede92a2,CPLoft,Create a loft through curve control points.,CurveComponents.Component_ControlPointLoft,Curve Components
+Surface,Convex Edges,8248da39-0729-4e04-8395-267b3259bc2f,EdgesCvx,Select concave or convex brep edges.,FilletEdgeComponents.EdgesByConcavityComponent,Curve Components
+Surface,Copy Trim,5d192b90-1ae3-4439-bbde-b05976fc4ac3,Trim,Copy UV trim data from one surface to another.,SurfaceComponents.SurfaceComponents.Component_CopyTrims,Surface Components
+Surface,Cylinder,0373008a-80ee-45be-887d-ab5a244afc29,Cyl,Create a cylindrical surface.,SurfaceComponents.PrimitiveComponents.Component_Cylinder,Surface Components
+Surface,Deconstruct Box,db7d83b1-2898-4ef9-9be5-4e94b4e2048d,DeBox,Deconstruct a box into its constituent parts.,SurfaceComponents.AnalysisComponents.Component_DeconstructBox,Surface Components
+Surface,Deconstruct Brep,8d372bdc-9800-45e9-8a26-6e33c5253e21,DeBrep,Deconstruct a brep into its constituent parts.,SurfaceComponents.AnalysisComponents.Component_DeconstructBrep,Surface Components
+Surface,Dimensions,f241e42e-8983-4ed3-b869-621c07630b00,Dim,Get the approximate dimensions of a surface,SurfaceComponents.AnalysisComponents.Component_SurfaceDimensions,Surface Components
+Surface,Divide Surface,5106bafc-d5d4-4983-83e7-7be3ed07f502,SDivide,Generate a grid of {uv} points on a surface.,VectorComponents.DivisionComponents.Component_DivideSurface,Vector Components
+Surface,Domain Box,79aa7f47-397c-4d3f-9761-aaf421bb7f5f,Box,Create a box defined by a base plane and size domains.,SurfaceComponents.PrimitiveComponents.Component_IntervalBox,Surface Components
+Surface,Edge Surface,36132830-e2ef-4476-8ea1-6a43922344f0,EdgeSrf,"Create a surface from two, three or four edge curves.",SurfaceComponents.SurfaceComponents.Component_EdgeSurface,Surface Components
+Surface,Edges from Directions,64ff9813-8fe8-4708-ac9f-61b825213e83,EdgesDir,Select brep edges based on edge direction,FilletEdgeComponents.EdgesByDirectionComponent,Curve Components
+Surface,Edges from Faces,71e99dbb-2d79-4f02-a8a6-e87a09d54f47,EdgesFaces,Select all brep edges that delineate certain faces,FilletEdgeComponents.EdgesFromFacesComponent,Curve Components
+Surface,Edges from Length,ff187e6a-84bc-4bb9-a572-b39006a0576d,EdgesLen,Select brep edges based on length,FilletEdgeComponents.EdgesByLengthComponent,Curve Components
+Surface,Edges from Linearity,e4ff8101-73c9-4802-8c5d-704d8721b909,EdgesLin,Select brep edges based on linearity,FilletEdgeComponents.EdgesByLinearityComponent,Curve Components
+Surface,Edges from Points,73269f6a-9645-4638-8d5e-88064dd289bd,EdgesPt,Select brep edges based on point coincidence,FilletEdgeComponents.EdgesByPointsComponent,Curve Components
+Surface,Evaluate Box,13b40e9c-3aed-4669-b2e8-60bd02091421,Box,Evaluate a box in normalised {UVW} space.,SurfaceComponents.AnalysisComponents.Component_EvaluateBox,Surface Components
+Surface,Evaluate Surface,353b206e-bde5-4f02-a913-b3b8a977d4b9,EvalSrf,Evaluate local surface properties at a {uv} coordinate.,SurfaceComponents.AnalysisComponents.Component_EvaluateSurface,Surface Components
+Surface,Extrude,962034e9-cc27-4394-afc4-5c16e3447cf9,Extr,"Extrude points, curves and surfaces along a vector.",SurfaceComponents.SurfaceComponents.Component_Extrude,Surface Components
+Surface,Extrude Along,38a5638b-6d01-4417-bf11-976d925f8a71,ExtrCrv,Extrude curves and surfaces along a curve.,SurfaceComponents.SurfaceComponents.Component_ExtrudeAlongCurve,Surface Components
+Surface,Extrude Angled,ae57e09b-a1e4-4d05-8491-abd232213bc9,ExtrAng,Extrude a planar polyline at angles,FilletEdgeComponents.CutEdgesExtrusionComponent,Curve Components
+Surface,Extrude Linear,8efd5eb9-a896-486e-9f98-d8d1a07a49f3,Extrude,Extrude curves and surfaces along a straight path.,SurfaceComponents.SurfaceComponents.Component_ExtrudeLinear,Surface Components
+Surface,Extrude Point,be6636b2-2f1a-4d42-897b-fdef429b6f17,Extr,Extrude curves and surfaces to a point.,SurfaceComponents.SurfaceComponents.Component_ExtrudeToPoint,Surface Components
+Surface,Fillet Edge,4b87eb13-f87c-4ff1-ae0e-6c9f1f2aecbd,FilEdge,Fillet some edges of a brep.,FilletEdgeComponents.FilletEdgeComponent,Curve Components
+Surface,Fit Loft,342aa574-1327-4bc2-8daf-203da2a45676,FitLoft,Create a loft fitted through a set of curves.,CurveComponents.Component_FitLoft,Curve Components
+Surface,Flip,c3d1f2b8-8596-4e8d-8861-c28ba8ffb4f4,Flip,Flip the normals of a surface based on local or remote geometry,SurfaceComponents.SurfaceComponents.Component_FlipSurface,Surface Components
+Surface,Fragment Patch,cb56b26c-2595-4d03-bdb2-eb2e6aeba82d,FPatch,Create a fragmented patch from a polyline boundary,SurfaceComponents.SurfaceComponents.Component_FragmentPatch,Surface Components
+Surface,Is Planar,d4bc9653-c770-4bee-a31d-d120cbb75b39,Planar,Test whether a surface is planar,SurfaceComponents.AnalysisComponents.Component_SurfaceIsPlanar,Surface Components
+Surface,Isotrim,6a9ccaab-1b03-484e-bbda-be9c81584a66,SubSrf,Extract an isoparametric subset of a surface.,SurfaceComponents.SurfaceComponents.Component_IsoTrim,Surface Components
+Surface,Loft,a7a41d0a-2188-4f7a-82cc-1a2c4e4ec850,Loft,Create a lofted surface through a set of section curves.,SurfaceComponents.SurfaceComponents.Component_LoftSurface,Surface Components
+Surface,Loft Options,45f19d16-1c9f-4b0f-a9a6-45a77f3d206c,Loft Opt,Create loft options from atomic inputs,SurfaceComponents.SurfaceComponents.Component_LoftOptions,Surface Components
+Surface,Loft Options,a8da9901-f5fb-49ec-9cd1-dfa7b788263e,Loft,Contains a collection of lofting options,SurfaceComponents.SurfaceComponents.Param_LoftOptions,Surface Components
+Surface,Merge Faces,d6b43673-55dd-4e2f-95c4-6c69a14513a6,FMerge,Merge all adjacent co-planar faces in a brep,SurfaceComponents.SurfaceComponents.Component_MergeCoPlanarFaces,Surface Components
+Surface,Mesh from SubD,c0b3c6e9-d05d-4c51-a0df-1ce2678c7a33,MeshSubD,Get the approximation mesh of a SubD.,SubDComponents.MeshFromSubDComponent,Transform Components
+Surface,MultiPipe,4bfe1bf6-fbc9-4ad2-bf28-a7402e1392ee,MP,Create a branching pipe around a network of lines/curves,Kangaroo2Component.UtilityComponents.MultiPipeNew,Kangaroo2 Components
+Surface,MultiPipe,f1b75016-5818-4ece-be56-065253a2357d,MP,Create a branching pipe around a network of lines/curves,Kangaroo2Component.UtilityComponents.MultiPipeOld,Kangaroo2 Components
+Surface,Network Surface,71506fa8-9bf0-432d-b897-b2e0c5ac316c,NetSurf,Create a surface from curve networks,SurfaceComponents.SurfaceComponents.Component_NetworkSurface,Surface Components
+Surface,Offset Surface,b25c5762-f90e-4839-9fc5-74b74ab42b1e,Offset,Offset a surface by a fixed amount.,SurfaceComponents.SurfaceComponents.Component_OffsetSurface,Surface Components
+Surface,Offset Surface Loose,e7e43403-f913-4d83-8aff-5b1c7a7f9fbc,Offset (L),Offset a surface by moving the control points.,SurfaceComponents.SurfaceComponents.Component_OffsetSurfaceLoose,Surface Components
+Surface,Osculating Circles,b799b7c0-76df-4bdb-b3cc-401b1d021aa5,Osc,Calculate the principal osculating circles of a surface at a {uv} coordinate.,SurfaceComponents.AnalysisComponents.Component_SurfaceOsculatingCircles,Surface Components
+Surface,Patch,57b2184c-8931-4e70-9220-612ec5b3809a,Patch,Create a patch surface,SurfaceComponents.SurfaceComponents.Component_Patch,Surface Components
+Surface,Pipe,c277f778-6fdf-4890-8f78-347efb23c406,Pipe,Create a pipe surface around a rail curve.,SurfaceComponents.SurfaceComponents.Component_PipeSurface,Surface Components
+Surface,Pipe Variable,888f9c3c-f1e1-4344-94b0-5ee6a45aee11,VPipe,Create a pipe surface with variable radii around a rail curve.,SurfaceComponents.SurfaceComponents.Component_PipeSurfaceEx,Surface Components
+Surface,Plane Surface,439a55a5-2f9e-4f66-9de2-32f24fec2ef5,PlaneSrf,Create a plane surface,SurfaceComponents.PrimitiveComponents.Component_PlaneSurface,Surface Components
+Surface,Plane Through Shape,d8698126-0e91-4ae7-ba05-2490258573ea,PxS,Make a rectangular surface that is larger than a given shape.,SurfaceComponents.PrimitiveComponents.Component_PlaneThroughShape,Surface Components
+Surface,Point In Brep,e03561f8-0e66-41d3-afde-62049f152443,BrepInc,Test whether a point is inside a closed brep,SurfaceComponents.AnalysisComponents.Component_BrepVolumeInclusion,Surface Components
+Surface,Point In Breps,859daa86-3ab7-49cb-9eda-f2811c984070,BrepsInc,Test whether a point is inside a collection of closed breps,SurfaceComponents.AnalysisComponents.Component_BrepVolumeInclusionMultiple,Surface Components
+Surface,Point In Trim,f881810b-96de-4668-a95a-f9a6d683e65c,TrimInc,Test whether a {uv} coordinate is inside the trimmed portion of a surface,SurfaceComponents.AnalysisComponents.Component_SurfaceTrimInclusion,Surface Components
+Surface,Principal Curvature,404f75ac-5594-4c48-ad8a-7d0f472bbf8a,Curvature,Evaluate the principal curvature of a surface at a {uv} coordinate.,SurfaceComponents.AnalysisComponents.Component_SurfacePrincipalCurvature,Surface Components
+Surface,Quad Sphere,361790d6-9d66-4808-8c5a-8de9c218c227,QSph,Create a spherical brep made from quad nurbs patches.,SurfaceComponents.PrimitiveComponents.Component_QuadSphere,Surface Components
+Surface,Rail Revolution,d8d68c35-f869-486d-adf3-69ee3cc2d501,RailRev,Create a surface of revolution using a sweep rail.,SurfaceComponents.SurfaceComponents.Component_RevRailSurface,Surface Components
+Surface,Retrim,a1da39b7-6387-4522-bf2b-2eaee6b14072,Retrim,Retrim a surface based on 3D trim data from another surface.,SurfaceComponents.SurfaceComponents.Component_ReTrim,Surface Components
+Surface,Reverse Surface,847cf05e-e195-4bc7-b472-e05459b9792b,Reverse Srf,"Reverse directions of surface parameterization (U, V, and W)",SurfaceComponents.SurfaceComponents.Component_ReverseSurface,Surface Components
+Surface,Revolution,cdee962f-4202-456b-a1b4-f3ed9aa0dc29,RevSrf,Create a surface of revolution.,SurfaceComponents.SurfaceComponents.Component_RevSurface,Surface Components
+Surface,Ruled Surface,6e5de495-ba76-42d0-9985-a5c265e9aeca,RuleSrf,Create a surface between two curves.,SurfaceComponents.SurfaceComponents.Component_RuledSurface,Surface Components
+Surface,Shape In Brep,2ba64356-be21-4c12-bbd4-ced54f04c8ef,ShapeIn,Tests whether a shape is inside a brep,SurfaceComponents.AnalysisComponents.Component_IsShapeInBrep,Surface Components
+Surface,Sphere,dabc854d-f50e-408a-b001-d043c7de151d,Sph,Create a spherical surface.,SurfaceComponents.PrimitiveComponents.Component_Sphere,Surface Components
+Surface,Sphere 4Pt,b083c06d-9a71-4f40-b354-1d80bba1e858,Sph4Pt,Create a spherical surface from 4 points.,SurfaceComponents.PrimitiveComponents.Component_Sphere4Pt,Surface Components
+Surface,Sphere Fit,e7ffb3af-2d77-4804-a260-755308bf8285,SFit,Fit a sphere to a 3D collection of points,TriangulationComponents.Component_FitSphere,Triangulation Components
+Surface,SubD Box,10487e4e-a405-48b5-b188-5a8a6328418b,SubDBox,Create a subdivision box,SubDComponents.SubDBox,Transform Components
+Surface,SubD Control Polygon,c1a57c2a-11c5-4f77-851e-0a7dffef848e,SubDPoly,Extract the control polygon from a SubD.,SubDComponents.SubDControlPolygonComponent,Transform Components
+Surface,SubD Edge Tags,048b219e-284a-49f2-ae40-a60465b08447,SubDTags,Set the edge tags of a SubD shape.,SubDComponents.SubDEdgeTags,Transform Components
+Surface,SubD Edges,2183c4c6-b5b3-45d2-9261-2096c9357f92,SubDEdges,Extract all edge data from a SubD.,SubDComponents.SubDEdges,Transform Components
+Surface,SubD Faces,83c81431-17bc-4bff-bb85-be0a846bd044,SubDFaces,Extract all face data from a SubD.,SubDComponents.SubDFaces,Transform Components
+Surface,SubD Fuse,264b4aa6-4915-4a67-86a7-22a5c4acf565,Fuse,Combine 2 SubD objects,Kangaroo2Component.UtilityComponents.SubDFuse,Kangaroo2 Components
+Surface,SubD Vertex Tags,954a8963-bb2c-4847-9012-69ff34acddd5,SubDVTags,Set the vertex tags of a SubD shape.,SubDComponents.SubDVertexTags,Transform Components
+Surface,SubD Vertices,fc8ad805-2cbf-4447-b41b-50c0be591fcd,SubDVerts,Extract all vertex data from a SubD.,SubDComponents.SubDVertices,Transform Components
+Surface,SubD from Mesh,855a2c73-31c0-41d2-b061-57d54229d11b,SubDMesh,Create a SubD from a control mesh,SubDComponents.SubDFromMeshComponent,Transform Components
+Surface,Sum Surface,5e33c760-adcd-4235-b1dd-05cf72eb7a38,SumSrf,Create a sum surface from two edge curves.,SurfaceComponents.SurfaceComponents.Component_SumSurface,Surface Components
+Surface,Surface Closest Point,4a9e9a8e-0943-4438-b360-129c30f2bb0f,Srf CP,Find the closest point on a surface.,SurfaceComponents.AnalysisComponents.Component_SurfaceClosestPoint,Surface Components
+Surface,Surface Curvature,4139f3a3-cf93-4fc0-b5e0-18a3acd0b003,Curvature,Evaluate the surface curvature at a {uv} coordinate.,SurfaceComponents.AnalysisComponents.Component_SurfaceCurvature,Surface Components
+Surface,Surface Frames,332378f4-acb2-43fe-8593-ed22bfeb2721,SFrames,Generate a grid of {uv} frames on a surface,VectorComponents.DivisionComponents.Component_SurfaceFrames,Vector Components
+Surface,Surface From Points,4b04a1e1-cddf-405d-a7db-335aaa940541,SrfGrid,Create a nurbs surface from a grid of points.,SurfaceComponents.SurfaceComponents.Component_PointGridSurface,Surface Components
+Surface,Surface Inflection,0efd7f0c-f63d-446d-970e-9fb0e636ea41,SInf,Compute the inflection curves for a surface,SurfaceComponents.AnalysisComponents.Component_SurfaceInflection,Surface Components
+Surface,Surface Points,15128198-399d-4d6c-9586-1f65db3ce7bf,SrfPt,Get the control-points of a Nurbs Surface,SurfaceComponents.AnalysisComponents.Component_SurfacePoints,Surface Components
+Surface,Sweep1,bb6666e7-d0f4-41ec-a257-df2371619f13,Swp1,Create a sweep surface with one rail curve.,SurfaceComponents.SurfaceComponents.Component_Sweep1,Surface Components
+Surface,Sweep2,75164624-395a-4d24-b60b-6bf91cab0194,Swp2,Create a sweep surface with two rail curves.,SurfaceComponents.SurfaceComponents.Component_Sweep2,Surface Components
+Surface,Transpose Surface,f0e090d5-7c99-4bce-8830-6a0f1b311e63,Transpose,Transpose surface parameterization (swap U and V),SurfaceComponents.SurfaceComponents.Component_TransposeSurface,Surface Components
+Surface,Untrim,fa92858a-a180-4545-ad4d-0dc644b3a2a8,Untrim,Remove all trim curves from a surface.,SurfaceComponents.SurfaceComponents.Component_Untrim,Surface Components
+Surface,Volume,7c0523e8-79c9-45a2-8777-cf0d46bc5432,Volume,Solve volume properties for closed breps and meshes.,SurfaceComponents.AnalysisComponents.Component_VolumeProperties,Surface Components
+Surface,Volume Moments,2e685fd9-7b8f-461b-b330-44857b099937,VMoments,Solve volume properties for closed breps and meshes.,SurfaceComponents.AnalysisComponents.Component_VolumeMoments,Surface Components
+Transform,Bend Deform,539f5564-4fc0-4fc1-a7d3-b802fa2ef072,Bend,Deform a shape by bending it,SquishyXMorphs.Component_BendDeform,Transform Components
+Transform,Blend Box,6283fb37-e273-4eb2-8d2a-e347881e3928,BlendBox,Create a twisted box between two surfaces.,SquishyXMorphs.Component_Create2SurfaceBox,Transform Components
+Transform,Box Array,9f6f954c-ba7b-4428-bf1e-1768cdff666c,ArrBox,Create a box array of geometry.,MassXForms.Component_ArrayBox,Transform Components
+Transform,Box Mapping,8465bcce-9e0a-4cf4-bbda-1a7ce5681e10,BoxMap,Transform geometry from one box into another.,LinearXForms.Component_BoxMapping,Transform Components
+Transform,Box Morph,d8940ff0-dd4a-4e74-9361-54df537b50db,Morph,Morph an object into a twisted box.,SquishyXMorphs.Component_BoxMorph,Transform Components
+Transform,Camera Obscura,407e35c6-7c40-4652-bd80-fde1eb7ec034,CO,Camera Obscura (point mirror) transformation.,LinearXForms.Component_CameraObscura,Transform Components
+Transform,Compound,ca80054a-cde0-4f69-a132-10502b24866d,Comp,Compound two transformations.,LinearXForms.Component_CompoundTransforms,Transform Components
+Transform,Curve Array,c6f23658-617f-4ac8-916d-d0d9e7241b25,ArrCurve,Create an array of geometry along a curve.,MassXForms.Component_ArrayCurve,Transform Components
+Transform,Flow,c3249da4-3f8e-4400-833e-e4e984d28657,Flow,Re-aligns objects from a base curve to a target curve.,SquishyXMorphs.Flow,Transform Components
+Transform,Group,874eebe7-835b-4f4f-9811-97e031c41597,Group,Group a set of objects,Grasshopper.Kernel.Components.GH_GroupGeometryComponent,Grasshopper
+Transform,Inverse Transform,51f61166-7202-45aa-9126-3d83055b269e,Inverse,Invert a transformation.,LinearXForms.Component_InverseTransform,Transform Components
+Transform,Kaleidoscope,b90eaa92-6e38-4054-a915-afcf486224b3,KScope,Apply a kaleidoscope transformation to an object.,MassXForms.Component_Kaleidoscope,Transform Components
+Transform,Linear Array,e87db220-a0a0-4d67-a405-f97fd14b2d7a,ArrLinear,Create a linear array of geometry.,MassXForms.Component_ArrayLinear,Transform Components
+Transform,Maelstrom,134a849b-0ff4-4f36-bdd5-95e3996bae8b,Maelstrom,Spirally deforms objects as if they were caught in a whirlpool,SquishyXMorphs.Maelstrom,Transform Components
+Transform,Map to Surface,fc5b7d12-7247-4de0-81bc-9b2c2f8f72f6,Map Srf,Map a curve onto a surface via control points.,SurfaceComponents.SurfaceComponents.Component_MapOntoSurface,Surface Components
+Transform,Merge Group,15204c6d-bba8-403d-9e8f-6660ab8e0df5,GMerge,Merge two groups,Grasshopper.Kernel.Components.GH_MergeGroupComponent,Grasshopper
+Transform,Mirror,f12daa2f-4fd5-48c1-8ac3-5dea476912ca,Mirror,Mirror an object.,LinearXForms.Component_Mirror,Transform Components
+Transform,Mirror Curve,9c9f8219-ae88-4d29-ba1b-3433ed713639,Mirror,Mirror a shape in a freeform curve.,SquishyXMorphs.Component_MirrorCurve,Transform Components
+Transform,Mirror Surface,6ce1aa3c-626b-4db7-8b5b-bf74c78f8c5e,Mirror,Mirror geometry in a freeform surface.,SquishyXMorphs.Component_MirrorSurface,Transform Components
+Transform,MorphToMesh,ed96da17-b5ec-43c5-8141-6772b26857d7,M2M,"Morph geometry from reference polygons to offset cells of a tri,quad or ngon mesh",Kangaroo2Component.UtilityComponents.MorphToMesh,Kangaroo2 Components
+Transform,Move,e9eb1dcf-92f6-4d4d-84ae-96222d60f56b,Move,Translate (move) an object along a vector.,LinearXForms.Component_Move,Transform Components
+Transform,Move Away From,dd9f597a-4db0-42b1-9cb2-5607ec97db09,MoveAway,Translate (move) an object away from another object.,LinearXForms.Component_MoveAwayFrom,Transform Components
+Transform,Move To Plane,4fe87ef8-49e4-4605-9859-87940d62e1de,MoveToPlane,Translate (move) an object onto a plane.,LinearXForms.Component_MoveOntoPlane,Transform Components
+Transform,Named Group,19e1c6e9-6823-4c37-a222-db06efbd998b,Group,Group a set of objects under a name,Grasshopper.Kernel.Components.GH_NamedGroupComponent,Grasshopper
+Transform,Orient,378d0690-9da0-4dd1-ab16-1d15246e7c22,Orient,Orient an object. Orientation is sometimes called a 'ChangeBasis tranformation'. It allows for remapping of geometry from one axis-system to another.,LinearXForms.Component_Orient,Transform Components
+Transform,Orient Direction,1602b2cc-007c-4b79-8926-0067c6184e44,Orient,Orient an object using directional constraints only.,LinearXForms.Component_OrientDir,Transform Components
+Transform,Point Deform,4dbd15c7-ebcb-4af6-b3bd-32e80502520c,PDeform,Deform a shape by moving control-points individually,SquishyXMorphs.Component_ControlPointDeform,Transform Components
+Transform,Polar Array,fca5ad7e-ecac-401d-a357-edda0a251cbc,ArrPolar,Create a polar array of geometry.,MassXForms.Component_ArrayPolar,Transform Components
+Transform,Project,23285717-156c-468f-a691-b242488c06a6,Project,Project an object onto a plane.,LinearXForms.Component_Project,Transform Components
+Transform,Project Along,06d7bc4a-ba3e-4445-8ab5-079613b52f28,ProjectA,Project an object onto a plane along a direction.,LinearXForms.Component_ProjectAlong,Transform Components
+Transform,Rectangle Mapping,17d40004-489e-42d9-ad10-857f7b436801,RecMap,Transform geometry from one rectangle into another.,LinearXForms.Component_RectangleMapping,Transform Components
+Transform,Rectangular Array,e521f7c8-92f4-481c-888b-eea109e3d6e9,ArrRec,Create a rectangular array of geometry.,MassXForms.Component_ArrayRectangular,Transform Components
+Transform,Rotate,b7798b74-037e-4f0c-8ac7-dc1043d093e0,Rotate,Rotate an object in a plane.,LinearXForms.Component_Rotate,Transform Components
+Transform,Rotate 3D,3dfb9a77-6e05-4016-9f20-94f78607d672,Rot3D,Rotate an object around a center point and an axis vector.,LinearXForms.Component_Rotate3D,Transform Components
+Transform,Rotate Axis,3ac8e589-37f5-477d-aa61-6699702c5728,RotAx,Rotate an object around an axis.,LinearXForms.Component_RotateAxis,Transform Components
+Transform,Rotate Direction,5edaea74-32cb-4586-bd72-66694eb73160,Rotate,Rotate an object from one direction to another.,LinearXForms.Component_RotateVector,Transform Components
+Transform,Sanity XForm,03b3db66-d7e8-4d2d-bc0c-122913317254,MWHAHAHA!!,"Apply a sanity transformation to f a r - a w a y, tiny or HUGE geometry",XformComponents.Component_SanityCheck,Transform Components
+Transform,Scale,4d2a06bd-4b0f-4c65-9ee0-4220e4c01703,Scale,Scale an object uniformly in all directions.,LinearXForms.Component_Scale,Transform Components
+Transform,Scale NU,290f418a-65ee-406a-a9d0-35699815b512,Scale NU,Scale an object with non-uniform factors.,LinearXForms.Component_ScaleNU,Transform Components
+Transform,Shear,5a27203a-e05f-4eea-b80f-a5f29a00fdf2,Shear,Shear an object based on a shearing vector.,LinearXForms.Component_ShearVector,Transform Components
+Transform,Shear Angle,f19ee36c-f21f-4e25-be4c-4ca4b30eda0d,Shear,Shear an object based on tilt angles.,LinearXForms.Component_ShearAngle,Transform Components
+Transform,Spatial Deform,66e6596f-6c8f-4ac3-99e0-0c4b7a59a7f7,Deform,Perform spatial deformation based on custom space syntax.,SquishyXMorphs.Component_SpatialDeform,Transform Components
+Transform,Spatial Deform (custom),331b74f1-1f1f-4f37-b253-24fcdada29e3,Deform,Perform spatial deformation based on custom space syntax.,SquishyXMorphs.Component_SpatialDeform2,Transform Components
+Transform,Split,915f8f93-f5d1-4a7b-aecb-c327bab88ffb,Split,Split a compound transformation into fragments.,LinearXForms.Component_SplitTransforms,Transform Components
+Transform,Split Group,fd03419e-e1cc-4603-8a57-6dfa56ed5dec,GSplit,Split a group,Grasshopper.Kernel.Components.GH_SplitGroupComponent,Grasshopper
+Transform,Splop,ff4e6ccd-47ba-4c8c-8287-2a1f2cb1fa5e,Splop,Wraps geometry onto a surface.,SquishyXMorphs.Splop,Transform Components
+Transform,Sporph,9cacad37-b09f-4b54-b2b1-1ccdc2e3ffea,Sporph,Deforms an object from a source surface to a target surface,SquishyXMorphs.Sporph,Transform Components
+Transform,Stretch,2a27f87c-61c5-47c2-a0b7-7863f31a3594,Stretch,Deforms objects by stretching them along a finite axis.,SquishyXMorphs.Stretch,Transform Components
+Transform,Surface Box,4f65c681-9331-4818-9d54-6290cae686c3,SBox,Create a twisted box on a surface patch.,SquishyXMorphs.Component_CreateSurfaceBox,Transform Components
+Transform,Surface Morph,5889b68f-fd88-4032-860f-869fb69654dd,SrfMorph,Morph geometry into surface UVW coordinates,SquishyXMorphs.Component_MorphToSurfaceSpace,Transform Components
+Transform,Taper,ad0ee51e-c86f-4668-8de5-b55b850f6001,Taper,Deforms objects toward or away from an axis,SquishyXMorphs.Taper,Transform Components
+Transform,Transform,610e689b-5adc-47b3-af8f-e3a32b7ea341,Transform,Transform an object.,LinearXForms.Component_ApplyTransform,Transform Components
+Transform,Transform Matrix,93c24899-f456-4785-84f2-314958b9347b,Matrix,A 4x4 Transformation matrix,XformComponents.TransformMatrix,Transform Components
+Transform,Triangle Mapping,61d81100-c4d3-462d-8b51-d951c0ae32db,TriMap,Transform geometry from one triangle into another.,LinearXForms.Component_TriangleMapping,Transform Components
+Transform,Twist,9509cb30-d24f-4f55-a5ac-bf0b12a06cfa,Twist,Deforms objects by twisting them around an axis.,SquishyXMorphs.Twist,Transform Components
+Transform,Twisted Box,124de0f5-65f8-4ae0-8f61-8fb066e2ba02,TBox,Create a twisted box from corner points.,SquishyXMorphs.Component_CreateTwistedBox,Transform Components
+Transform,Ungroup,a45f59c8-11c1-4ea7-9e10-847061b80d75,Ungroup,Ungroup a set of objects,Grasshopper.Kernel.Components.GH_UngroupGeometryComponent,Grasshopper
+Vector,Addition,fb012ef9-4734-4049-84a0-b92b85bb09da,VAdd,Perform vector-vector addition.,VectorComponents.VectorComponents.Component_VectorSum,Vector Components
+Vector,Adjust Plane,9ce34996-d8c6-40d3-b442-1a7c8c093614,PAdjust,Adjust a plane to match a new normal direction,VectorComponents.PlaneComponents.Component_AdjustPlane,Vector Components
+Vector,Align Plane,e76040ec-3b91-41e1-8e00-c74c23b89391,Align,Perform minimal rotation to align a plane with a guide vector,VectorComponents.PlaneComponents.Component_AlignPlane,Vector Components
+Vector,Align Planes,2318aee8-01fe-4ea8-9524-6966023fc622,Align,Align planes by minimizing their serial rotation.,VectorComponents.PlaneComponents.Component_AlignPlanes,Vector Components
+Vector,Amplitude,6ec39468-dae7-4ffa-a766-f2ab22a2c62e,Amp,Set the amplitude (length) of a vector.,VectorComponents.VectorComponents.Component_VectorAmplitude,Vector Components
+Vector,Angle,b464fccb-50e7-41bd-9789-8438db9bea9f,Angle,Compute the angle between two vectors.,VectorComponents.VectorComponents.Component_VectorAngle,Vector Components
+Vector,Barycentric,9adffd61-f5d1-4e9e-9572-e8d9145730dc,BCentric,"Create a point from barycentric {u,v,w} coordinates",VectorComponents.PointComponents.Component_PointBarycentric,Vector Components
+Vector,Blend Colours,8b4da37d-1124-436a-9de2-952e4224a220,BlendCol,Interpolate (blend) between two colours.,MathComponents.ColourComponents.Component_InterpolateColours,Math Components
+Vector,Break Field,b27d53bc-e713-475d-81fd-71cdd8de2e58,BreakF,Break a field into individual elements,FieldComponents.BreakField,Field Components
+Vector,Closest Point,571ca323-6e55-425a-bf9e-ee103c7ba4b9,CP,Find closest point in a point collection.,VectorComponents.PointComponents.Component_ClosestPoint,Vector Components
+Vector,Closest Points,446014c4-c11c-45a7-8839-c45dc60950d6,CPs,Find closest points in a point collection.,VectorComponents.PointComponents.Component_ClosestPoints,Vector Components
+Vector,Construct Plane,bc3e379e-7206-4e7b-b63a-ff61f4b38a3e,Pl,"Construct a plane from an origin point and {x}, {y} axes.",VectorComponents.PlaneComponents.Component_ConstructPlane,Vector Components
+Vector,Construct Point,3581f42a-9592-4549-bd6b-1c0fc39d067b,Pt,Construct a point from {xyz} coordinates.,VectorComponents.PointComponents.Component_ConstructPoint,Vector Components
+Vector,Coordinate Mask,bc26bf46-e81b-429a-b168-16d50cc89bd7,CMask,Represents a list of point coordinate masks,VectorComponents.PointComponents.CoordinateMaskParam,Vector Components
+Vector,Cross Product,2a5cfb31-028a-4b34-b4e1-9b20ae15312e,XProd,Compute vector cross product.,VectorComponents.VectorComponents.Component_VectorCrossProduct,Vector Components
+Vector,Cull Duplicates,6eaffbb2-3392-441a-8556-2dc126aa8910,CullPt,Cull points that are coincident within tolerance,VectorComponents.PointComponents.Component_CullDuplicate,Vector Components
+Vector,Deconstruct,9abae6b7-fa1d-448c-9209-4a8155345841,pDecon,Deconstruct a point into its component parts.,VectorComponents.PointComponents.Component_DeconstructPoint,Vector Components
+Vector,Deconstruct Plane,3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea,DePlane,Deconstruct a plane into its component parts.,VectorComponents.PlaneComponents.Component_DeconstructPlane,Vector Components
+Vector,Deconstruct Vector,a50fcd4a-cf42-4c3f-8616-022761e6cc93,DeVec,Deconstruct a vector into its component parts.,VectorComponents.VectorComponents.Component_DeconstructVector,Vector Components
+Vector,Direction Display,5ba20fab-6d71-48ea-a98f-cb034db6bbdc,FDir,Display the force directions of a field section,FieldComponents.FieldDirectionSection,Field Components
+Vector,Distance,93b8e93d-f932-402c-b435-84be04d87666,Dist,Compute Euclidean distance between two point coordinates.,VectorComponents.PointComponents.Component_Distance,Vector Components
+Vector,Divide,310e1065-d03a-4858-bcd1-809d39c042af,VDiv,Perform vector-scalar division.,VectorComponents.VectorComponents.Component_VectorDivide,Vector Components
+Vector,Dot Product,43b9ea8f-f772-40f2-9880-011a9c3cbbb0,DProd,Compute vector dot product.,VectorComponents.VectorComponents.Component_VectorDotProduct,Vector Components
+Vector,Evaluate Field,a7c9f738-f8bd-4f64-8e7f-33341183e493,EvF,Evaluate a field at a point,FieldComponents.EvaluateField,Field Components
+Vector,Field Line,add6be3e-c57f-4740-96e4-5680abaa9169,FLine,Compute the field line through a certain point,FieldComponents.FieldLine,Field Components
+Vector,Flip Plane,c73e1ed0-82a2-40b0-b4df-8f10e445d60b,PFlip,Flip or swap the axes of a plane,VectorComponents.PlaneComponents.Component_FlipPlane,Vector Components
+Vector,Hexagonal,125dc122-8544-4617-945e-bb9a0c101c50,HexGrid,2D grid with hexagonal cells,VectorComponents.GridComponents.Component_HexagonalGrid,Vector Components
+Vector,Line + Line,d788ad7f-6d68-4106-8b2f-9e55e6e107c0,LnLn,Create a plane from two line segments.,VectorComponents.PlaneComponents.Component_PlaneLineLine,Vector Components
+Vector,Line + Pt,ccc3f2ff-c9f6-45f8-aa30-8a924a9bda36,LnPt,Create a plane from a line and a point.,VectorComponents.PlaneComponents.Component_PlaneLinePoint,Vector Components
+Vector,Line Charge,8cc9eb88-26a7-4baa-a896-13e5fc12416a,LCharge,Create a field due to a line charge,FieldComponents.CreateLineCharge,Field Components
+Vector,Merge Fields,d9a6fbd2-2e9f-472e-8147-33bf0233a115,MergeF,Merge a collection of fields into one,FieldComponents.MergeFields,Field Components
+Vector,Multiply,63fff845-7c61-4dfb-ba12-44d481b4bf0f,VMul,Perform vector-scalar multiplication.,VectorComponents.VectorComponents.Component_VectorMultiply,Vector Components
+Vector,Numbers to Points,0ae07da9-951b-4b9b-98ca-d312c252374d,Num2Pt,Convert a list of numbers to a list of points,VectorComponents.PointComponents.Component_NumbersToPoints,Vector Components
+Vector,Perpendicular Display,bf106e4c-68f4-476f-b05b-9c15fb50e078,FPerp,Display the perpendicularity of a field through a section,FieldComponents.FieldUpDownSection,Field Components
+Vector,Plane 3Pt,c98a6015-7a2f-423c-bc66-bdc505249b45,Pl 3Pt,Create a plane through three points.,VectorComponents.PlaneComponents.Component_Plane3Pt,Vector Components
+Vector,Plane Closest Point,b075c065-efda-4c9f-9cc9-288362b1b4b9,CP,Find the closest point on a plane.,VectorComponents.PlaneComponents.Component_PlaneClosestPoint,Vector Components
+Vector,Plane Coordinates,5f127fa4-ca61-418e-bb2d-e3739d900f1f,PlCoord,Get the coordinates of a point in a plane axis system.,VectorComponents.PointComponents.Component_PlaneCoordinates,Vector Components
+Vector,Plane Fit,33bfc73c-19b2-480b-81e6-f3523a012ea6,PlFit,Fit a plane through a set of points.,VectorComponents.PlaneComponents.Component_PlaneFitPoints,Vector Components
+Vector,Plane Normal,cfb6b17f-ca82-4f5d-b604-d4f69f569de3,Pl,Create a plane perpendicular to a vector.,VectorComponents.PlaneComponents.Component_PlaneNormal,Vector Components
+Vector,Plane Offset,3a0c7bda-3d22-4588-8bab-03f57a52a6ea,Pl Offset,Offset a plane.,VectorComponents.PlaneComponents.Component_PlaneOffset,Vector Components
+Vector,Plane Origin,75eec078-a905-47a1-b0d2-0934182b1e3d,Pl Origin,Change the origin point of a plane,VectorComponents.PlaneComponents.Component_PlaneOrigin,Vector Components
+Vector,Point Charge,cffdbaf3-8d33-4b38-9cad-c264af9fc3f4,PCharge,Create a field due to a point charge,FieldComponents.CreatePointCharge,Field Components
+Vector,Point Cloud Attributes,2835454d-dc77-459d-a4d4-8f66078d88ca,Point Cloud,Point Cloud Attributes,IOComponents.Rhinoceros.PointClouds.Component_PointCloud,IO Components
+Vector,Point Cloud Closest Point,6e7f413c-7d1a-45bb-b337-90c3376f6a0b,Point Cloud CP,Find the closest point in a point cloud,IOComponents.Rhinoceros.PointClouds.Component_PointCloudClosestPoint,IO Components
+Vector,Point Cylindrical,23603075-be64-4d86-9294-c3c125a12104,Pt,"Create a point from cylindrical {angle,radius,elevation} coordinates.",VectorComponents.PointComponents.Component_PointCylindrical,Vector Components
+Vector,Point Groups,81f6afc9-22d9-49f0-8579-1fd7e0df6fa6,PGroups,Create groups from nearby points,VectorComponents.PointComponents.Component_PointGroups,Vector Components
+Vector,Point Oriented,aa333235-5922-424c-9002-1e0b866a854b,Pt,"Create a point from plane {u,v,w} coordinates.",VectorComponents.PointComponents.Component_PointOriented,Vector Components
+Vector,Point Polar,a435f5c8-28a2-43e8-a52a-0b6e73c2e300,Pt,"Create a point from polar {phi,theta,offset} coordinates.",VectorComponents.PointComponents.Component_PointPolar,Vector Components
+Vector,Points to Numbers,d24169cc-9922-4923-92bc-b9222efc413f,Pt2Num,Convert a list of points to a list of numbers,VectorComponents.PointComponents.Component_PointsToNumbers,Vector Components
+Vector,Populate 2D,e2d958e8-9f08-44f7-bf47-a684882d0b2a,Pop2D,Populate a 2-Dimensional region with points,VectorComponents.PointComponents.Component_PopulateRectangle,Vector Components
+Vector,Populate 3D,e202025b-dc8e-4c51-ae19-4415b172886f,Pop3D,Populate a 3-Dimensional region with points,VectorComponents.PointComponents.Component_PopulateBox,Vector Components
+Vector,Populate Geometry,c8cb6a5c-2ffd-4095-ba2a-5c35015e09e4,PopGeo,Populate generic geometry with points,VectorComponents.PointComponents.Component_PopulateGeometry,Vector Components
+Vector,Project Point,5184b8cb-b71e-4def-a590-cd2c9bc58906,Project,Project a point onto a collection of shapes,TriangulationComponents.Component_ProjectPoint,Triangulation Components
+Vector,Pull Point,902289da-28dc-454b-98d4-b8f8aa234516,Pull,Pull a point to a variety of geometry.,VectorComponents.PointComponents.Component_PullPoint,Vector Components
+Vector,Radial,66eedc35-187d-4dab-b49b-408491b1255f,RadGrid,2D radial grid,VectorComponents.GridComponents.Component_RadialGrid,Vector Components
+Vector,Rectangular,1a25aae0-0b56-497a-85b2-cc5bf7e4b96b,RecGrid,2D grid with rectangular cells,VectorComponents.GridComponents.Component_RectangularGrid,Vector Components
+Vector,Reduce Point Cloud,c64901d0-c4ad-4d2a-b389-6f7c6fbe318d,Reduce,Reduce the number of points in a point cloud,IOComponents.Rhinoceros.PointClouds.Component_ReducePointCloud,IO Components
+Vector,Reverse,d5788074-d75d-4021-b1a3-0bf992928584,Rev,Reverse a vector (multiply by -1).,VectorComponents.VectorComponents.Component_VectorReverse,Vector Components
+Vector,Rotate,b6d7ba20-cf74-4191-a756-2216a36e30a7,VRot,Rotate a vector around an axis.,VectorComponents.VectorComponents.Component_VectorRotate,Vector Components
+Vector,Rotate Plane,f6f14b09-6497-4564-8403-09e4eb5a6b82,PRot,Perform plane rotation around plane z-axis,VectorComponents.PlaneComponents.Component_RotatePlane,Vector Components
+Vector,Scalar Display,55f9ce6a-490c-4f25-a536-a3d47b794752,FScalar,Display the scalar values of a field section,FieldComponents.FieldScalarSection,Field Components
+Vector,Solar Incidence,59e1f848-38d4-4cbf-ad7f-40ffc52acdf5,Solar,Gets the solar incidence vector for a certain time and place,VectorComponents.SolarComponents.Component_SunVector,Vector Components
+Vector,Sort Along Curve,59aaebf8-6654-46b7-8386-89223c773978,AlongCrv,Sort points along a curve,VectorComponents.PointComponents.Component_SortPointsAlongCurve,Vector Components
+Vector,Sort Points,4e86ba36-05e2-4cc0-a0f5-3ad57c91f04e,Sort Pt,"Sort points by Euclidean coordinates (first x, then y, then z)",VectorComponents.PointComponents.Component_SortPoints,Vector Components
+Vector,Spin Force,4b59e893-d4ee-4e31-ae24-a489611d1088,FSpin,Create a field due to a spin force,FieldComponents.CreateSpinForce,Field Components
+Vector,Square,717a1e25-a075-4530-bc80-d43ecc2500d9,SqGrid,2D grid with square cells,VectorComponents.GridComponents.Component_SquareGrid,Vector Components
+Vector,Tensor Display,08619b6d-f9c4-4cb2-adcd-90959f08dc0d,FTensor,Display the tensor vectors of a field section,FieldComponents.FieldArrowSection,Field Components
+Vector,To Polar,61647ba2-31eb-4921-9632-df81e3286f7d,Polar,Convert a 3D point to plane polar coordinates.,VectorComponents.PointComponents.Component_PointPolarReverse,Vector Components
+Vector,Triangular,86a9944b-dea5-4126-9433-9e95ff07927a,TriGrid,2D grid with triangular cells,VectorComponents.GridComponents.Component_TriangularGrid,Vector Components
+Vector,Unit Vector,d2da1306-259a-4994-85a4-672d8a4c7805,Unit,Unitize vector.,VectorComponents.VectorComponents.Component_UnitVector,Vector Components
+Vector,Unit X,79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd,X,Unit vector parallel to the world {x} axis.,VectorComponents.VectorComponents.Component_UnitVectorX,Vector Components
+Vector,Unit Y,d3d195ea-2d59-4ffa-90b1-8b7ff3369f69,Y,Unit vector parallel to the world {y} axis.,VectorComponents.VectorComponents.Component_UnitVectorY,Vector Components
+Vector,Unit Z,9103c240-a6a9-4223-9b42-dbd19bf38e2b,Z,Unit vector parallel to the world {z} axis.,VectorComponents.VectorComponents.Component_UnitVectorZ,Vector Components
+Vector,Vector 2Pt,934ede4a-924a-4973-bb05-0dc4b36fae75,Vec2Pt,Create a vector between two points.,VectorComponents.VectorComponents.Component_Vector2Pt,Vector Components
+Vector,Vector Force,d27cc1ea-9ef7-47bf-8ee2-c6662da0e3d9,FVector,Create a field due to a vector force,FieldComponents.CreateVectorForce,Field Components
+Vector,Vector Length,675e31bf-1775-48d7-bb8d-76b77786dd53,VLen,Compute the length (amplitude) of a vector.,VectorComponents.VectorComponents.Component_VectorLength,Vector Components
+Vector,Vector XYZ,56b92eab-d121-43f7-94d3-6cd8f0ddead8,Vec,Create a vector from {xyz} components.,VectorComponents.VectorComponents.Component_ConstructVector,Vector Components
+Vector,XY Plane,17b7152b-d30d-4d50-b9ef-c9fe25576fc2,XY,World XY plane.,VectorComponents.PlaneComponents.Component_XYPlane,Vector Components
+Vector,XZ Plane,8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64,XZ,World XZ plane.,VectorComponents.PlaneComponents.Component_XZPlane,Vector Components
+Vector,YZ Plane,fad344bc-09b1-4855-a2e6-437ef5715fe3,YZ,World YZ plane.,VectorComponents.PlaneComponents.Component_YZPlane,Vector Components
+X,Example,d541404d-b806-453e-8351-a954e824ed22,X,Example,Grasshopper.Kernel.Components.GH_DocExampleComponent,Grasshopper
