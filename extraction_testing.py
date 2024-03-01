@@ -1,4 +1,7 @@
 import unittest
+
+
+
 from gh_graph_extraction import *
 
 class MyTestCase(unittest.TestCase):
@@ -9,6 +12,14 @@ class MyTestCase(unittest.TestCase):
 
         graph =  GHGraph(canvas)
         display(graph.show_graph())
+
+    def test_GHProcessor(self):
+        filepath = os.getcwd()
+        filename = "test.gh"
+        ghp = GHProcessor(filepath, filename)
+        display(ghp.graph.show_graph())
+        # graph =  GHGraph(canvas)
+        # display(graph.show_graph())
 
 
 

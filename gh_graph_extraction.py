@@ -32,19 +32,19 @@ import GH_IO
 import GH_Util
 from typing import Dict, List, Tuple
 
-def get_ghdoc(filepath, filename):
-    ghfile = os.path.join(filepath, filename)
-    if not os.path.exists(ghfile):
-        print("This file does not exists:", ghfile)
-    ghdocIO = Grasshopper.Kernel.GH_DocumentIO()
-    ghdocIO.Open(ghfile)
-    ghdoc = ghdocIO.Document
-    return ghdoc
-
-filepath = os.getcwd()
-filename = "test-BIG.gh"
-
-d = get_ghdoc(filepath, filename)
+# def get_ghdoc(filepath, filename):
+#     ghfile = os.path.join(filepath, filename)
+#     if not os.path.exists(ghfile):
+#         print("This file does not exists:", ghfile)
+#     ghdocIO = Grasshopper.Kernel.GH_DocumentIO()
+#     ghdocIO.Open(ghfile)
+#     ghdoc = ghdocIO.Document
+#     return ghdoc
+#
+# filepath = os.getcwd()
+# filename = "test-BIG.gh"
+#
+# d = get_ghdoc(filepath, filename)
 
 
 class GHComponentProxy:
@@ -169,8 +169,6 @@ class GHComponentTable:
     @classmethod
     def view_all_categories(cls):
         categories = set([pr.category for pr in cls.object_proxies])
-        print(f"There are {len(categories)} categories")
-        print(categories)
         return categories
 
     @classmethod
@@ -422,6 +420,12 @@ class Canvas:
             graph_id_to_component[component.graph_id] = component
         return graph_id_to_component
 
+    def __str__(self):
+        return str(self.components)
+
+    def __repr__(self):
+        return f"<Canvas {self.__str__()}>"
+
 
 class GraphConnection:
 
@@ -501,19 +505,81 @@ class GHGraph:
         return [GraphNode(component.graph_id, self.canvas) for component in self.components]
 
     def nxGraph(self, bidirectional=False) -> nx.Graph:
-        gx = nx.Graph()  # Initialize the graph
+        gx = nx.Graph()
+
+        # Step 1: Add all nodes to the graph
         for node in self.nodes:
-            for edge in node.edges(bidirectional):  # Assuming you want bidirectional edges
-                # Convert GraphConnection objects to a tuple format acceptable by NetworkX
-                gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
+            node_id = node.graph_id  # Ensure this is a simple, hashable type
+            gx.add_node(node_id)  # Explicitly add nodes
+
+        # Step 2: Add edges to the graph
+        for node in self.nodes:
+            for edge in node.edges():
+                if edge:
+                    # Ensure the tuples are hashable and correspond to actual node identifiers
+                    gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
+
         return gx
 
     def show_graph(self):
-        plt.figure(figsize=(12, 8))  # Adjust the figure size as desired
+        plt.figure(figsize=(12, 8))
         gx = self.nxGraph()
 
-        # Define custom labels for nodes to use only the part before the hyphen
-        custom_labels = {node: GHComponentTable.idx_to_component(int(node[0])) for node in gx.nodes()}
-        nans = [custom_labels.items()]
-        nx.draw(gx, with_labels=True, labels=custom_labels, node_size=1000, font_size=10)
+        # Generate category color map and assign colors
+        category_color_map = self.generate_category_color_map()
+        node_colors = [category_color_map[node.component.category] for node in self.nodes]
+
+        # Custom labels for nodes
+        custom_labels = {node.graph_id: node.component.name for node in self.nodes}
+
+        # Generate positions for all nodes
+        pos = nx.spring_layout(gx)
+
+        # Draw the graph with node colors and custom labels
+        nx.draw(gx, pos, with_labels=True, labels=custom_labels, node_color=node_colors, node_size=700, cmap=plt.cm.get_cmap('hsv', len(category_color_map)), font_size=5)
         plt.show()
+
+    @staticmethod
+    def generate_category_color_map():
+        categories = sorted(GHComponentTable.view_all_categories())
+        # Create a color map with a fixed set of colors or based on hashing category names
+        cmap = plt.cm.get_cmap('tab20b', len(categories))  # 'tab20' has 20 distinct colors
+        category_color_map = {}
+        for i, category in enumerate(sorted(categories)):  # Sort categories for consistency
+            # Use hashing to ensure consistent color assignment
+            hash_val = hash(category) % len(categories)
+            color = cmap(hash_val)
+            category_color_map[category] = color
+        return category_color_map
+
+    def save_graph(self, location):
+        gx = self.nxGraph()
+        nx.write_graphml(gx, location)
+
+class GHProcessor:
+    def __init__(self, filepath, filename):
+        self.filepath = filepath
+        self.filename = filename
+        self.doc = self.get_ghdoc(filepath, filename)
+        self.canvas = Canvas(self.doc)
+        self.graph =  GHGraph(self.canvas)
+
+    @staticmethod
+    def get_ghdoc(filepath, filename):
+        ghfile = os.path.join(filepath, filename)
+        if not os.path.exists(ghfile):
+            print("This file does not exists:", ghfile)
+            raise FileNotFoundError(ghfile)
+        ghdocIO = Grasshopper.Kernel.GH_DocumentIO()
+        ghdocIO.Open(ghfile)
+        ghdoc = ghdocIO.Document
+        return ghdoc
+
+    def show_components(self):
+        for component in self.canvas.components:
+            print(component)
+
+    def build_graph(self):
+        self.graph = GHGraph(self.canvas)
+
+        display(self.graph.show_graph())
