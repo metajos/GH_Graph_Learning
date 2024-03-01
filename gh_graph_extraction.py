@@ -27,6 +27,7 @@ import Grasshopper
 import Grasshopper.Kernel as ghk
 from Grasshopper.Kernel import IGH_Component
 from Grasshopper.Kernel import IGH_Param
+import traceback
 import GH_IO
 import GH_Util
 from typing import Dict, List, Tuple
@@ -221,9 +222,8 @@ class GHComponentTable:
         return cls.df["nickname"].iloc[idx]
 
 class GHNode:
-    def __init__(self, obj, canvas=None):
+    def __init__(self, obj: ghk.IGH_DocumentObject):
         self.obj = obj
-        self.canvas = canvas  # Canvas instance this node is part of
         self.category = obj.Category
         self.name = obj.Name
         self.id = str(obj.InstanceGuid)
@@ -241,7 +241,7 @@ class GHNode:
         return f"{self.uid}"
 
     def __repr__(self):
-        return self.__str__()
+        return f"<GHNode {self.__str__()}>"
 
     def log_properties(self):
         log = {
@@ -299,44 +299,47 @@ class GHParam:
         return f"param:{self.name}"
 
     def __repr__(self):
-        return self.__str__()
+        return f"<GHParam {self.__str__()}>"
 
 class GHComponent(GHNode):
     """Subclass of GHNode that handles GH components that implement IGH_Component.
     Each GHComponent object should contain a list of input parameter and output parameter objects.
     These parameter objects have access to the sources and recipients of the parameter"""
 
-    def __init__(self, obj, canvas):
-        super().__init__(obj, canvas)
-        self.canvas = canvas
-        self.iparams = None
-        self.oparams = None
-        self.recipients = None
+    def __init__(self, obj):
+        super().__init__(obj)
         try:
-            if self.category == "Params":
-                self.obj = IGH_Param(obj)
-                self.iparams = [GHParam(self.obj)]
-                self.oparams = [GHParam(self.obj)]
-            else:
-                self.obj = IGH_Component(obj)
-                self.iparams = [GHParam(p) for p in self.obj.Params.Input]
-                self.oparams = [GHParam(p) for p in self.obj.Params.Output]
-            self.recipients = [(param.name, [GHParam(p).parent for p in param.recipients]) for param in self.oparams if param.recipients is not None]
-        except TypeError as e:
-            logging.warning(f"COMPONENT {self.name},{self.id[-5:]}  failed initial assignment of parameters: {e}")
+            self.iparams = None
+            self.oparams = None
+            self.recipients = None
             try:
-                self.obj = IGH_Param(obj)
-                self.iparams = [GHParam(self.obj)]
-                self.oparams = [GHParam(self.obj)]
-                logging.info(f"COMPONENT {self.name},{self.id[-5:]} successfully assigned parameters: {self.iparams}, {self.oparams}")
+                if self.category == "Params":
+                    self.obj = IGH_Param(obj)
+                    self.iparams = [GHParam(self.obj)]
+                    self.oparams = [GHParam(self.obj)]
+                else:
+                    self.obj = IGH_Component(obj)
+                    self.iparams = [GHParam(p) for p in self.obj.Params.Input]
+                    self.oparams = [GHParam(p) for p in self.obj.Params.Output]
+                self.recipients = [(param.name, [GHParam(p).parent for p in param.recipients]) for param in self.oparams if param.recipients is not None]
             except TypeError as e:
-                logging.warning(f"COMPONENT {self.name},{self.id[-5:]} DID NOT EXTRACT PARAMETERS, not added to components table")
-                print(f"DID NOT ADD {self.name}")
-        # self.iparams_dict = {k.name: i for i, k in enumerate(self.iparams)}
-        # self.oparams_dict = {k.name: i for i, k in enumerate(self.oparams)}
+                logging.warning(f"COMPONENT {self.name},{self.id[-5:]}  failed initial assignment of parameters: {e}")
+                try:
+                    self.obj = IGH_Param(obj)
+                    self.iparams = [GHParam(self.obj)]
+                    self.oparams = [GHParam(self.obj)]
+                    logging.info(f"COMPONENT {self.name},{self.id[-5:]} successfully assigned parameters: {self.iparams}, {self.oparams}")
+                except TypeError as e:
+                    traceback.print_exc()
+                    print(e.with_traceback())
+                    logging.warning(f"COMPONENT {self.name},{self.id[-5:]} DID NOT EXTRACT PARAMETERS, not added to components table")
+                    print(f"DID NOT ADD {self.name}")
+        except TypeError as e:
+            print(e)
+        self.iparams_dict = {k.name: i for i, k in enumerate(self.iparams)}
+        self.oparams_dict = {k.name: i for i, k in enumerate(self.oparams)}
 
-
-    def get_connections(self):
+    def get_connections(self, canvas):
         """Returns the source and recipient connections for this component"""
 
         source_connections = []
@@ -347,8 +350,9 @@ class GHComponent(GHNode):
             if oparam.recipients:  # Ensure there are recipients to consider
                 for r in oparam.recipients:
                     recipient = GHParam(r)
-                    recipient_component = GHComponent(recipient.parent.obj, self.canvas)
-                    parent_instance = self.canvas.find_object_by_guid(recipient_component.id)
+                    #Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
+                    recipient_component = canvas.find_object_by_guid(str(recipient.parent.obj.Attributes.InstanceGuid))
+                    parent_instance = canvas.find_object_by_guid(recipient_component.id)
                     recipient_parameter_index = recipient_component.iparams_dict.get(recipient.name)
 
                     recipient_conn = {
@@ -362,9 +366,11 @@ class GHComponent(GHNode):
             if iparam.sources:  # Ensure there are sources to consider
                 for s in iparam.sources:
                     source = GHParam(s)
-                    source_component = GHComponent(source.parent.obj, self.canvas)
-                    source_instance = self.canvas.find_object_by_guid(source_component.id)
-                    source_parameter_index = source_component.oparams_dict.get(source.name)  # Assuming oparams_dict includes source name
+                    # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
+                    source_component = canvas.find_object_by_guid(str(source.parent.obj.Attributes.InstanceGuid))
+                    source_instance = canvas.find_object_by_guid(source_component.id)
+                    source_parameter_index = source_component.oparams_dict.get(
+                        source.name)  # Assuming oparams_dict includes source name
 
                     source_conn = {
                         'from': source_instance,
@@ -378,7 +384,7 @@ class GHComponent(GHNode):
         return f"{self.name} ({self.category})"
 
     def __repr__(self):
-        return self.__str__()
+        return f"<GHComponent {self.__str__()}>"
 
 
 class Canvas:
@@ -388,14 +394,15 @@ class Canvas:
         self.components = []  # Initialize as empty
         self.guid_to_component = {}  # Initialize as empty
         self.initialize_components(n)
-        self.guid_to_component = self.process_mappings()
+        self.graph_id_to_component = self.process_mappings()
 
     def initialize_components(self, n=None):
+        ic("called initialise components")
         if n:
-            self.components = [GHComponent(o, self) for o in list(self.doc.Objects)[:n]]
+            self.components = [GHComponent(o) for o in list(self.doc.Objects)[:n]]
             self.guid_to_component = {c.id: c for c in self.components}
         else:
-            self.components = [GHComponent(o, self) for o in list(self.doc.Objects)]
+            self.components = [GHComponent(o) for o in list(self.doc.Objects)]
             self.guid_to_component = {c.id: c for c in self.components}
 
     def find_object_by_guid(self, guid: str) -> GHComponent:
@@ -414,3 +421,99 @@ class Canvas:
             component.graph_id = x
             graph_id_to_component[component.graph_id] = component
         return graph_id_to_component
+
+
+class GraphConnection:
+
+    def __init__(self, v1n, v1i, v2n, v2i, edge):
+        self.v1n = v1n
+        self.v1i = v1i
+        self.v2n = v2n
+        self.v2i = v2i
+        self.e1 = edge[0]
+        self.e2 = edge[1]
+        self.tensor = torch.tensor([self.v1n, self.v1i, self.e1, self.v2n, self.v2i, self.e2], dtype=torch.int16)
+
+    @property
+    def edge(self):
+        return (self.v1i, self.v1i), (self.v2n, self.v2i)
+
+    @property
+    def edgeproperties(self):
+        return (self.e1, self.e2)
+    def __str__(self):
+        return f"GC({self.v1n}-{self.v1i}, {self.v2n}-{self.v2i})"
+
+    def __repr__(self):
+        return f"GraphConn ({self.v1n}-{self.v1i}, {self.v2n}-{self.v2i})"
+
+
+class GraphNode:
+    def __init__(self, graph_id: Tuple[int,int], canvas:Canvas):
+        self.graph_id: Tuple[int, int] = graph_id
+        self.component: GHComponent = canvas.graph_id_to_component.get(graph_id)
+        self.canvas: Canvas = canvas
+
+    def edges(self, bidirectional = False):
+        """:Returns the edge tuple in the form (int, int), (int,int) where
+        the tuple describes the graph node id. If bidirectional is true, both the sources and recipient
+        edges are returned, otherwise only the recipient edges are returned"""
+
+        sources, recipients = self.component.get_connections(self.canvas)
+        connections = self.get_graph_connections(sources, recipients)
+        if bidirectional:
+            return connections['sources'] + connections['recipients']
+        else:
+            return connections['recipients']
+
+    def get_graph_connections(self, sources, recipients):
+        graph_connections = {
+            "sources": [],
+            "recipients": []
+        }
+
+        # Process recipient connections (outgoing)
+        for connection in recipients:
+            v2 = connection.get("to")
+            v1n, v1i = self.graph_id
+            v2n, v2i = v2.graph_id
+            edge = connection.get("edge")
+            graph_connections["recipients"].append(GraphConnection(v1n, v1i, v2n, v2i, edge))
+
+        # Process source connections (incoming)
+        for connection in sources:
+            v1 = connection.get("from")
+            v1n, v1i = v1.graph_id
+            v2n, v2i = self.graph_id  # For incoming, self.id is the destination
+            edge = [int(x) for x in connection.get("edge")]
+            graph_connections["sources"].append(GraphConnection(v1n, v1i, v2n, v2i, edge))
+
+        return graph_connections
+
+
+class GHGraph:
+    def __init__(self, canvas):
+        self.canvas = canvas
+        self.components = self.canvas.components
+
+    @property
+    def nodes(self) -> List[GraphNode]:
+        return [GraphNode(component.graph_id, self.canvas) for component in self.components]
+
+    def nxGraph(self, bidirectional=False) -> nx.Graph:
+        gx = nx.Graph()  # Initialize the graph
+        for node in self.nodes:
+            for edge in node.edges(bidirectional):  # Assuming you want bidirectional edges
+                # Convert GraphConnection objects to a tuple format acceptable by NetworkX
+                gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
+        return gx
+
+    def show_graph(self):
+        plt.figure(figsize=(12, 8))  # Adjust the figure size as desired
+        gx = self.nxGraph()
+
+        # Define custom labels for nodes to use only the part before the hyphen
+        custom_labels = {node: GHComponentTable.idx_to_component(int(node[0])) for node in gx.nodes()}
+        nans = [custom_labels.items()]
+        nx.draw(gx, with_labels=True, labels=custom_labels, node_size=1000, font_size=10)
+        plt.show()

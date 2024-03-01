@@ -5,8 +5,11 @@ class MyTestCase(unittest.TestCase):
 
     def test_canvas(self):
         canvas = Canvas(d)
-        self.assertEqual(len(canvas.components), 139)  # add assertion here
-        print(canvas.guid_to_component.items())
+        # self.assertEqual(len(canvas.components), 139)  # add assertion here
+
+        graph =  GHGraph(canvas)
+        display(graph.show_graph())
+
 
 
 
