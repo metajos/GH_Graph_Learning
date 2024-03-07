@@ -1,8 +1,6 @@
 import unittest
-
-
-
 from gh_graph_extraction import *
+from enviroment import *
 
 class MyTestCase(unittest.TestCase):
 
@@ -21,6 +19,16 @@ class MyTestCase(unittest.TestCase):
         # graph =  GHGraph(canvas)
         # display(graph.show_graph())
 
+    def test_graph(self):
+        filepath = os.getcwd()
+        filename = "test_grafting.gh"
+        ghp = GHProcessor(filepath, filename)
+        display(ghp.graph.show_graph())
+
+    def test_environments(self):
+        environment = Environment("Test1")
+
+    # def test_ben(self):
 
 
 

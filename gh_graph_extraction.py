@@ -32,20 +32,6 @@ import GH_IO
 import GH_Util
 from typing import Dict, List, Tuple
 
-# def get_ghdoc(filepath, filename):
-#     ghfile = os.path.join(filepath, filename)
-#     if not os.path.exists(ghfile):
-#         print("This file does not exists:", ghfile)
-#     ghdocIO = Grasshopper.Kernel.GH_DocumentIO()
-#     ghdocIO.Open(ghfile)
-#     ghdoc = ghdocIO.Document
-#     return ghdoc
-#
-# filepath = os.getcwd()
-# filename = "test-BIG.gh"
-#
-# d = get_ghdoc(filepath, filename)
-
 
 class GHComponentProxy:
     """
@@ -543,7 +529,7 @@ class GHGraph:
     def generate_category_color_map():
         categories = sorted(GHComponentTable.view_all_categories())
         # Create a color map with a fixed set of colors or based on hashing category names
-        cmap = plt.cm.get_cmap('tab20b', len(categories))  # 'tab20' has 20 distinct colors
+        cmap = plt.cm.get_cmap('tab20b', len(categories))
         category_color_map = {}
         for i, category in enumerate(sorted(categories)):  # Sort categories for consistency
             # Use hashing to ensure consistent color assignment
