@@ -4,6 +4,7 @@ import shutil
 import os
 import json
 import pickle
+from gh_graph_extraction import GHComponentTable, GHComponent
 class Environment:
 
     @classmethod
@@ -25,6 +26,8 @@ class Environment:
 
         return environment
     def __init__(self, environment_name="env"):
+        """The initialisation creates all the files. To create instances of all the
+        neccessary files for the environment, you must call the initialise method of the instance"""
         prefix = datetime.datetime.now().strftime("%Y%m%d-%H")
         self.base_path = Path("ExtractionEnvironments") / f"{prefix}-{environment_name}"
         self.base_path.mkdir(parents=True, exist_ok=True)
@@ -45,7 +48,7 @@ class Environment:
         for path in self.dirs.values():
             path.mkdir(parents=True, exist_ok=True)
 
-        config_dir = Path("ExtractionEnvironments")
+        config_dir = self.base_path
         config_dir.mkdir(parents=True, exist_ok=True)
 
         config = {'dirs': {dir_name: str(dir_path) for dir_name, dir_path in self.dirs.items()}}
@@ -61,14 +64,31 @@ class Environment:
             with open(file_path, "wb") as file:
                 pickle.dump(self, file)
 
-
     def clone_env(self, clone=False):
-        GH_path =self.gh_path
+        GH_path = Path(self.gh_path)  # Ensure GH_path is a Path object
+        lib_path = self.dirs["99-GH-Lib"]
+
         if clone:
+            # os.walk() iterates over the directories and files in GH_path
             for root, dirs, files in os.walk(GH_path):
+                # Convert root to a Path object for easier manipulation
+                root_path = Path(root)
+
+                # Calculate the relative path from GH_path to the current directory
+                relative_path = root_path.relative_to(GH_path)
+
+                # For each file in the current directory
                 for file in files:
-                    source_path = Path(root) / file
-                    destination_path = self.dirs["99-GH-Lib"] / file
+                    # Source file path
+                    source_path = root_path / file
+
+                    # Destination path includes the relative_path to preserve the directory structure
+                    destination_path = lib_path / relative_path / file
+
+                    # Ensure the destination directory exists
+                    destination_path.parent.mkdir(parents=True, exist_ok=True)
+
+                    # Copy the file to the destination
                     shutil.copy(source_path, destination_path)
 
     def reinstate_env(self, override = False):
@@ -121,14 +141,25 @@ class Environment:
         except Exception as e:
             print(f"Error copying file from {src} to {dst}: {e}")
 
-    def get_environment(self, vanilla_components:Path =None,  clone_env = True):
+    def initialise(self, vanilla_components: Path = None, clone_env=True):
         print("Setting environment variables")
         print("Copying vanilla components")
-        if not vanilla_components:
-            vanilla_components = Path(r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240307-CoreComponents\grasshopper_components.csv")
-        if vanilla_components: self.copy_file(vanilla_components, self.dirs["00-VanillaComponents"])
+        if vanilla_components is None:
+            vanilla_components = Path(
+                r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240307-CoreComponents\vanilla_components.csv")
+        if vanilla_components:
+            # Ensure the destination directory exists
+            vanilla_components_destination = self.dirs["00-VanillaComponents"]
+            vanilla_components_destination.mkdir(parents=True, exist_ok=True)
+
+            # Construct the full destination path including the filename
+            destination_path = vanilla_components_destination / vanilla_components.name
+
+            # Use the adjusted destination path that includes the filename
+            self.copy_file(vanilla_components, destination_path)
         print("Copying components")
         self.clone_env(clone_env)
+
 
 
 

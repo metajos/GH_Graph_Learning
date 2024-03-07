@@ -31,6 +31,7 @@ import traceback
 import GH_IO
 import GH_Util
 from typing import Dict, List, Tuple
+from pathlib import Path
 
 
 class GHComponentProxy:
@@ -113,8 +114,9 @@ class GHComponentTable:
         cls.df = cls.table_to_pandas()
 
     @classmethod
-    def to_csv(cls, name="grasshopper_components.csv"):
-        with open(name, mode='w', newline='', encoding='utf-8') as file:
+    def to_csv(cls,location, name="grasshopper_components.csv"):
+        filename = Path(location) / name
+        with open(filename, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             if cls.object_proxies:
                 header = cls.object_proxies[0].to_dict().keys()
@@ -143,7 +145,7 @@ class GHComponentTable:
     @classmethod
     def load_vanilla_gh_proxies(cls):
         vanilla_proxies = []
-        with open('grasshopper_core_components.csv', mode='r') as cc:
+        with open('Grasshopper Components/240307-CoreComponents/vanilla_components.csv', mode='r') as cc:
             reader = csv.DictReader(cc)
             for row in reader:
                 guid_str = row['guid']

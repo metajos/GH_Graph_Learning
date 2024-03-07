@@ -26,7 +26,16 @@ class MyTestCase(unittest.TestCase):
         display(ghp.graph.show_graph())
 
     def test_environments(self):
-        environment = Environment("Test1")
+        environment = Environment("InitialTest")
+        environment.initialise(clone_env=True)
+        # TODO: There is a potential issue here because if a person loads an environment but does not copy the
+        # TODO components or write the components, there will be a difference between the environment and the components table
+        # TODO this needs to  be addressed
+        GHComponentTable
+
+
+
+
 
     # def test_ben(self):
 
