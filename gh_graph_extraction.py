@@ -1,3 +1,4 @@
+import json
 import os
 import networkx as nx
 import rhinoinside
@@ -32,7 +33,7 @@ import GH_IO
 import GH_Util
 from typing import Dict, List, Tuple
 from pathlib import Path
-
+from gh_logging import complog
 
 class GHComponentProxy:
     """
@@ -91,6 +92,10 @@ class GHComponentProxy:
     def __repr__(self):
         return self.__str__()
 
+class GHInstance:
+    def __init__(self, vanilla_components_location, all_components_location):
+        component_table = GHComponentTable
+        component_table.initialise(vanilla_components_location)
 
 class GHComponentTable:
     cs = Grasshopper.Instances.ComponentServer.ObjectProxies
@@ -103,8 +108,8 @@ class GHComponentTable:
     df = None
 
     @classmethod
-    def initialise(cls):
-        cls.vanilla_proxies = {obj.sys_guid: obj for obj in cls.load_vanilla_gh_proxies()}
+    def initialise(cls, vanilla_components_location):
+        cls.vanilla_proxies = {obj.sys_guid: obj for obj in cls.load_vanilla_gh_proxies(vanilla_components_location)}
         cls.object_proxies = [GHComponentProxy(obj) for obj in cls.cs]
         cls.non_native_proxies = sorted(
             [ghp for ghp in cls.object_proxies if not cls.is_native(ghp) and not ghp.obj_proxy.Obsolete],
@@ -116,13 +121,14 @@ class GHComponentTable:
     @classmethod
     def to_csv(cls,location, name="grasshopper_components.csv"):
         filename = Path(location) / name
-        with open(filename, mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
-            if cls.object_proxies:
-                header = cls.object_proxies[0].to_dict().keys()
-                writer.writerow(header)
-                for proxy in cls.object_proxies:
-                    writer.writerow(proxy.to_dict().values())
+        if not filename.exists():
+            with open(filename, mode='w', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                if cls.object_proxies:
+                    header = cls.object_proxies[0].to_dict().keys()
+                    writer.writerow(header)
+                    for proxy in cls.object_proxies:
+                        writer.writerow(proxy.to_dict().values())
 
     @classmethod
     def search_component_by_guid(cls, guid: System.Guid):
@@ -137,22 +143,26 @@ class GHComponentTable:
         guid = System.Guid(guid_str)
         proxy_object = cls.search_component_by_guid(guid)
         if proxy_object:
-            logging.debug(f"Proxy object: {proxy_object.Desc.Name} found")
+            complog.debug(f"Proxy object: {proxy_object.Desc.Name} found")
             return GHComponentProxy(proxy_object)
-        logging.warning(f"Could not find a vanilla GH with guid {guid_str}")
+        complog.warning(f"Could not find a vanilla GH with guid {guid_str}")
         return None
 
     @classmethod
-    def load_vanilla_gh_proxies(cls):
+    def load_vanilla_gh_proxies(cls, filepath, file='vanilla_components.csv'):
+
         vanilla_proxies = []
-        with open('Grasshopper Components/240307-CoreComponents/vanilla_components.csv', mode='r') as cc:
-            reader = csv.DictReader(cc)
-            for row in reader:
-                guid_str = row['guid']
-                gh_proxy = cls.convert_csv_line_to_proxies(guid_str)
-                if gh_proxy:
-                    vanilla_proxies.append(gh_proxy)
-        return vanilla_proxies
+        location = Path(filepath) / file
+        if location.exists():
+            with open(location, mode='r') as cc:
+                reader = csv.DictReader(cc)
+                for row in reader:
+                    guid_str = row['guid']
+                    gh_proxy = cls.convert_csv_line_to_proxies(guid_str)
+                    if gh_proxy:
+                        vanilla_proxies.append(gh_proxy)
+            return vanilla_proxies
+        complog.warning(f"Could not find a vanilla components file: {filepath}")
 
     @classmethod
     def view_all_categories(cls):
@@ -199,7 +209,7 @@ class GHComponentTable:
             idx = cls.get_guid_to_idx(System.Guid(guid_str))
             if idx:
                 return idx
-        logging.warning(
+        complog.warning(
             f"ComponentTable.component_to_idx: Did not find the GUID or table match for {component_category}, {component_name}")
         return -1
 
@@ -252,7 +262,7 @@ class GHParam:
         # self.typ = obj.Type
         self.typname = obj.TypeName  # human-readable descriptor of this parameter
         self.optional = obj.Optional  # gets whether this parameter is optional to the functioning of the component
-        logging.info(f'GHComponent {self.parent.name} Params: {self.log_properties()}')
+        complog.info(f'GHComponent {self.parent.name} Params: {self.log_properties()}')
 
     @property
     def recipients(self):
@@ -309,16 +319,16 @@ class GHComponent(GHNode):
                     self.oparams = [GHParam(p) for p in self.obj.Params.Output]
                 self.recipients = [(param.name, [GHParam(p).parent for p in param.recipients]) for param in self.oparams if param.recipients is not None]
             except TypeError as e:
-                logging.warning(f"COMPONENT {self.name},{self.id[-5:]}  failed initial assignment of parameters: {e}")
+                complog.warning(f"COMPONENT {self.name},{self.id[-5:]}  failed initial assignment of parameters: {e}")
                 try:
                     self.obj = IGH_Param(obj)
                     self.iparams = [GHParam(self.obj)]
                     self.oparams = [GHParam(self.obj)]
-                    logging.info(f"COMPONENT {self.name},{self.id[-5:]} successfully assigned parameters: {self.iparams}, {self.oparams}")
+                    complog.info(f"COMPONENT {self.name},{self.id[-5:]} successfully assigned parameters: {self.iparams}, {self.oparams}")
                 except TypeError as e:
                     traceback.print_exc()
                     print(e.with_traceback())
-                    logging.warning(f"COMPONENT {self.name},{self.id[-5:]} DID NOT EXTRACT PARAMETERS, not added to components table")
+                    complog.warning(f"COMPONENT {self.name},{self.id[-5:]} DID NOT EXTRACT PARAMETERS, not added to components table")
                     print(f"DID NOT ADD {self.name}")
         except TypeError as e:
             print(e)

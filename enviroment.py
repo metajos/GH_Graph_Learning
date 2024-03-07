@@ -5,6 +5,7 @@ import os
 import json
 import pickle
 from gh_graph_extraction import GHComponentTable, GHComponent
+from gh_logging import *
 class Environment:
 
     @classmethod
@@ -28,7 +29,7 @@ class Environment:
     def __init__(self, environment_name="env"):
         """The initialisation creates all the files. To create instances of all the
         neccessary files for the environment, you must call the initialise method of the instance"""
-        prefix = datetime.datetime.now().strftime("%Y%m%d-%H")
+        prefix = datetime.datetime.now().strftime("%y%m%d")
         self.base_path = Path("ExtractionEnvironments") / f"{prefix}-{environment_name}"
         self.base_path.mkdir(parents=True, exist_ok=True)
 
@@ -42,7 +43,7 @@ class Environment:
         self.dirs["05-GraphML"] = self.base_path / "05-GraphML"
         self.dirs["99-GH-Lib"] = self.base_path / "99-GH-Lib"
         self.gh_path =  r"C:\Users\jossi\AppData\Roaming\Grasshopper\Libraries"
-
+        self.loggers = self.create_loggers("file", "component")
 
         # Create the directories
         for path in self.dirs.values():
@@ -160,7 +161,13 @@ class Environment:
         print("Copying components")
         self.clone_env(clone_env)
 
+    def get_test_files(self):
+        for root, dirs, files in os.walk(self.dirs["03-GH_Files"]):
+            for file in files:
+                if file.endswith(".gh"):
+                    yield os.path.join(root, file)
 
 
-
-
+    def create_loggers(self, *args: str):
+        loggers = {CustomLogger(arg,self.dirs["02-Logs"],f"{arg}.log") for arg in args}
+        return loggers

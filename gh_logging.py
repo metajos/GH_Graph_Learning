@@ -2,9 +2,28 @@ import logging
 from pathlib import Path
 import json
 
-with open('config.json', 'r') as f:
-    config = json.load(f)
-dirs = config['dirs']
+
+class LoggerManager:
+    _loggers = {}
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(LoggerManager, cls).__new__(cls)
+        return cls._instance
+
+    @classmethod
+    def get_logger(cls, log_folder, file_name, console_log=False, env_name=None):
+        # Use the current environment context if env_name is not explicitly provided
+        env_name = env_name or EnvironmentContext.get_current()
+
+        if not env_name:
+            raise ValueError("Environment name must be set in the context or provided as an argument.")
+
+        if env_name not in cls._loggers:
+            cls._loggers[env_name] = CustomLogger(env_name, log_folder, file_name, console_log)
+        return cls._loggers[env_name]
+
 class CustomLogger:
     def __init__(self, name, log_folder, file_name, console_log=False):
         # Ensure the log folder exists
@@ -63,10 +82,3 @@ class CustomLogger:
 
     def critical(self, message):
         self.logger.critical(message)
-
-# Example usage:
-complog = CustomLogger('comps', dirs["02-Logs"])
-complog.info('This is an info message for logger1.')
-
-filelog = CustomLogger('files', dirs["02-Logs"])
-filelog.error('This is an error message for filelog.')
