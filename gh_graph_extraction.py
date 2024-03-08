@@ -4,7 +4,6 @@ import networkx as nx
 import rhinoinside
 import logging
 import nbimporter
-from ghutilities import *
 from icecream import ic
 rhinoinside.load()
 import Rhino
@@ -29,10 +28,11 @@ import Grasshopper.Kernel as ghk
 from Grasshopper.Kernel import IGH_Component
 from Grasshopper.Kernel import IGH_Param
 import traceback
-import GH_IO
-import GH_Util
 from typing import Dict, List, Tuple
 from pathlib import Path
+
+
+
 
 
 class GHComponentProxy:
@@ -143,9 +143,9 @@ class GHComponentTable:
         guid = System.Guid(guid_str)
         proxy_object = cls.search_component_by_guid(guid)
         if proxy_object:
-            complog.debug(f"Proxy object: {proxy_object.Desc.Name} found")
+            LogManager.get_logger('clog').debug(f"Proxy object: {proxy_object.Desc.Name} found")
             return GHComponentProxy(proxy_object)
-        complog.warning(f"Could not find a vanilla GH with guid {guid_str}")
+        LogManager.get_logger('clog').warning(f"Could not find a vanilla GH with guid {guid_str}")
         return None
 
     @classmethod
@@ -162,7 +162,7 @@ class GHComponentTable:
                     if gh_proxy:
                         vanilla_proxies.append(gh_proxy)
             return vanilla_proxies
-        complog.warning(f"Could not find a vanilla components file: {filepath}")
+        LogManager.get_logger('clog').warning(f"Could not find a vanilla components file: {filepath}")
 
     @classmethod
     def view_all_categories(cls):
@@ -175,15 +175,15 @@ class GHComponentTable:
         for proxy in cls.object_proxies[:n]:
             print(proxy)
 
-    @classmethod
-    def table_to_pandas(cls):
-        filename = 'grasshopper_components.csv'
-        if not os.path.exists(filename):
-            cls.to_csv(filename)
-        df = pd.read_csv(filename)
-        cls._guid_to_idx = {row[1]['guid']: row[0] for row in df.iterrows()}
-        cls._idx_to_guid = {row[0]: row[1]['guid'] for row in df.iterrows()}
-        return df
+    # @classmethod
+    # def table_to_pandas(cls):
+    #     filename =
+    #     if not os.path.exists(filename):
+    #         cls.to_csv(filename)
+    #     df = pd.read_csv(filename)
+    #     cls._guid_to_idx = {row[1]['guid']: row[0] for row in df.iterrows()}
+    #     cls._idx_to_guid = {row[0]: row[1]['guid'] for row in df.iterrows()}
+    #     return df
 
     @classmethod
     def get_guid_to_idx(cls, guid: System.Guid) -> int:
@@ -209,7 +209,7 @@ class GHComponentTable:
             idx = cls.get_guid_to_idx(System.Guid(guid_str))
             if idx:
                 return idx
-        complog.warning(
+        LogManager.get_logger('clog').warning(
             f"ComponentTable.component_to_idx: Did not find the GUID or table match for {component_category}, {component_name}")
         return -1
 
@@ -262,7 +262,7 @@ class GHParam:
         # self.typ = obj.Type
         self.typname = obj.TypeName  # human-readable descriptor of this parameter
         self.optional = obj.Optional  # gets whether this parameter is optional to the functioning of the component
-        complog.info(f'GHComponent {self.parent.name} Params: {self.log_properties()}')
+        LogManager.get_logger('clog').info(f'GHComponent {self.parent.name} Params: {self.log_properties()}')
 
     @property
     def recipients(self):
@@ -319,16 +319,16 @@ class GHComponent(GHNode):
                     self.oparams = [GHParam(p) for p in self.obj.Params.Output]
                 self.recipients = [(param.name, [GHParam(p).parent for p in param.recipients]) for param in self.oparams if param.recipients is not None]
             except TypeError as e:
-                complog.warning(f"COMPONENT {self.name},{self.id[-5:]}  failed initial assignment of parameters: {e}")
+                LogManager.get_logger('clog').warning(f"COMPONENT {self.name},{self.id[-5:]}  failed initial assignment of parameters: {e}")
                 try:
                     self.obj = IGH_Param(obj)
                     self.iparams = [GHParam(self.obj)]
                     self.oparams = [GHParam(self.obj)]
-                    complog.info(f"COMPONENT {self.name},{self.id[-5:]} successfully assigned parameters: {self.iparams}, {self.oparams}")
+                    LogManager.get_logger('clog').info(f"COMPONENT {self.name},{self.id[-5:]} successfully assigned parameters: {self.iparams}, {self.oparams}")
                 except TypeError as e:
                     traceback.print_exc()
                     print(e.with_traceback())
-                    complog.warning(f"COMPONENT {self.name},{self.id[-5:]} DID NOT EXTRACT PARAMETERS, not added to components table")
+                    LogManager.get_logger('clog').warning(f"COMPONENT {self.name},{self.id[-5:]} DID NOT EXTRACT PARAMETERS, not added to components table")
                     print(f"DID NOT ADD {self.name}")
         except TypeError as e:
             print(e)
@@ -384,8 +384,8 @@ class GHComponent(GHNode):
 
 
 class Canvas:
-    def __init__(self, doc, n=None):
-        GHComponentTable.initialise()
+    def __init__(self, doc,environment, n=None):
+        GHComponentTable.initialise(environment.dirs['vanilla'])
         self.doc = doc
         self.components = []  # Initialize as empty
         self.guid_to_component = {}  # Initialize as empty
@@ -555,16 +555,16 @@ class GHGraph:
         nx.write_graphml(gx, location)
 
 class GHProcessor:
-    def __init__(self, filepath, filename):
-        self.filepath = filepath
-        self.filename = filename
-        self.doc = self.get_ghdoc(filepath, filename)
-        self.canvas = Canvas(self.doc)
+
+    def __init__(self, filepath_filename, environment):
+        self.doc = self.get_ghdoc(filepath_filename)
+        self.canvas = Canvas(self.doc, environment)
         self.graph =  GHGraph(self.canvas)
+        self.filename = Path(filepath_filename).name
 
     @staticmethod
-    def get_ghdoc(filepath, filename):
-        ghfile = os.path.join(filepath, filename)
+    def get_ghdoc(filepath_filename):
+        ghfile = filepath_filename
         if not os.path.exists(ghfile):
             print("This file does not exists:", ghfile)
             raise FileNotFoundError(ghfile)
@@ -579,5 +579,8 @@ class GHProcessor:
 
     def build_graph(self):
         self.graph = GHGraph(self.canvas)
+        return self.graph
 
-        display(self.graph.show_graph())
+    def save_graph(self):
+        if self.graph is not None:
+            self.graph= nx.write_graphml(self.graph, "my_graph.graphml")
