@@ -33,7 +33,7 @@ import GH_IO
 import GH_Util
 from typing import Dict, List, Tuple
 from pathlib import Path
-from gh_logging import complog
+
 
 class GHComponentProxy:
     """

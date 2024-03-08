@@ -1,7 +1,6 @@
 import unittest
 from gh_graph_extraction import *
-from enviroment import *
-from gh_logging import filelog
+from environment_manager import *
 
 class MyTestCase(unittest.TestCase):
 
@@ -28,21 +27,16 @@ class MyTestCase(unittest.TestCase):
 
     def test_environments(self):
 
-        # initialise the environment
-        environment = Environment("InitialTest")
-        environment.initialise(clone_env=True)
-        # TODO: There is a potential issue here because if a person loads an environment but does not copy the
-        # TODO components or write the components, there will be a difference between the environment and the components table
-        # TODO this needs to  be addressed
-        # initialise the grasshopper environment
-        comptable = GHComponentTable
-        comptable.initialise(environment.dirs['00-VanillaComponents'])
-        comptable.to_csv(location=environment.dirs["01-AllComponents"])
-        gh_file = environment.get_test_files()
-        print(gh_file)
-        #initialise the loggers
+        environment = EnvironmentManager.load_environment('test_environment')
+        GHComponentTable.to_csv(environment.dirs['all'])
+        flog = LogManager.get_logger('flog')
+        clog = LogManager.get_logger('clog')
+        flog.info('Testing')
+        clog.info('Testing')
 
-    #    yeild the next grasshopper file, run the gh processor
+
+
+
 
 
 
