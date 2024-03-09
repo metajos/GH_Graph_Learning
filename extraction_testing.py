@@ -57,6 +57,19 @@ class MyTestCase(unittest.TestCase):
         canvas = Canvas(self, doc, self.env)
         graph = GHGraph(canvas)
         nxgraph = graph.nxGraph()
+        self.assertTrue(nxgraph is not None)
+    def test_save_graph(self):
+        doc = GHProcessor.get_ghdoc(str(self.gh_file))
+        canvas = Canvas(self, doc, self.env)
+        graph = GHGraph(canvas)
+        nxgraph = graph.nxGraph()
+        location = Path(r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\test") / self.gh_file.stem
+        graph.save_graph(str(location))
+        display(graph.show_graph(str(str(location) + ".png")))
+
+
+    # def test_all_files(self):
+    #     test_multiple(self.env)
 
 
 if __name__ == '__main__':

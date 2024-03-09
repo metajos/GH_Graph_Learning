@@ -590,16 +590,17 @@ class GHComponent(GHNode):
                 for r in oparam.recipients:
                     recipient = GHParam(r)
                     # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
-
                     recipient_component = canvas.find_object_by_guid(str(recipient.parent.obj.Attributes.InstanceGuid))
-                    parent_instance = canvas.find_object_by_guid(recipient_component.id)
-                    recipient_parameter_index = recipient_component.iparams_dict.get(recipient.name)
-
-                    recipient_conn = {
-                        'to': parent_instance,
-                        'edge': (i, recipient_parameter_index)
-                    }
-                    recipient_connections.append(recipient_conn)
+                    if recipient_component is not None:
+                        parent_instance = canvas.find_object_by_guid(recipient_component.id)
+                        if parent_instance is not None:
+                            recipient_parameter_index = recipient_component.iparams_dict.get(recipient.name)
+                            if recipient_parameter_index is not None:
+                                recipient_conn = {
+                                    'to': parent_instance,
+                                    'edge': (i, recipient_parameter_index)
+                                }
+                                recipient_connections.append(recipient_conn)
 
         # Handle connections from sources to this component's input parameters
         for i, iparam in enumerate(self.iparams):  # Iterate over input parameters
@@ -607,16 +608,17 @@ class GHComponent(GHNode):
                 for s in iparam.sources:
                     source = GHParam(s)
                     # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
-                    if source is not None:
-                        source_component = canvas.find_object_by_guid(str(source.parent.obj.Attributes.InstanceGuid))
+                    source_component = canvas.find_object_by_guid(str(source.parent.obj.Attributes.InstanceGuid))
+                    if source_component is not None:
                         source_instance = canvas.find_object_by_guid(source_component.id)
-                        source_parameter_index = source_component.oparams_dict.get(
-                            source.name)  # Assuming oparams_dict includes source name
-                        source_conn = {
-                            'from': source_instance,
-                            'edge': (source_parameter_index, i)
-                        }
-                        source_connections.append(source_conn)
+                        if source_instance is not None:
+                            source_parameter_index = source_component.oparams_dict.get(source.name)
+                            if source_parameter_index is not None:
+                                source_conn = {
+                                    'from': source_instance,
+                                    'edge': (source_parameter_index, i)
+                                }
+                                source_connections.append(source_conn)
 
         return source_connections, recipient_connections
 
@@ -802,16 +804,41 @@ class GHGraph:
                 logging.warning(f"#{ename}${name} did not process into a generic graph")
 
     def show_graph(self, savename=None):
+        import matplotlib.pyplot as plt
+        import networkx as nx
+        from matplotlib.patches import Patch
+        from pathlib import Path
+
         plt.figure(figsize=(20, 12))  # Increase the figure size
         gx = self.nxGraph()
 
         # Generate category color map and assign colors
         category_color_map = self.generate_category_color_map()
-        node_colors = [category_color_map[self.canvas.graph_id_to_component[graph_id].category] for graph_id in
-                       gx.nodes]
+        # Adjusted line for node_colors with a safety check for missing categories
+        # First, ensure every node has a default color
+        default_color = "grey"  # or any other color as fallback
+        node_colors = [default_color for _ in range(len(gx.nodes))]  # Pre-fill with default color
 
-        # Custom labels for nodes
-        custom_labels = {graph_id: self.canvas.graph_id_to_component[graph_id].name for graph_id in gx.nodes}
+        # Now, iterate over the nodes and set colors where applicable
+        for i, graph_id in enumerate(gx.nodes):
+            component = self.canvas.graph_id_to_component.get(graph_id)
+            if component is not None:
+                # If there's a specific category color, use it
+                category = component.category
+                node_colors[i] = category_color_map.get(category, default_color)
+            # If the component is None, node_colors[i] remains the default color
+
+        # Initialize default labels for all nodes
+        default_label = "Unknown"  # Default label for nodes without specific data
+        custom_labels = {node: default_label for node in gx.nodes}  # Pre-fill with default labels
+
+        # Now, iterate over the nodes and set specific labels where applicable
+        for node in gx.nodes:
+            component = self.canvas.graph_id_to_component.get(node)
+            if component is not None:
+                # Update the label with specific data if available
+                custom_labels[node] = component.name  # Assuming each component has a 'name' attribute
+            # If the component is None, custom_labels[node] remains the default label
 
         # Choose a different layout to spread out nodes more
         pos = nx.kamada_kawai_layout(gx)  # Alternative layout
@@ -907,3 +934,24 @@ def load_create_environment(environment_name):
     return env
 
 
+def test_multiple(env, n):
+    gh_files_generator = env.get_gh_file()  # Create the generator object
+    i = 0
+    for gh_file in gh_files_generator:
+        try:
+            print(f"Processing {gh_file}")
+            if i >= n:  # Break the loop if the limit is reached
+                break
+            gh_file = str(gh_file)
+            ghp = GHProcessor(gh_file, env)
+            print(ghp.canvas.components)
+        except Exception as e:
+            logging.warning(f"Did not process file {gh_file}")
+            print(f"#####___ERROR ON: {gh_file}")
+            continue
+        graph_name = Path(gh_file).stem  # More robust than splitting on "."
+        ghp.GHgraph.show_graph(graph_name)  # Show graph does not return anything, so 'display' is not needed
+        graph_path = env.dirs['graphml'] / f"{graph_name}"
+        ghp.save_graph(graph_path)
+        i += 1  # Increment the counter
+        print(f"Saved graph: {graph_name}")
