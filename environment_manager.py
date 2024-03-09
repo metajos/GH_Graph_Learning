@@ -65,9 +65,9 @@ class EnvironmentManager:
     GH_FILE_PATH = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\GHData"
     class Environment:
         def __init__(self, environment_name):
-            prefix = datetime.datetime.now().strftime("%y%m%d")
+            # prefix = datetime.datetime.now().strftime("%y%m%d")
             self.environment_name = environment_name
-            self.base_path = Path("ExtractionEnvironments") / f"{prefix}-{environment_name}"
+            self.base_path = Path("ExtractionEnvironments") / f"{environment_name}"
             self.base_path.mkdir(parents=True, exist_ok=True)
             # Initialize directories based on the class-level DIR_STRUCTURE
             self.dirs = {name: self.base_path / dirname for name, dirname in EnvironmentManager.DIR_STRUCTURE.items()}
@@ -253,16 +253,9 @@ class EnvironmentManager:
         return list(cls.DIR_STRUCTURE.values())
 
     @classmethod
-    def get_environment_names(cls):
-        return list(cls._environments.keys())
-
-    @classmethod
     def get_environment(cls):
         return list(cls._environments.values())[0]
 
-    @classmethod
-    def get_environment(cls, name):
-        return cls._environments.get(name)
 
 
 class GHComponentProxy:
@@ -620,13 +613,15 @@ class GHComponent(GHNode):
         return f"<GHComponent {self.__str__()}>"
 
 class Canvas:
-    def __init__(self, doc,environment, n=None):
+    def __init__(self, name, doc,environment, n=None):
+        self.name = name
         GHComponentTable.initialise(environment.dirs['vanilla'])
         self.doc = doc
         self.components = []  # Initialize as empty
         self.guid_to_component = {}  # Initialize as empty
         self.initialize_components(n)
         self.graph_id_to_component = self.process_mappings()
+        self.env = environment
 
     def initialize_components(self, n=None):
         ic("called initialise components")
@@ -731,26 +726,51 @@ class GHGraph:
         self.canvas = canvas
         self.components = self.canvas.components
 
+
     @property
     def nodes(self) -> List[GraphNode]:
         return [GraphNode(component.graph_id, self.canvas) for component in self.components]
 
     def nxGraph(self, bidirectional=False) -> nx.Graph:
-        gx = nx.Graph()
+        try:
+            gx = nx.DiGraph()
+            ic(gx.is_directed())
 
-        # Step 1: Add all nodes to the graph
-        for node in self.nodes:
-            node_id = node.graph_id  # Ensure this is a simple, hashable type
-            gx.add_node(node_id)  # Explicitly add nodes
+            # Step 1: Add all nodes to the graph
+            for node in self.nodes:
+                node_id = node.graph_id  # Ensure this is a simple, hashable type
+                gx.add_node(node_id)  # Explicitly add nodes
 
-        # Step 2: Add edges to the graph
-        for node in self.nodes:
-            for edge in node.edges():
-                if edge:
-                    # Ensure the tuples are hashable and correspond to actual node identifiers
-                    gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
+            # Step 2: Add edges to the graph
+            for node in self.nodes:
+                for edge in node.edges():
+                    if edge:
+                        # Ensure the tuples are hashable and correspond to actual node identifiers
+                        gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
 
-        return gx
+            return gx
+        except AttributeError as e:
+            ename = self.canvas.environment.environment_name
+            name = self.canvas.name
+            logging.warning(f"#{ename}${name} did not process into a directed graph")
+            try:
+                gx = nx.Graph()
+
+                # Step 1: Add all nodes to the graph
+                for node in self.nodes:
+                    node_id = node.graph_id  # Ensure this is a simple, hashable type
+                    gx.add_node(node_id)  # Explicitly add nodes
+
+                # Step 2: Add edges to the graph
+                for node in self.nodes:
+                    for edge in node.edges():
+                        if edge:
+                            # Ensure the tuples are hashable and correspond to actual node identifiers
+                            gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
+                return gx
+            except AttributeError as e:
+                logging.warning(f"#{ename}${name} did not process into a generic graph")
+
 
     def show_graph(self):
         plt.figure(figsize=(12, 8))
@@ -790,8 +810,8 @@ class GHGraph:
 class GHProcessor:
     def __init__(self, filepath_filename, environment):
         self.doc = self.get_ghdoc(filepath_filename)
-        self.canvas = Canvas(self.doc, environment)
-        self.graph =  GHGraph(self.canvas)
+        self.canvas = Canvas(filepath_filename, self.doc, environment)
+        self.GHgraph =  GHGraph(self.canvas)
         self.filename = Path(filepath_filename).name
 
     @staticmethod
@@ -810,12 +830,14 @@ class GHProcessor:
             print(component)
 
     def build_graph(self):
-        self.graph = GHGraph(self.canvas)
-        return self.graph
+        self.GHgraph = GHGraph(self.canvas)
+        return self.GHgraph
 
-    def save_graph(self):
-        if self.graph is not None:
-            self.graph= nx.write_graphml(self.graph, "my_graph.graphml")
+    def save_graph(self, path):
+        try:
+            self.GHgraph.save_graph(path)
+        except Exception as e:
+            print(e)
 
 def load_create_environment(environment_name):
     # Load or create the environment
@@ -846,10 +868,13 @@ def load_create_environment(environment_name):
     return env
 
 if __name__ == "__main__":
-    name = "initial"
+    name = "240308-initial"
     env = load_create_environment(name)
     logging.basicConfig()
     gh_file = next(env.get_gh_file())
     gh_file = str(gh_file)
     ghp = GHProcessor(gh_file, env)
-    display(ghp.graph.show_graph())
+    display(ghp.GHgraph.show_graph())
+    ic(Path(gh_file).name.split(".")[0])
+    graph_path = Path(env.dirs['graphml'])/Path(gh_file).name.split(".")[0]
+    ghp.save_graph(graph_path)

@@ -25,7 +25,7 @@ class MyTestCase(unittest.TestCase):
         filepath = os.getcwd()
         filename = "test_grafting.gh"
         ghp = GHProcessor(filepath, filename)
-        display(ghp.graph.show_graph())
+        display(ghp.GHgraph.show_graph())
 
     def test_environments(self):
 
@@ -35,7 +35,7 @@ class MyTestCase(unittest.TestCase):
         gh_file =  next(env.get_gh_file())
         gh_file = str(gh_file)
         ghp = GHProcessor(gh_file, env)
-        display(ghp.graph.show_graph())
+        display(ghp.GHgraph.show_graph())
 
 
 
