@@ -12,6 +12,7 @@ import rhinoinside
 import logging
 import nbimporter
 from icecream import ic
+
 rhinoinside.load()
 import Rhino
 import clr
@@ -25,25 +26,30 @@ import torch
 from typing import Dict, List
 import networkx as nx
 import matplotlib.pyplot as plt
+import matplotlib
+from matplotlib.patches import Patch
+
 path = r"C:\Program Files\Rhino 8\Plug-ins\Grasshopper"
 sys.path.append(path)
 clr.AddReference("Grasshopper")
 clr.AddReference("GH_IO")
 clr.AddReference("GH_Util")
+
 import Grasshopper
+import Grasshopper.GUI
 import Grasshopper.Kernel as ghk
 from Grasshopper.Kernel import IGH_Component
 from Grasshopper.Kernel import IGH_Param
 import traceback
 from typing import Dict, List, Tuple
 from pathlib import Path
-
 import logging
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s: %(message)s',
                     filemode="w",
-                    filename="GH.log")
+                    filename="tests")
+ic.disable()
 
 
 class EnvironmentManager:
@@ -63,6 +69,7 @@ class EnvironmentManager:
     GHPATH = r"C:\Users\jossi\AppData\Roaming\Grasshopper\Libraries"
     VANILLA_PATH = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240307-CoreComponents\vanilla_components.csv"
     GH_FILE_PATH = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\GHData"
+
     class Environment:
         def __init__(self, environment_name):
             # prefix = datetime.datetime.now().strftime("%y%m%d")
@@ -76,7 +83,6 @@ class EnvironmentManager:
 
             self.gh_path = Path(EnvironmentManager.GHPATH)
             self.initialise()
-
 
         def serialize(self):
             file_path = self.base_path / "environment.pkl"
@@ -222,7 +228,6 @@ class EnvironmentManager:
             print("Copying gh files")
             self.copy_ghtest_files()
 
-
         def copy_ghtest_files(self):
             try:
                 for root, dirs, files in os.walk(EnvironmentManager.GH_FILE_PATH):
@@ -232,14 +237,12 @@ class EnvironmentManager:
             except PermissionError as e:
                 print(f"Permission error on {e}")
 
-
         def get_gh_file(self):
             for root, dirs, files in os.walk(self.dirs["files"]):
                 for file in files:
                     if file.endswith(".gh"):
                         yield os.path.join(root, file)
             print("No more gh files")
-
 
     @classmethod
     def create_environment(cls, environment_name):
@@ -256,6 +259,15 @@ class EnvironmentManager:
     def get_environment(cls):
         return list(cls._environments.values())[0]
 
+    @classmethod
+    def setup_logging(cls, environment_name):
+        log_directory = cls._environments[environment_name].dirs['logs']
+        log_file_path = log_directory / "GH.log"  # Assuming you want to name the log file GH.log
+        print(log_file_path)
+        logging.basicConfig(level=logging.DEBUG,
+                            format='%(asctime)s - %(name)s - %(levelname)s: %(message)s',
+                            filemode="w",
+                            filename=str(log_file_path))
 
 
 class GHComponentProxy:
@@ -315,10 +327,6 @@ class GHComponentProxy:
     def __repr__(self):
         return self.__str__()
 
-class GHInstance:
-    def __init__(self, vanilla_components_location, all_components_location):
-        component_table = GHComponentTable
-        component_table.initialise(vanilla_components_location)
 
 class GHComponentTable:
     cs = Grasshopper.Instances.ComponentServer.ObjectProxies
@@ -343,9 +351,8 @@ class GHComponentTable:
         cls.obj_lookup = {obj.sys_guid: obj for obj in cls.object_proxies}
         cls.df = cls.table_to_pandas(df_directory, 'all_components')
 
-
     @classmethod
-    def to_csv(cls,location, name="grasshopper_components.csv"):
+    def to_csv(cls, location, name="grasshopper_components.csv"):
         filename = Path(location) / name
         if not filename.exists():
             with open(filename, mode='w', newline='', encoding='utf-8') as file:
@@ -427,26 +434,25 @@ class GHComponentTable:
 
     @classmethod
     def component_to_idx(cls, component) -> int:
-        component = ghk.IGH_DocumentObject(component.obj)
-        guid = component.ComponentGuid
-        component_name = component.Name
-        component_category = component.Category
-        idx = cls.get_guid_to_idx(guid)
-        if idx is not None:
-            return idx
-        guid_str = cls.df.where(
-            (cls.df['category'] == component_category) & (cls.df['name'] == component_name)).dropna().guid.iloc[0]
-        if guid_str:
-            idx = cls.get_guid_to_idx(System.Guid(guid_str))
-            if idx:
-                return idx
-        logging.warning(
-            f"ComponentTable.component_to_idx: Did not find the GUID or table match for {component_category}, {component_name}")
-        return -1
+        component_category = component.category
+        component_name = component.name
+        if cls.df is not None:
+            filtered_df = cls.df.where(
+                (cls.df['category'] == component_category) & (cls.df['name'] == component_name)
+            ).dropna()
+
+            if not filtered_df.empty:
+                guid_str = filtered_df.guid.iloc[0]
+                idx = cls.get_guid_to_idx(System.Guid(guid_str))
+                return idx if idx is not None else -1
+        else:
+            ic(f"Component {component_name} not found in dataframe.")
+            return -1
 
     @classmethod
     def idx_to_component(cls, idx):
         return cls.df["nickname"].iloc[idx]
+
 
 class GHNode:
     def __init__(self, obj: ghk.IGH_DocumentObject):
@@ -479,6 +485,7 @@ class GHNode:
             f"Global: {self.global_idx}"
         }
         # This method seems intended for logging or debugging, consider how it's used and adapt accordingly.
+
 
 class GHParam:
 
@@ -527,6 +534,7 @@ class GHParam:
     def __repr__(self):
         return f"<GHParam {self.__str__()}>"
 
+
 class GHComponent(GHNode):
     """Subclass of GHNode that handles GH components that implement IGH_Component.
     Each GHComponent object should contain a list of input parameter and output parameter objects.
@@ -547,23 +555,28 @@ class GHComponent(GHNode):
                     self.obj = IGH_Component(obj)
                     self.iparams = [GHParam(p) for p in self.obj.Params.Input]
                     self.oparams = [GHParam(p) for p in self.obj.Params.Output]
-                self.recipients = [(param.name, [GHParam(p).parent for p in param.recipients]) for param in self.oparams if param.recipients is not None]
+                self.recipients = [(param.name, [GHParam(p).parent for p in param.recipients]) for param in self.oparams
+                                   if param.recipients is not None]
             except TypeError as e:
                 logging.warning(f"COMPONENT {self.name},{self.id[-5:]}  failed initial assignment of parameters: {e}")
                 try:
                     self.obj = IGH_Param(obj)
                     self.iparams = [GHParam(self.obj)]
                     self.oparams = [GHParam(self.obj)]
-                    logging.info(f"COMPONENT {self.name},{self.id[-5:]} successfully assigned parameters: {self.iparams}, {self.oparams}")
+                    logging.info(
+                        f"COMPONENT {self.name},{self.id[-5:]} successfully assigned parameters: {self.iparams}, {self.oparams}")
                 except TypeError as e:
-                    traceback.print_exc()
-                    print(e.with_traceback())
-                    logging.warning(f"COMPONENT {self.name},{self.id[-5:]} DID NOT EXTRACT PARAMETERS, not added to components table")
+                    print(e)
+                    logging.warning(
+                        f"COMPONENT {self.name},{self.id[-5:]} DID NOT EXTRACT PARAMETERS, not added to components table")
                     print(f"DID NOT ADD {self.name}")
         except TypeError as e:
             print(e)
-        self.iparams_dict = {k.name: i for i, k in enumerate(self.iparams)}
-        self.oparams_dict = {k.name: i for i, k in enumerate(self.oparams)}
+        try:
+            self.iparams_dict = {k.name: i for i, k in enumerate(self.iparams)}
+            self.oparams_dict = {k.name: i for i, k in enumerate(self.oparams)}
+        except TypeError as e:
+            logging.warning(f"COMPONENT {self.name}, doesnt process")
 
     def get_connections(self, canvas):
         """Returns the source and recipient connections for this component"""
@@ -576,7 +589,8 @@ class GHComponent(GHNode):
             if oparam.recipients:  # Ensure there are recipients to consider
                 for r in oparam.recipients:
                     recipient = GHParam(r)
-                    #Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
+                    # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
+
                     recipient_component = canvas.find_object_by_guid(str(recipient.parent.obj.Attributes.InstanceGuid))
                     parent_instance = canvas.find_object_by_guid(recipient_component.id)
                     recipient_parameter_index = recipient_component.iparams_dict.get(recipient.name)
@@ -593,16 +607,16 @@ class GHComponent(GHNode):
                 for s in iparam.sources:
                     source = GHParam(s)
                     # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
-                    source_component = canvas.find_object_by_guid(str(source.parent.obj.Attributes.InstanceGuid))
-                    source_instance = canvas.find_object_by_guid(source_component.id)
-                    source_parameter_index = source_component.oparams_dict.get(
-                        source.name)  # Assuming oparams_dict includes source name
-
-                    source_conn = {
-                        'from': source_instance,
-                        'edge': (source_parameter_index, i)
-                    }
-                    source_connections.append(source_conn)
+                    if source is not None:
+                        source_component = canvas.find_object_by_guid(str(source.parent.obj.Attributes.InstanceGuid))
+                        source_instance = canvas.find_object_by_guid(source_component.id)
+                        source_parameter_index = source_component.oparams_dict.get(
+                            source.name)  # Assuming oparams_dict includes source name
+                        source_conn = {
+                            'from': source_instance,
+                            'edge': (source_parameter_index, i)
+                        }
+                        source_connections.append(source_conn)
 
         return source_connections, recipient_connections
 
@@ -612,32 +626,43 @@ class GHComponent(GHNode):
     def __repr__(self):
         return f"<GHComponent {self.__str__()}>"
 
+
 class Canvas:
-    def __init__(self, name, doc,environment, n=None):
+    def __init__(self, name, doc, environment, n=None):
         self.name = name
         GHComponentTable.initialise(environment.dirs['vanilla'])
         self.doc = doc
         self.components = []  # Initialize as empty
         self.guid_to_component = {}  # Initialize as empty
+
         self.initialize_components(n)
         self.graph_id_to_component = self.process_mappings()
         self.env = environment
 
     def initialize_components(self, n=None):
-        ic("called initialise components")
-        if n:
-            self.components = [GHComponent(o) for o in list(self.doc.Objects)[:n]]
-            self.guid_to_component = {c.id: c for c in self.components}
-        else:
-            self.components = [GHComponent(o) for o in list(self.doc.Objects)]
-            self.guid_to_component = {c.id: c for c in self.components}
+        ignore = ["Group", "Sketch", "Scribble", "Cluster", "Gradient"]
+        self.components = []
+        try:
+            for o in self.doc.Objects:
+                if o.Name not in ignore:
+                    try:
+                        obj = GHComponent(o)
+                        self.components.append(obj)
+                    except TypeError:
+                        logging.warning(f"Incompatible Component: {o.Name}")
+                        print(f"Incompatible Component: {o.Name}")
+
+                self.guid_to_component = {c.id: c for c in self.components}
+        except TypeError:
+            print("Can't initialise")
+            logging.warning(f"Can't initialise {self.name} because a component is creating an error")
 
     def find_object_by_guid(self, guid: str) -> GHComponent:
         return self.guid_to_component.get(guid)
 
     def process_mappings(self):
         idx_set = set([component.global_idx for component in self.components])
-        idx_lookup = {K : [] for K in idx_set}
+        idx_lookup = {K: [] for K in idx_set}
         graph_id_to_component = {}
         # ensure there are still incremeting the size of the list
         for component in self.components:
@@ -655,15 +680,16 @@ class Canvas:
     def __repr__(self):
         return f"<Canvas {self.__str__()}>"
 
+
 class GraphConnection:
 
     def __init__(self, v1n, v1i, v2n, v2i, edge):
-        self.v1n = v1n
-        self.v1i = v1i
-        self.v2n = v2n
-        self.v2i = v2i
-        self.e1 = edge[0]
-        self.e2 = edge[1]
+        self.v1n = -1 if v1n is None else v1n
+        self.v1i = -1 if v1i is None else v1i
+        self.v2n = -1 if v2n is None else v2n
+        self.v2i = -1 if v2i is None else v2i
+        self.e1 = -1 if edge[0] is None else edge[0]
+        self.e2 = -1 if edge[1] is None else edge[1]
         self.tensor = torch.tensor([self.v1n, self.v1i, self.e1, self.v2n, self.v2i, self.e2], dtype=torch.int16)
 
     @property
@@ -673,19 +699,21 @@ class GraphConnection:
     @property
     def edgeproperties(self):
         return (self.e1, self.e2)
+
     def __str__(self):
         return f"GC({self.v1n}-{self.v1i}, {self.v2n}-{self.v2i})"
 
     def __repr__(self):
         return f"GraphConn ({self.v1n}-{self.v1i}, {self.v2n}-{self.v2i})"
 
+
 class GraphNode:
-    def __init__(self, graph_id: Tuple[int,int], canvas:Canvas):
+    def __init__(self, graph_id: Tuple[int, int], canvas: Canvas):
         self.graph_id: Tuple[int, int] = graph_id
         self.component: GHComponent = canvas.graph_id_to_component.get(graph_id)
         self.canvas: Canvas = canvas
 
-    def edges(self, bidirectional = False):
+    def edges(self, bidirectional=False):
         """:Returns the edge tuple in the form (int, int), (int,int) where
         the tuple describes the graph node id. If bidirectional is true, both the sources and recipient
         edges are returned, otherwise only the recipient edges are returned"""
@@ -709,6 +737,8 @@ class GraphNode:
             v1n, v1i = self.graph_id
             v2n, v2i = v2.graph_id
             edge = connection.get("edge")
+            # we need to ensuure that none of the above values are None, becasue they will be inserted into a tensor
+            # when instantiating a graph connections
             graph_connections["recipients"].append(GraphConnection(v1n, v1i, v2n, v2i, edge))
 
         # Process source connections (incoming)
@@ -721,11 +751,11 @@ class GraphNode:
 
         return graph_connections
 
+
 class GHGraph:
     def __init__(self, canvas):
         self.canvas = canvas
         self.components = self.canvas.components
-
 
     @property
     def nodes(self) -> List[GraphNode]:
@@ -750,7 +780,7 @@ class GHGraph:
 
             return gx
         except AttributeError as e:
-            ename = self.canvas.environment.environment_name
+            ename = self.canvas.env.environment_name
             name = self.canvas.name
             logging.warning(f"#{ename}${name} did not process into a directed graph")
             try:
@@ -771,47 +801,54 @@ class GHGraph:
             except AttributeError as e:
                 logging.warning(f"#{ename}${name} did not process into a generic graph")
 
-
-    def show_graph(self):
-        plt.figure(figsize=(12, 8))
+    def show_graph(self, savename=None):
+        plt.figure(figsize=(20, 12))  # Increase the figure size
         gx = self.nxGraph()
 
         # Generate category color map and assign colors
         category_color_map = self.generate_category_color_map()
-        node_colors = [category_color_map[node.component.category] for node in self.nodes]
+        node_colors = [category_color_map[self.canvas.graph_id_to_component[graph_id].category] for graph_id in
+                       gx.nodes]
 
         # Custom labels for nodes
-        custom_labels = {node.graph_id: node.component.name for node in self.nodes}
+        custom_labels = {graph_id: self.canvas.graph_id_to_component[graph_id].name for graph_id in gx.nodes}
 
-        # Generate positions for all nodes
-        pos = nx.spring_layout(gx)
+        # Choose a different layout to spread out nodes more
+        pos = nx.kamada_kawai_layout(gx)  # Alternative layout
 
         # Draw the graph with node colors and custom labels
-        nx.draw(gx, pos, with_labels=True, labels=custom_labels, node_color=node_colors, node_size=700, cmap=plt.cm.get_cmap('hsv', len(category_color_map)), font_size=5)
+        nx.draw(gx, pos, with_labels=True, labels=custom_labels, node_color=node_colors, node_size=1000,
+                edge_color="gray", linewidths=0.5, font_size=10)
+
+        # Create a legend for the categories
+        legend_handles = [Patch(color=color, label=category) for category, color in category_color_map.items()]
+        plt.legend(handles=legend_handles, title='Categories', bbox_to_anchor=(1, 1), loc='upper left')
+
+        if savename:
+            plt.savefig(Path(self.canvas.env.dirs["graphml"]) / savename)  # Save the large figure if needed
         plt.show()
 
-    @staticmethod
-    def generate_category_color_map():
+    def generate_category_color_map(self):
         categories = sorted(GHComponentTable.view_all_categories())
-        # Create a color map with a fixed set of colors or based on hashing category names
-        cmap = plt.cm.get_cmap('tab20b', len(categories))
+        # Adjust to use matplotlib.colormaps instead of plt.cm.get_cmap
+        cmap = matplotlib.colormaps['tab20b']
         category_color_map = {}
-        for i, category in enumerate(sorted(categories)):  # Sort categories for consistency
-            # Use hashing to ensure consistent color assignment
-            hash_val = hash(category) % len(categories)
-            color = cmap(hash_val)
+        for i, category in enumerate(categories):  # Ensure categories are sorted for consistency
+            color = cmap(i / len(categories))  # Normalize index to 0-1 range for color mapping
             category_color_map[category] = color
         return category_color_map
 
     def save_graph(self, location):
         gx = self.nxGraph()
+
         nx.write_graphml(gx, location)
+
 
 class GHProcessor:
     def __init__(self, filepath_filename, environment):
         self.doc = self.get_ghdoc(filepath_filename)
         self.canvas = Canvas(filepath_filename, self.doc, environment)
-        self.GHgraph =  GHGraph(self.canvas)
+        self.GHgraph = GHGraph(self.canvas)
         self.filename = Path(filepath_filename).name
 
     @staticmethod
@@ -835,9 +872,11 @@ class GHProcessor:
 
     def save_graph(self, path):
         try:
+
             self.GHgraph.save_graph(path)
         except Exception as e:
             print(e)
+
 
 def load_create_environment(environment_name):
     # Load or create the environment
@@ -867,14 +906,4 @@ def load_create_environment(environment_name):
             file.write(record)
     return env
 
-if __name__ == "__main__":
-    name = "240308-initial"
-    env = load_create_environment(name)
-    logging.basicConfig()
-    gh_file = next(env.get_gh_file())
-    gh_file = str(gh_file)
-    ghp = GHProcessor(gh_file, env)
-    display(ghp.GHgraph.show_graph())
-    ic(Path(gh_file).name.split(".")[0])
-    graph_path = Path(env.dirs['graphml'])/Path(gh_file).name.split(".")[0]
-    ghp.save_graph(graph_path)
+
