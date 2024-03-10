@@ -9,7 +9,7 @@ class MyTestCase(unittest.TestCase):
         self.name = "240308-initial"
         self.env = load_create_environment(
             self.name)  # Assuming load_create_environment is a function you've defined
-        self.file = "210309_Canopy Modelling.gh"
+        self.file = "test.gh"
         self.gh_file = self.env.dirs[
                            "files"] / self.file  # Assuming env.dirs["files"] gives a path that supports '/' operator
 
@@ -43,7 +43,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_Edges(self):
         doc = GHProcessor.get_ghdoc(str(self.gh_file))
-        canvas = Canvas(self, doc, self.env)
+        canvas = Canvas(self.name, doc, self.env)
         graph = GHGraph(canvas)
         edgs = []
         for node in graph.nodes:
@@ -54,22 +54,27 @@ class MyTestCase(unittest.TestCase):
 
     def test_nxGraph(self):
         doc = GHProcessor.get_ghdoc(str(self.gh_file))
-        canvas = Canvas(self, doc, self.env)
+        canvas = Canvas(self.name, doc, self.env)
         graph = GHGraph(canvas)
         nxgraph = graph.nxGraph()
         self.assertTrue(nxgraph is not None)
     def test_save_graph(self):
         doc = GHProcessor.get_ghdoc(str(self.gh_file))
-        canvas = Canvas(self, doc, self.env)
+        canvas = Canvas(self.name, doc, self.env)
         graph = GHGraph(canvas)
         nxgraph = graph.nxGraph()
-        location = Path(r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\test") / self.gh_file.stem
+        location = self.gh_file
         graph.save_graph(str(location))
         display(graph.show_graph(str(str(location) + ".png")))
 
 
     # def test_all_files(self):
     #     test_multiple(self.env)
+
+    def test_illegals(self):
+        doc = GHProcessor.get_ghdoc(str(self.gh_file))
+        illegals = ["Panel"]
+        canvas = Canvas(self, doc, self)
 
 
 if __name__ == '__main__':

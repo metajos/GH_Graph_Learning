@@ -50,7 +50,49 @@ logging.basicConfig(level=logging.DEBUG,
                     filemode="w",
                     filename="tests")
 ic.disable()
-
+# def get_custom_logger(name, log_file_path, log_level_num):
+#     """
+#     Create and configure a logger.
+#
+#     Parameters:
+#     - name: str, name of the logger.
+#     - log_file_path: str, file path for the logger to write logs.
+#     - log_level_num: int, logging level as an enumeration (1=DEBUG, 2=INFO, 3=WARNING, 4=ERROR, 5=CRITICAL).
+#
+#     Returns:
+#     - logger: configured logger object.
+#     """
+#     # Map numerical level to logging level
+#     level_dict = {
+#         1: logging.DEBUG,
+#         2: logging.INFO,
+#         3: logging.WARNING,
+#         4: logging.ERROR,
+#         5: logging.CRITICAL
+#     }
+#     log_level = level_dict.get(log_level_num, logging.DEBUG)
+#
+#     # Create or get the logger
+#     logger = logging.getLogger(name)
+#     logger.setLevel(log_level)
+#     logger.handlers = []  # Reset handlers to avoid duplicate messages
+#
+#     # Create a file handler and set its level
+#     file_handler = logging.FileHandler(log_file_path)
+#     file_handler.setLevel(log_level)
+#
+#     # Create a formatter and set it for the handler
+#     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#     file_handler.setFormatter(formatter)
+#
+#     # Add the file handler to the logger
+#     logger.addHandler(file_handler)
+#
+#     return logger
+#
+# error_logger = get_custom_logger("error_logger",
+#                                  r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\logs\"error.log",
+#                                  1)
 
 class EnvironmentManager:
     _environments = {}  # Stores Environment instances keyed by environment_name
@@ -339,7 +381,9 @@ class GHComponentTable:
     df = None
 
     @classmethod
-    def initialise(cls, vanilla_components_location):
+    def initialise(cls, vanilla_components_location=None):
+        if vanilla_components_location is None:
+            vanilla_components_location = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240307-CoreComponents"
         cls.vanilla_proxies = {obj.sys_guid: obj for obj in cls.load_vanilla_gh_proxies(vanilla_components_location)}
         cls.object_proxies = [GHComponentProxy(obj) for obj in cls.cs]
         cls.non_native_proxies = sorted(
@@ -585,40 +629,41 @@ class GHComponent(GHNode):
         recipient_connections = []
 
         # Handle connections to recipients from this component's output parameters
-        for i, oparam in enumerate(self.oparams):  # Iterate over output parameters
-            if oparam.recipients:  # Ensure there are recipients to consider
-                for r in oparam.recipients:
-                    recipient = GHParam(r)
-                    # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
-                    recipient_component = canvas.find_object_by_guid(str(recipient.parent.obj.Attributes.InstanceGuid))
-                    if recipient_component is not None:
-                        parent_instance = canvas.find_object_by_guid(recipient_component.id)
-                        if parent_instance is not None:
-                            recipient_parameter_index = recipient_component.iparams_dict.get(recipient.name)
-                            if recipient_parameter_index is not None:
-                                recipient_conn = {
-                                    'to': parent_instance,
-                                    'edge': (i, recipient_parameter_index)
-                                }
-                                recipient_connections.append(recipient_conn)
-
-        # Handle connections from sources to this component's input parameters
-        for i, iparam in enumerate(self.iparams):  # Iterate over input parameters
-            if iparam.sources:  # Ensure there are sources to consider
-                for s in iparam.sources:
-                    source = GHParam(s)
-                    # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
-                    source_component = canvas.find_object_by_guid(str(source.parent.obj.Attributes.InstanceGuid))
-                    if source_component is not None:
-                        source_instance = canvas.find_object_by_guid(source_component.id)
-                        if source_instance is not None:
-                            source_parameter_index = source_component.oparams_dict.get(source.name)
-                            if source_parameter_index is not None:
-                                source_conn = {
-                                    'from': source_instance,
-                                    'edge': (source_parameter_index, i)
-                                }
-                                source_connections.append(source_conn)
+        if self.oparams is not None:
+            for i, oparam in enumerate(self.oparams):  # Iterate over output parameters
+                if oparam.recipients:  # Ensure there are recipients to consider
+                    for r in oparam.recipients:
+                        recipient = GHParam(r)
+                        # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
+                        recipient_component = canvas.find_object_by_guid(str(recipient.parent.obj.Attributes.InstanceGuid))
+                        if recipient_component is not None:
+                            parent_instance = canvas.find_object_by_guid(recipient_component.id)
+                            if parent_instance is not None:
+                                recipient_parameter_index = recipient_component.iparams_dict.get(recipient.name)
+                                if recipient_parameter_index is not None:
+                                    recipient_conn = {
+                                        'to': parent_instance,
+                                        'edge': (i, recipient_parameter_index)
+                                    }
+                                    recipient_connections.append(recipient_conn)
+        if self.iparams is not None:
+            # Handle connections from sources to this component's input parameters
+            for i, iparam in enumerate(self.iparams):  # Iterate over input parameters
+                if iparam.sources:  # Ensure there are sources to consider
+                    for s in iparam.sources:
+                        source = GHParam(s)
+                        # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
+                        source_component = canvas.find_object_by_guid(str(source.parent.obj.Attributes.InstanceGuid))
+                        if source_component is not None:
+                            source_instance = canvas.find_object_by_guid(source_component.id)
+                            if source_instance is not None:
+                                source_parameter_index = source_component.oparams_dict.get(source.name)
+                                if source_parameter_index is not None:
+                                    source_conn = {
+                                        'from': source_instance,
+                                        'edge': (source_parameter_index, i)
+                                    }
+                                    source_connections.append(source_conn)
 
         return source_connections, recipient_connections
 
@@ -636,7 +681,6 @@ class Canvas:
         self.doc = doc
         self.components = []  # Initialize as empty
         self.guid_to_component = {}  # Initialize as empty
-
         self.initialize_components(n)
         self.graph_id_to_component = self.process_mappings()
         self.env = environment
