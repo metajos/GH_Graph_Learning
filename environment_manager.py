@@ -394,9 +394,13 @@ class GHComponentTable:
         df_directory = env.dirs['all']
         cls.obj_lookup = {obj.sys_guid: obj for obj in cls.object_proxies}
         cls.df = cls.table_to_pandas(df_directory, 'all_components')
+        cls.to_csv()
+
 
     @classmethod
-    def to_csv(cls, location, name="grasshopper_components.csv"):
+    def to_csv(cls, location=None, name="grasshopper_components.csv"):
+        if location is None:
+            location = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240211-AllComponents"
         filename = Path(location) / name
         if not filename.exists():
             with open(filename, mode='w', newline='', encoding='utf-8') as file:
@@ -496,6 +500,15 @@ class GHComponentTable:
     @classmethod
     def idx_to_component(cls, idx):
         return cls.df["nickname"].iloc[idx]
+
+    @classmethod
+    def get_guid_by_type(cls, type_search):
+        # this is used when preprocessing a file and returns the component id given the object type
+        matches = cls.df[cls.df['type'] == type_search]
+        if not matches.empty:
+            return matches['guid'].tolist()
+        else:
+            return []
 
 
 class GHNode:
@@ -947,6 +960,21 @@ class GHProcessor:
             self.GHgraph.save_graph(path)
         except Exception as e:
             print(e)
+
+    @staticmethod
+    def preprocess(doc):
+        illegals = {
+            "bifocals": "aced9701-8be9-4860-bc37-7e22622afff4",
+            "wombat-feature_request": "82fde8cd-3e18-4185-9ec4-e649cc993137"
+        }
+        for comp_name, comp_id in illegals.items():
+            illegal = doc.FindComponent(comp_id)
+            while illegal is not None:
+                doc.RemoveObject(illegal)
+                illegal = doc.FindComponent(comp_id)  # Check again to ensure all instances are removed
+        print("preprocessing complete")
+
+
 
 
 def load_create_environment(environment_name):

@@ -1,4 +1,5 @@
 category,name,guid,nickname,description,type,library
+X,Example,d541404d-b806-453e-8351-a954e824ed22,X,Example,Grasshopper.Kernel.Components.GH_DocExampleComponent,Grasshopper
 Curve,Arc,bb59bffc-f54c-4682-9778-f6c3fe74fce3,Arc,"Create an arc defined by base plane, radius and angle domain.",CurveComponents.Component_Arc,Curve Components
 Curve,Arc 3Pt,9fa1b081-b1c7-4a12-a163-0aa8da9ff6c4,Arc,Create an arc through three points.,CurveComponents.Component_Arc3Pt,Curve Components
 Curve,Arc SED,9d2583dd-6cf5-497c-8c40-c9a290598396,Arc,"Create an arc defined by start point, end point and a tangent vector.",CurveComponents.Component_ArcSED,Curve Components
@@ -1102,4 +1103,3 @@ Vector,Vector XYZ,56b92eab-d121-43f7-94d3-6cd8f0ddead8,Vec,Create a vector from 
 Vector,XY Plane,17b7152b-d30d-4d50-b9ef-c9fe25576fc2,XY,World XY plane.,VectorComponents.PlaneComponents.Component_XYPlane,Vector Components
 Vector,XZ Plane,8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64,XZ,World XZ plane.,VectorComponents.PlaneComponents.Component_XZPlane,Vector Components
 Vector,YZ Plane,fad344bc-09b1-4855-a2e6-437ef5715fe3,YZ,World YZ plane.,VectorComponents.PlaneComponents.Component_YZPlane,Vector Components
-X,Example,d541404d-b806-453e-8351-a954e824ed22,X,Example,Grasshopper.Kernel.Components.GH_DocExampleComponent,Grasshopper
