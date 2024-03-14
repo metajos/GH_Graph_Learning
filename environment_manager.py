@@ -469,14 +469,14 @@ class GHComponentTable:
         cls._idx_to_guid = {idx: row['guid'] for idx, row in df.iterrows()}
         return df
 
-    # @classmethod
-    # def get_guid_to_idx(cls, guid: System.Guid) -> int:
-    #     return cls._guid_to_idx.get(str(guid), None)
+    @classmethod
+    def get_guid_to_idx(cls, guid: System.Guid) -> int:
+        return cls._guid_to_idx.get(str(guid), None)
 
-    # @classmethod
-    # def get_idx_to_guid(cls, idx: int) -> System.Guid:
-    #     guid_str = cls._idx_to_guid.get(idx, None)
-    #     return System.Guid(guid_str) if guid_str else None
+    @classmethod
+    def get_idx_to_guid(cls, idx: int) -> System.Guid:
+        guid_str = cls._idx_to_guid.get(idx, None)
+        return System.Guid(guid_str) if guid_str else None
 
     @classmethod
     def component_to_idx(cls, component) -> int:

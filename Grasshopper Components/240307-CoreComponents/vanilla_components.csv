@@ -269,7 +269,7 @@ Kangaroo2,Grab,ea145d1d-7727-4d52-8db6-c9b7100ab7f9,Grab,"This lets you drag par
 Kangaroo2,Hinge,b6b6632e-a164-491a-8874-9a214dcc79bc,Hinge,Hinge,Kangaroo2Component.GoalComponents.HingeComponent,Kangaroo2 Components
 Kangaroo2,HingePoints,24f82a13-a700-45e0-9528-8646323d4af2,HingePoints,Get the 4 points for each internal edge to use in a Hinge Force,Kangaroo2Component.UtilityComponents.HingePoints,Kangaroo2 Components
 Kangaroo2,ImageCircles,cb643f13-4969-4688-928f-5dd1dcbc8517,ImgCircles,Circle packing with sizes from image colours,Kangaroo2Component.GoalComponents.ImageCirclesComponent,Kangaroo2 Components
-Kangaroo2,Isothermic,9103348d-9ec2-4937-a04f-79c509f8093c,Iso,"Make a quad mesh S-Isothermic, as described in the paper 'Quasiisothermic Mesh Layout' by Sechelmann, Rörig & Bobenko",Kangaroo2Component.GoalComponents.IsothermicComponent,Kangaroo2 Components
+Kangaroo2,Isothermic,9103348d-9ec2-4937-a04f-79c509f8093c,Iso,"Make a quad mesh S-Isothermic, as described in the paper 'Quasiisothermic Mesh Layout' by Sechelmann, RÃ¶rig & Bobenko",Kangaroo2Component.GoalComponents.IsothermicComponent,Kangaroo2 Components
 Kangaroo2,Length(Line),091bae84-8fa9-4b35-8aad-b25b859055f6,Length(Line),Length(Line),Kangaroo2Component.GoalComponents.SpringByLineComponent,Kangaroo2 Components
 Kangaroo2,Length(Pts),c681ef8e-fbf7-4277-a6a8-8a00d94cc953,Length(Pts),Length(Pts),Kangaroo2Component.GoalComponents.SpringComponent,Kangaroo2 Components
 Kangaroo2,LengthRatio,09fef083-0d7b-4e3d-a24c-928a19a71aed,LengthRatio,Maintain a fixed ratio between the lengths of a pair of lines,Kangaroo2Component.GoalComponents.LengthRatioComponent,Kangaroo2 Components
@@ -282,7 +282,7 @@ Kangaroo2,MeshCorners,c8b01cec-6dd9-460b-b43f-254314ffdc2e,MC,Extract corners sh
 Kangaroo2,MeshDirection,9c2695de-127b-4b46-a17b-f3a676891c0d,MD,Sort the face directions of a mesh,Kangaroo2Component.UtilityComponents.MeshDirections,Kangaroo2 Components
 Kangaroo2,MeshMap,ab723d11-5713-4df2-9d3c-b8bbb3bb5d61,MeshMap,Map points from one mesh to another,Kangaroo2Component.UtilityComponents.MeshMap,Kangaroo2 Components
 Kangaroo2,MeshTurn,bf54f98d-2fc0-4cb8-91b9-29619a2c6005,Turn,Rotate the vertex order of each face,Kangaroo2Component.UtilityComponents.MeshTurn,Kangaroo2 Components
-Kangaroo2,Möbius Transformation,51ea6cbf-9681-4a4b-8f66-20e0e2faf182,MB,3d Möbius Transformations of any geometry using 4d rotation,Kangaroo2Component.UtilityComponents.MoebiusTransform,Kangaroo2 Components
+Kangaroo2,MÃ¶bius Transformation,51ea6cbf-9681-4a4b-8f66-20e0e2faf182,MB,3d MÃ¶bius Transformations of any geometry using 4d rotation,Kangaroo2Component.UtilityComponents.MoebiusTransform,Kangaroo2 Components
 Kangaroo2,NakedVertices,ddb24b31-1192-448f-ace3-b5b3d2399831,NV,Sorts the vertices of a mesh into 2 lists according to whether or not they are surrounded by faces,Kangaroo2Component.UtilityComponents.NakedVertices,Kangaroo2 Components
 Kangaroo2,NoFoldThrough,8f083dbb-357b-4172-80d0-b584b21b6d75,NoFoldThrough,To stop the sides of a hinge passing through each other,Kangaroo2Component.GoalComponents.NoFoldThroughComponent,Kangaroo2 Components
 Kangaroo2,OnCurve,8b4dbe32-0c6c-4304-972e-3f60ed613114,OnCurve,Keep a point on a given Curve,Kangaroo2Component.GoalComponents.OnCurveComponent,Kangaroo2 Components
@@ -363,8 +363,8 @@ Maths,Complex Modulus,88fb33f9-f467-452b-a0e3-44bdb78a9b06,CMod,Get the modulus 
 Maths,Consecutive Domains,95992b33-89e1-4d36-bd35-2754a11af21e,Consec,Create consecutive domains from a list of numbers,MathComponents.DomainComponents.Component_MakeConsecutiveDomains,Math Components
 Maths,Construct Date,0c2f0932-5ddc-4ece-bd84-a3a059d3df7a,Date,Construct a date and time instance.,MathComponents.TimeComponents.Component_CreateDate,Math Components
 Maths,Construct Domain,d1a28e95-cf96-4936-bf34-8bf142d731bf,Dom,Create a numeric domain from two numeric extremes.,MathComponents.DomainComponents.Component_ConstructDomain,Math Components
-Maths,Construct Domain²,8555a743-36c1-42b8-abcc-06d9cb94519f,Dom²,Create a two-dimensional domain from two simple domains.,MathComponents.DomainComponents.Component_Construct2DInterval,Math Components
-Maths,Construct Domain²,9083b87f-a98c-4e41-9591-077ae4220b19,Dom²Num,Create a two-dimensinal domain from four numbers.,MathComponents.DomainComponents.Component_Construct2DInterval_Numeric,Math Components
+Maths,Construct DomainÂ²,8555a743-36c1-42b8-abcc-06d9cb94519f,DomÂ²,Create a two-dimensional domain from two simple domains.,MathComponents.DomainComponents.Component_Construct2DInterval,Math Components
+Maths,Construct DomainÂ²,9083b87f-a98c-4e41-9591-077ae4220b19,DomÂ²Num,Create a two-dimensinal domain from four numbers.,MathComponents.DomainComponents.Component_Construct2DInterval_Numeric,Math Components
 Maths,Construct Exotic Date,e5ff52c5-40df-4f43-ac3b-d2418d05ae32,DateEx,Construct a date using a specific calendar,MathComponents.TimeComponents.Component_CreateDateExotic,Math Components
 Maths,Construct Matrix,54ac80cf-74f3-43f7-834c-0e3fe94632c6,Matrix,Construct a matrix from initial values,MathComponents.MatrixComponents.Component_ConstructMatrix,Math Components
 Maths,Construct Smooth Time,f151b0b9-cef8-4809-96fc-9b14f1c3a7b9,SmTime,Construct a time instance from smooth components,MathComponents.TimeComponents.Component_CreateSmoothTime,Math Components
@@ -376,13 +376,13 @@ Maths,Cube Root,5b0be57a-31f5-4446-a11a-ae0d348bca90,Cbrt,Compute the cube root 
 Maths,Date Range,38a4e722-ad5a-4229-a170-e27ae1345538,RDate,Create a range of successive dates or times,MathComponents.TimeComponents.Component_DateRange,Math Components
 Maths,Deconstruct Date,d5e28df8-495b-4892-bca8-60748743d955,DDate,"Deconstruct a date into years, months, days, hours, minutes and seconds",MathComponents.TimeComponents.Component_DeconstructDate,Math Components
 Maths,Deconstruct Domain,825ea536-aebb-41e9-af32-8baeb2ecb590,DeDomain,Deconstruct a numeric domain into its component parts.,MathComponents.DomainComponents.Component_DeconstructDomain,Math Components
-Maths,Deconstruct Domain²,47c30f9d-b685-4d4d-9b20-5b60e48d5af8,DeDom2Num,Deconstruct a two-dimensional domain into four numbers,MathComponents.DomainComponents.Component_Deconstruct2DInterval_Numeric,Math Components
-Maths,Deconstruct Domain²,f0adfc96-b175-46a6-80c7-2b0ee17395c4,DeDom2,Deconstruct a two-dimensional domain into its component parts,MathComponents.DomainComponents.Component_Deconstruct2DInterval,Math Components
+Maths,Deconstruct DomainÂ²,47c30f9d-b685-4d4d-9b20-5b60e48d5af8,DeDom2Num,Deconstruct a two-dimensional domain into four numbers,MathComponents.DomainComponents.Component_Deconstruct2DInterval_Numeric,Math Components
+Maths,Deconstruct DomainÂ²,f0adfc96-b175-46a6-80c7-2b0ee17395c4,DeDom2,Deconstruct a two-dimensional domain into its component parts,MathComponents.DomainComponents.Component_Deconstruct2DInterval,Math Components
 Maths,Deconstruct Matrix,3aa2a080-e322-4be3-8c6e-baf6c8000cf1,DeMatrix,Deconstruct a matrix into its component parts,MathComponents.MatrixComponents.Component_DeconstructMatrix,Math Components
 Maths,Degrees,0d77c51e-584f-44e8-aed2-c2ddf4803888,Deg,Convert an angle specified in radians to degrees,MathComponents.FunctionComponents.FuncToDegrees,Math Components
 Maths,Display Matrix,b6d27aa4-a61f-4d08-b76e-1105fef0e9e4,Matrix,Display a matrix,XformComponents.DisplayMatrix,Transform Components
 Maths,Divide Domain,75ef4190-91a2-42d9-a245-32a7162b0384,Div,Divide a domain into equal segments.,MathComponents.DomainComponents.Component_DivideInterval,Math Components
-Maths,Divide Domain²,75ac008b-1bc2-4edd-b967-667d628b9d24,Divide,Divides a two-dimensional domain into equal segments.,MathComponents.DomainComponents.Component_Divide2DInterval,Math Components
+Maths,Divide DomainÂ²,75ac008b-1bc2-4edd-b967-667d628b9d24,Divide,Divides a two-dimensional domain into equal segments.,MathComponents.DomainComponents.Component_Divide2DInterval,Math Components
 Maths,Division,9c85271f-89fa-4e9f-9f4a-d75802120ccc,A/B,Mathematical division,MathComponents.OperatorComponents.Operator_Division,Math Components
 Maths,DotNET C# Script (LEGACY),88c3f2b5-27f7-48a2-9528-1397fad62b93,C#,A C#.NET scriptable component,ScriptComponents.Legacy.ComponentLegacyCsScript,Script Components
 Maths,DotNET VB Script (LEGACY),fb6aba99-fead-4e42-b5d8-c6de5ff90ea6,VB,A VB.NET scriptable component,ScriptComponents.Legacy.ComponentLegacyVbScript,Script Components
@@ -417,7 +417,7 @@ Maths,Mass Multiplication,e44c1bd7-72cc-4697-80c9-02787baf7bb4,MM,Perform mass m
 Maths,Maximum,0d1e2027-f153-460d-84c0-f9af431b08cb,Max,Return the greater of two items.,MathComponents.OperatorComponents.Operator_Maximum,Math Components
 Maths,Minimum,57308b30-772d-4919-ac67-e86c18f3a996,Min,Return the lesser of two items.,MathComponents.OperatorComponents.Operator_Minimum,Math Components
 Maths,Modulus,431bc610-8ae1-4090-b217-1a9d9c519fe2,Mod,Divides two numbers and returns only the remainder.,MathComponents.OperatorComponents.Operator_Modulus,Math Components
-Maths,Multiplication,ce46b74e-00c9-43c4-805a-193b69ea4a11,A×B,Mathematical multiplication,MathComponents.OperatorComponents.Component_VariableMultiplication,Math Components
+Maths,Multiplication,ce46b74e-00c9-43c4-805a-193b69ea4a11,AÃ—B,Mathematical multiplication,MathComponents.OperatorComponents.Component_VariableMultiplication,Math Components
 Maths,Natural logarithm,23afc7aa-2d2f-4ae7-b876-bf366246b826,Ln,Compute the natural logarithm of a value.,MathComponents.FunctionComponents.FuncLog,Math Components
 Maths,Natural logarithm,b6cac37c-21b9-46c6-bd0d-17ff67796578,E,Returns a factor of the natural number (e).,MathComponents.FunctionComponents.Component_E,Math Components
 Maths,Negative,a3371040-e552-4bc8-b0ff-10a840258e88,Neg,Compute the negative of a value.,MathComponents.FunctionComponents.OperatorSign,Math Components
@@ -425,9 +425,9 @@ Maths,One Over X,797d922f-3a1d-46fe-9155-358b009b5997,1/x,Compute one over x.,Ma
 Maths,Orthocentre,36dd5551-b6bd-4246-bd2f-1fd91eb2f02d,OCentre,Generate the triangle orthocentre from altitudes.,XformComponents.TriangleOrthocentre,Transform Components
 Maths,Pi,0d2ccfb3-9d41-4759-9452-da6a522c3eaa,Pi,Returns a factor of Pi.,MathComponents.FunctionComponents.Component_Pi,Math Components
 Maths,Power,78fed580-851b-46fe-af2f-6519a9d378e0,Pow,Raise a value to a power.,MathComponents.OperatorComponents.Operator_Power,Math Components
-Maths,Power of 10,2ebb82ef-1f90-4ac9-9a71-1fe0f4ef7044,10º,Raise 10 to the power of N.,MathComponents.FunctionComponents.Func10Power,Math Components
-Maths,Power of 2,7a1e5fd7-b7da-4244-a261-f1da66614992,2º,Raise 2 to the power of N.,MathComponents.FunctionComponents.Func2Power,Math Components
-Maths,Power of E,c717f26f-e4a0-475c-8e1c-b8f77af1bc99,Eº,Raise E to the power of N.,MathComponents.FunctionComponents.FuncExponential,Math Components
+Maths,Power of 10,2ebb82ef-1f90-4ac9-9a71-1fe0f4ef7044,10Âº,Raise 10 to the power of N.,MathComponents.FunctionComponents.Func10Power,Math Components
+Maths,Power of 2,7a1e5fd7-b7da-4244-a261-f1da66614992,2Âº,Raise 2 to the power of N.,MathComponents.FunctionComponents.Func2Power,Math Components
+Maths,Power of E,c717f26f-e4a0-475c-8e1c-b8f77af1bc99,EÂº,Raise E to the power of N.,MathComponents.FunctionComponents.FuncExponential,Math Components
 Maths,Python 3 Script,719467e6-7cf5-4848-99b0-c5dd57e5442c,Py3,Python 3 scripting component,RhinoCodePluginGH.Components.Python3Component,RhinoCodePluginGH
 Maths,Radians,a4cd2751-414d-42ec-8916-476ebf62d7fe,Rad,Convert an angle specified in degrees to radians,MathComponents.FunctionComponents.FuncToRadians,Math Components
 Maths,Relative Differences,dd17d442-3776-40b3-ad5b-5e188b56bd4c,RelDif,Compute relative differences for a list of data,MathComponents.OperatorComponents.Component_RelativeDifferences,Math Components
@@ -520,7 +520,7 @@ Mesh,Triangulate,3fba11d5-b30a-4146-8d80-d591e7a0a287,Tri,Triangulate all quads 
 Mesh,Unify Mesh,ca6a48f4-b681-4989-b0c1-301a2929a84c,UniM,Unify the normals of a mesh,SurfaceComponents.MeshComponents.GH_MeshUnify,Surface Components
 Mesh,Unweld Mesh,47814a17-ca9e-4305-9400-3a9c8d71c19d,Unweld,Unweld (split) creases in a mesh,SurfaceComponents.MeshComponents.Component_MeshUnweld,Surface Components
 Mesh,Voronoi,a4011be0-1c91-45bd-8280-17dd3a9f46f1,Voronoi,Planar voronoi diagram for a collection of points,TriangulationComponents.Component_PlanarVoronoi,Triangulation Components
-Mesh,Voronoi 3D,ba9bb57a-61cf-4207-a1c4-994e371ba4f9,Voronoi³,Volumetric voronoi diagram for a collection of points,TriangulationComponents.Component_VolumeVoronoi,Triangulation Components
+Mesh,Voronoi 3D,ba9bb57a-61cf-4207-a1c4-994e371ba4f9,VoronoiÂ³,Volumetric voronoi diagram for a collection of points,TriangulationComponents.Component_VolumeVoronoi,Triangulation Components
 Mesh,Voronoi Cell,7b181be1-30e7-4a97-915a-1b461741aef8,VCell,Compute a single 3D Voronoi cell,TriangulationComponents.Component_VoronoiCell,Triangulation Components
 Mesh,Voronoi Groups,9d4854fe-70db-4863-967b-4120d0b6d2e4,VorGroup,Compute a custom set of nested voronoi diagrams.,TriangulationComponents.Component_RecursivePlanarVoronoi,Triangulation Components
 Mesh,Weld Mesh,9f6d85c9-1143-4538-bca7-69dcb11a74ef,Weld,Weld (merge) creases in a mesh,SurfaceComponents.MeshComponents.Component_MeshWeld,Surface Components
@@ -569,7 +569,7 @@ Params,Date Time Format,92fb7644-3d25-4ba1-ab06-469bd58add90,Format,Contains a c
 Params,Digit Scroller,33bcf975-a0b2-4b54-99fd-585c893b9e88,,Numeric scroller for single numbers,Grasshopper.Kernel.Special.GH_DigitScroller,Grasshopper
 Params,Dimension Settings,5de23a52-b490-4d85-9c87-fbc0e353ecaf,Dimension,Contains a collection of dimension settings,Grasshopper.Rhinoceros.Annotations.Params.Param_AnnotationDimensionSettings,Grasshopper
 Params,Domain,15b7afe5-d0d0-43e1-b894-34fcfe3be384,Domain,Contains a collection of numeric domains,Grasshopper.Kernel.Parameters.Param_Interval,Grasshopper
-Params,Domain²,90744326-eb53-4a0e-b7ef-4b45f5473d6e,Domain²,Contains a collection of 2D number domains,Grasshopper.Kernel.Parameters.Param_Interval2D,Grasshopper
+Params,DomainÂ²,90744326-eb53-4a0e-b7ef-4b45f5473d6e,DomainÂ²,Contains a collection of 2D number domains,Grasshopper.Kernel.Parameters.Param_Interval2D,Grasshopper
 Params,Expression,bc6c097c-6cc2-479c-b5aa-af99fbb72b88,Exp,A textual expression,MathComponents.ExpressionComponents.ExpressionParameter,Math Components
 Params,Extrusion,f638f034-5ce2-4536-8fa5-2c6ab8e9456c,Extrusion,Contains a collection of Extrusions,Grasshopper.Kernel.Parameters.Param_Extrusion,Grasshopper
 Params,Field,3175e3eb-1ae0-4d0b-9395-53fd3e8f8a28,Field,Contains a collection of vector fields,Grasshopper.Kernel.Parameters.Param_Field,Grasshopper
