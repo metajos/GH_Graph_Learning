@@ -1,31 +1,25 @@
 import datetime
-import json
-import os
+
 import pickle
 import shutil
-from pathlib import Path
-import logging
-import json
+
 import os
-import networkx as nx
+
 import rhinoinside
-import logging
-import nbimporter
+
 from icecream import ic
 
 rhinoinside.load()
-import Rhino
+
 import clr
 import sys
 import System
 import io
 import csv
 import pandas as pd
-from IPython.display import display
+
 import torch
-from typing import Dict, List
-import networkx as nx
-import matplotlib.pyplot as plt
+
 import matplotlib
 from matplotlib.patches import Patch
 
@@ -40,10 +34,14 @@ import Grasshopper.GUI
 import Grasshopper.Kernel as ghk
 from Grasshopper.Kernel import IGH_Component
 from Grasshopper.Kernel import IGH_Param
-import traceback
+
 from typing import Dict, List, Tuple
-from pathlib import Path
+
 import logging
+import matplotlib.pyplot as plt
+import networkx as nx
+from matplotlib.patches import Patch
+from pathlib import Path
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s: %(message)s',
@@ -471,31 +469,29 @@ class GHComponentTable:
         cls._idx_to_guid = {idx: row['guid'] for idx, row in df.iterrows()}
         return df
 
-    @classmethod
-    def get_guid_to_idx(cls, guid: System.Guid) -> int:
-        return cls._guid_to_idx.get(str(guid), None)
+    # @classmethod
+    # def get_guid_to_idx(cls, guid: System.Guid) -> int:
+    #     return cls._guid_to_idx.get(str(guid), None)
 
-    @classmethod
-    def get_idx_to_guid(cls, idx: int) -> System.Guid:
-        guid_str = cls._idx_to_guid.get(idx, None)
-        return System.Guid(guid_str) if guid_str else None
+    # @classmethod
+    # def get_idx_to_guid(cls, idx: int) -> System.Guid:
+    #     guid_str = cls._idx_to_guid.get(idx, None)
+    #     return System.Guid(guid_str) if guid_str else None
 
     @classmethod
     def component_to_idx(cls, component) -> int:
         component_category = component.category
+
         component_name = component.name
         if cls.df is not None:
-            filtered_df = cls.df.where(
-                (cls.df['category'] == component_category) & (cls.df['name'] == component_name)
-            ).dropna()
-
-            if not filtered_df.empty:
-                guid_str = filtered_df.guid.iloc[0]
-                idx = cls.get_guid_to_idx(System.Guid(guid_str))
-                return idx if idx is not None else -1
+            id = str(component.obj.ComponentGuid)
+            q = cls.df.query("`guid` == @id")
+            if q.empty:
+                raise ValueError(f"Component {component_name} not found in dataframe.")
+            else:
+                return q.index[0]
         else:
-            ic(f"Component {component_name} not found in dataframe.")
-            return -1
+            raise ValueError(f"Cant Search an empty dataframe.")
 
     @classmethod
     def idx_to_component(cls, idx):
@@ -743,12 +739,12 @@ class Canvas:
 class GraphConnection:
 
     def __init__(self, v1n, v1i, v2n, v2i, edge):
-        self.v1n = -1 if v1n is None else v1n
-        self.v1i = -1 if v1i is None else v1i
-        self.v2n = -1 if v2n is None else v2n
-        self.v2i = -1 if v2i is None else v2i
-        self.e1 = -1 if edge[0] is None else edge[0]
-        self.e2 = -1 if edge[1] is None else edge[1]
+        self.v1n = v1n
+        self.v1i = v1i
+        self.v2n = v2n
+        self.v2i = v2i
+        self.e1 =  edge[0]
+        self.e2 = edge[1]
         self.tensor = torch.tensor([self.v1n, self.v1i, self.e1, self.v2n, self.v2i, self.e2], dtype=torch.int16)
 
     @property
@@ -823,7 +819,7 @@ class GHGraph:
     def nxGraph(self, bidirectional=False) -> nx.Graph:
         try:
             gx = nx.DiGraph()
-            ic(gx.is_directed())
+
 
             # Step 1: Add all nodes to the graph
             for node in self.nodes:
@@ -838,6 +834,7 @@ class GHGraph:
                         gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
 
             return gx
+
         except AttributeError as e:
             ename = self.canvas.env.environment_name
             name = self.canvas.name
@@ -861,10 +858,7 @@ class GHGraph:
                 logging.warning(f"#{ename}${name} did not process into a generic graph")
 
     def show_graph(self, savename=None):
-        import matplotlib.pyplot as plt
-        import networkx as nx
-        from matplotlib.patches import Patch
-        from pathlib import Path
+
 
         plt.figure(figsize=(20, 12))  # Increase the figure size
         gx = self.nxGraph()
