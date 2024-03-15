@@ -619,6 +619,27 @@ class GHDocumentPreprocessor:
 
         return doc
 
+    def move_file_to_error_bin(self, file: Path, error_message: str = ""):
+        """
+        Moves the specified file to the error_bin directory and logs the error message.
+
+        Parameters:
+            file (Path): The file to be moved.
+            error_message (str): An optional error message to log.
+        """
+        try:
+            if not file.exists():
+                print(f"File does not exist: {file}")
+                return
+
+            new_file_path = self.error_bin / file.name
+            shutil.move(str(file), str(new_file_path))
+            if error_message:
+                print(error_message)
+            print(f"File moved to error bin: {new_file_path}")
+        except Exception as e:
+            print(f"Failed to move file to error bin: {e}")
+
     def preprocess_and_replace(self, doc, file, illegals_dict, overwrite: bool = True):
         doc = self.remove_unwanted_items(doc=doc, illegals_dict=illegals_dict)
         doc = self.replace_obsolete_components(doc)
@@ -628,10 +649,7 @@ class GHDocumentPreprocessor:
             try:
                 self.doc_save(doc)
             except Exception as e:
-                new_file_path = file.with_name(file.stem + file.suffix)
-                shutil.move(file, self.error_bin / new_file_path)
-                print(f"Error in saving {doc}: {e}")
-                print("File moved to error bin.")
+                self.move_file_to_error_bin(file, e)
 
         print("Preprocessing, replacement, and placeholder removal complete.")
         return doc

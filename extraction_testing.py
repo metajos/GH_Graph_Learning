@@ -102,6 +102,38 @@ class MyTestCase(unittest.TestCase):
             print(node.feature_vector)
 
 
+    def test_exporting_folder(self):
+        filelogger = create_named_logger("file_logger", "file_logger.log")
+        name = "240308-initial_test"
+        illegals_dict = {
+            "Bifocals": "aced9701-8be9-4860-bc37-7e22622afff4",
+            "Group": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+            "Sketch": "2844fec5-142d-4381-bd5d-4cbcef6d6fed",
+            "Cluster": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+            "Scribble": "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe"
+        }
+        env = load_create_environment(name)
+        GHComponentTable.initialise()
+        folder = Path(env.dirs['files'])
+        error_bin = Path(env.dirs['logs'])
+        files = list(folder.glob("*.gh"))[:10]
+        for i, file in enumerate(files):
+            ghpp = GHDocumentPreprocessor(str(file), error_bin)
+            doc =ghpp.process_folder_or_file(illegals_dict)
+            try:
+                canvas = Canvas("canvas", doc, env)
+                gh_graph = GHGraph(canvas)
+                gh_graph.save_graph(env.dirs["graphml"] / file.stem)
+                gh_graph.graph_img(env.dirs["graphml"] / file.stem, show=False)
+                filelogger.info(f"processed : {i}/{len(files)} : {file}")
+            except Exception as e:
+                filelogger.warning(f"ERROR : {i}/{len(files)} : {file}")
+                ghpp.move_file_to_error_bin(file, e)
+                print("error" + str(file))
+
+        print("done" + str(file))
+
+
 
 if __name__ == '__main__':
     unittest.main()
