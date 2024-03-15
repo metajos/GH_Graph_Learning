@@ -65,7 +65,7 @@ class MyTestCase(unittest.TestCase):
         nxgraph = graph.nxGraph()
         location = self.gh_file
         graph.save_graph(str(location))
-        display(graph.show_graph(str(str(location) + ".png")))
+        graph.graph_img(str(str(location) + ".png"))
 
 
     # def test_all_files(self):
@@ -75,6 +75,32 @@ class MyTestCase(unittest.TestCase):
         doc = GHProcessor.get_ghdoc(str(self.gh_file))
         illegals = ["Panel"]
         canvas = Canvas(self, doc, self)
+
+
+    def test_graph_processing(self):
+        name = "240308-initial_test"
+        env = load_create_environment(name)
+        GHComponentTable.initialise()
+        filepath = Path(r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\TTD\bigboy\01533-Bridge Alignment-Option 1.gh")
+        doc = GHProcessor.get_ghdoc(str(filepath))
+        canvas = Canvas("canvas", doc, env)
+        gh_graph = GHGraph(canvas)
+        # for node in gh_graph.nodes:
+        #     print(node.pos)
+        gh_graph.save_graph(env.dirs["graphml"] / filepath.stem)
+        gh_graph.graph_img(env.dirs["graphml"] / filepath.stem)
+
+    def test_graph_feature_vector(self):
+        name = "240308-initial_test"
+        env = load_create_environment(name)
+        GHComponentTable.initialise()
+        filepath = Path(r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\TTD\bigboy\01533-Bridge Alignment-Option 1.gh")
+        doc = GHProcessor.get_ghdoc(str(filepath))
+        canvas = Canvas("canvas", doc, env)
+        gh_graph = GHGraph(canvas)
+        for node in gh_graph.nodes:
+            print(node.feature_vector)
+
 
 
 if __name__ == '__main__':

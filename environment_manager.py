@@ -1,28 +1,21 @@
 import datetime
-
 import pickle
-import shutil
-
-import os
-
 import rhinoinside
-
-from icecream import ic
-
 rhinoinside.load()
-
 import clr
 import sys
 import System
 import io
 import csv
 import pandas as pd
+import os
+import shutil
 
 import torch
 
 import matplotlib
 from matplotlib.patches import Patch
-
+import matplotlib.cm as cm
 path = r"C:\Program Files\Rhino 8\Plug-ins\Grasshopper"
 sys.path.append(path)
 clr.AddReference("Grasshopper")
@@ -34,64 +27,65 @@ import Grasshopper.GUI
 import Grasshopper.Kernel as ghk
 from Grasshopper.Kernel import IGH_Component
 from Grasshopper.Kernel import IGH_Param
-
-from typing import Dict, List, Tuple
-
+from Grasshopper.Kernel import GH_DocumentIO
+from typing import Dict, List, Tuple, Union
+import numpy as np
 import logging
 import matplotlib.pyplot as plt
 import networkx as nx
 from matplotlib.patches import Patch
 from pathlib import Path
-
+import re
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s: %(message)s',
                     filemode="w",
                     filename="tests")
-ic.disable()
-# def get_custom_logger(name, log_file_path, log_level_num):
-#     """
-#     Create and configure a logger.
-#
-#     Parameters:
-#     - name: str, name of the logger.
-#     - log_file_path: str, file path for the logger to write logs.
-#     - log_level_num: int, logging level as an enumeration (1=DEBUG, 2=INFO, 3=WARNING, 4=ERROR, 5=CRITICAL).
-#
-#     Returns:
-#     - logger: configured logger object.
-#     """
-#     # Map numerical level to logging level
-#     level_dict = {
-#         1: logging.DEBUG,
-#         2: logging.INFO,
-#         3: logging.WARNING,
-#         4: logging.ERROR,
-#         5: logging.CRITICAL
-#     }
-#     log_level = level_dict.get(log_level_num, logging.DEBUG)
-#
-#     # Create or get the logger
-#     logger = logging.getLogger(name)
-#     logger.setLevel(log_level)
-#     logger.handlers = []  # Reset handlers to avoid duplicate messages
-#
-#     # Create a file handler and set its level
-#     file_handler = logging.FileHandler(log_file_path)
-#     file_handler.setLevel(log_level)
-#
-#     # Create a formatter and set it for the handler
-#     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-#     file_handler.setFormatter(formatter)
-#
-#     # Add the file handler to the logger
-#     logger.addHandler(file_handler)
-#
-#     return logger
-#
-# error_logger = get_custom_logger("error_logger",
-#                                  r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\logs\"error.log",
-#                                  1)
+# create the loggers
 
+import logging
+
+
+def create_named_logger(name, filename):
+    # Create a logger with the specified name
+    logger = logging.getLogger(name)
+
+    # Set the log level to INFO
+    logger.setLevel(logging.DEBUG)
+
+    # Create a file handler
+    handler = logging.FileHandler(filename, mode='w')
+
+    # Set the level of the handler to INFO
+    handler.setLevel(logging.DEBUG)
+
+    # Create a formatter
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    # Add the formatter to the handler
+    handler.setFormatter(formatter)
+
+    # Add the handler to the logger
+    logger.addHandler(handler)
+
+    return logger
+
+
+logging_location = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\logs"
+
+
+# Usage
+
+def debug_obj(obj):
+    complog.debug("The object is not an IGH_Component or IGH_Param.")
+    complog.debug(f"Name: {obj.Name}")
+    complog.debug(f"Nickname: {obj.NickName}")
+    complog.debug(f"Guid: {obj.ComponentGuid}")
+    complog.debug(f"IGHComponent: {GHComponent.is_cls(obj, ghk.IGH_Component)}")
+    complog.debug(f"IGHParam: {GHComponent.is_cls(obj, ghk.IGH_Param)}")
+
+
+complog = create_named_logger('components', Path(logging_location) / 'complog.log')
+complog.info('Loggging started')
 class EnvironmentManager:
     _environments = {}  # Stores Environment instances keyed by environment_name
 
@@ -507,13 +501,154 @@ class GHComponentTable:
             return []
 
 
+
+class GHDocumentPreprocessor:
+    def __init__(self, folder_path: str, error_bin: str):
+        self.folder_path = Path(folder_path)
+        self.error_bin = Path(error_bin)
+
+    def process_folder_or_file(self, illegals_dict ,overwrite: bool = True):
+        if self.folder_path.is_file() and self.folder_path.suffix == ".gh":
+            # Process a single file
+            doc = GHProcessor.get_ghdoc(str(self.folder_path))
+            if doc:
+                doc = self.preprocess_and_replace(doc= doc,
+                                                  file=self.folder_path,
+                                                  illegals_dict=illegals_dict,
+                                                  overwrite=overwrite)
+                return doc
+            else:
+                print(f"Failed to open file: {self.folder_path}")
+        elif self.folder_path.is_dir():
+            # Process all files in the folder
+            docs = []
+            for file in self.folder_path.glob("*.gh"):
+                doc = GHProcessor.get_ghdoc(str(file))
+                if doc:
+                    doc = self.preprocess_and_replace(doc= doc,
+                                                  file=file,
+                                                  illegals_dict=illegals_dict,
+                                                  overwrite=overwrite)
+                    docs.append(doc)
+                else:
+                    print(f"Failed to open file: {file}")
+            return docs
+        else:
+            print(f"Invalid path: {self.folder_path}")
+
+    def remove_unwanted_items(self, doc, illegals_dict: Dict):
+        illegals_set = set([str(v) for v in illegals_dict.values()])
+        removables = [obj for obj in doc.Objects if str(obj.ComponentGuid) in illegals_set]
+        for obj in removables:
+            doc.RemoveObject(obj, True)
+        return doc
+
+    def doc_save(self, doc):
+        ghdio = GH_DocumentIO(doc)
+        ghdio.Save()
+
+    def get_component_type(self, component):
+        pattern = r"^(.*?)_OBSOLETE"
+        match = re.search(pattern, str(component))
+        return match.group(1) if match else None
+
+    def create_new_component(self, component_type: str):
+        replacement_guids = GHComponentTable.get_guid_by_type(component_type)
+        if replacement_guids:
+            new_component_proxy = GHComponentTable.search_component_by_guid(System.Guid(replacement_guids[0]))
+            if new_component_proxy:
+                return new_component_proxy.CreateInstance()
+        return None
+
+    def rewire_connections(self, old_component, new_component):
+        old_component_obj = GHComponent.convert_cls(old_component, ghk.IGH_Component)
+        new_component_obj = GHComponent.convert_cls(new_component, ghk.IGH_Component)
+
+        if old_component_obj and new_component_obj:
+            for input, new_input in zip(old_component_obj.Params.Input, new_component_obj.Params.Input):
+                for source in input.Sources:
+                    new_input.AddSource(source)
+            for output, new_output in zip(old_component_obj.Params.Output, new_component_obj.Params.Output):
+                for recipient in output.Recipients:
+                    recipient.AddSource(new_output)
+
+        else:
+            old_param_obj = GHComponent.convert_cls(old_component, ghk.IGH_Param)
+            new_param_obj = GHComponent.convert_cls(new_component, ghk.IGH_Param)
+
+            if old_param_obj and new_param_obj:
+                for source in old_param_obj.Sources:
+                    new_param_obj.AddSource(source)
+                for recipient in old_param_obj.Recipients:
+                    recipient.AddSource(new_param_obj)
+
+            else:
+                print(f"Cannot rewire connections. Incompatible component types: {type(old_component)} and {type(new_component)}")
+
+    def replace_component(self, doc, old_component, new_component):
+        if new_component:
+            new_component.Attributes.Pivot = old_component.Attributes.Pivot
+            doc.AddObject(new_component, False)
+            self.rewire_connections(old_component, new_component)
+            doc.RemoveObject(old_component, True)
+            return True
+        return False
+
+    def replace_obsolete_components(self, doc):
+        for component in list(doc.Objects):
+            if hasattr(component, 'Obsolete') and component.Obsolete:
+                component_type = self.get_component_type(component)
+                if component_type:
+                    new_component = self.create_new_component(component_type)
+                    if not self.replace_component(doc, component, new_component):
+                        print(f"Could not replace obsolete component: {component.Name}")
+        print("Replacement of obsolete components complete.")
+        return doc
+
+    def remove_placeholder_components(self, doc, update=True):
+        placeholders = []
+        for component in doc.Objects:
+            a = GHComponentTable.get_guid_to_idx(str(component.ComponentGuid))
+            if a is None:
+                placeholders.append(component)
+        if update:
+            ghk.GH_Document.NewSolution(doc, False)
+
+        for placeholder in placeholders:
+            doc.RemoveObject(placeholder, False)
+
+        return doc
+
+    def preprocess_and_replace(self, doc, file, illegals_dict, overwrite: bool = True):
+        doc = self.remove_unwanted_items(doc=doc, illegals_dict=illegals_dict)
+        doc = self.replace_obsolete_components(doc)
+        doc = self.remove_placeholder_components(doc)
+
+        if overwrite:
+            try:
+                self.doc_save(doc)
+            except Exception as e:
+                new_file_path = file.with_name(file.stem + file.suffix)
+                shutil.move(file, self.error_bin / new_file_path)
+                print(f"Error in saving {doc}: {e}")
+                print("File moved to error bin.")
+
+        print("Preprocessing, replacement, and placeholder removal complete.")
+        return doc
+
+
 class GHNode:
     def __init__(self, obj: ghk.IGH_DocumentObject):
         self.obj = obj
         self.category = obj.Category
         self.name = obj.Name
         self.id = str(obj.InstanceGuid)
-        self.position = obj.Attributes.Pivot if hasattr(obj.Attributes, "Pivot") else None
+        self.pos = obj.Attributes.Pivot if hasattr(obj.Attributes, "Pivot") else None
+        self.X = None
+        self.Y = None
+        if self.pos:
+            self.X = self.pos.X
+            self.Y = self.pos.Y
         self.uid = f"{self.category}_{self.name}_{self.id[-5:]}"
         # Assuming global_idx is somehow related to GHComponentTable, which might need instance reference
         self.global_idx = GHComponentTable.component_to_idx(self)  # This requires GHComponentTable method adjustment
@@ -534,7 +669,7 @@ class GHNode:
             f"Category: {self.category}, "
             f"Name: {self.name}, "
             f"ID: {self.id[-5:]}, "
-            f"Position: {self.position}"
+            f"Position: {self.pos}"
             f"Global: {self.global_idx}"
         }
         # This method seems intended for logging or debugging, consider how it's used and adapt accordingly.
@@ -549,10 +684,10 @@ class GHParam:
         self.datamapping = int(obj.DataMapping)  # enumerator 0:none, 1:Flatten, 2:Graft
         self.pkind = obj.Kind  # the kind: floating (top level), input (parameter tied to component as input), output (parameter tied to a component as an output
         self.dataEmitter = obj.IsDataProvider  # boolean stating whether this object is able to emit data
-        # self.typ = obj.Type
+
         self.typname = obj.TypeName  # human-readable descriptor of this parameter
         self.optional = obj.Optional  # gets whether this parameter is optional to the functioning of the component
-        logging.info(f'GHComponent {self.parent.name} Params: {self.log_properties()}')
+        # logging.info(f'GHComponent {self.parent.name} Params: {self.log_properties()}')
 
     @property
     def recipients(self):
@@ -595,45 +730,55 @@ class GHComponent(GHNode):
 
     def __init__(self, obj):
         super().__init__(obj)
+        self.obj: Union[IGH_Component or IGH_Param] = None
+        self.iparams = []
+        self.oparams = []
+        self.recipients = []
+        self.iparams_dict = {}
+        self.oparams_dict = {}
+
+        # Attempt to initialize parameters
+        self.initialize_parameters(obj)
+        self.initialize_lookup_dicts()
+
+    def initialize_parameters(self, obj):
+        if GHComponent.is_cls(obj, ghk.IGH_Component):
+            self.obj = IGH_Component(obj)
+            self.iparams = [GHParam(p) for p in self.obj.Params.Input]
+            self.oparams = [GHParam(p) for p in self.obj.Params.Output]
+
+        elif GHComponent.is_cls(obj, ghk.IGH_Param):
+            self.obj = IGH_Param(obj)
+            param = GHParam(self.obj)
+            self.iparams = [param]
+            self.oparams = [param]
+        else:
+            debug_obj(obj)
+            raise TypeError("The object is not an IGH_Component or IGH_Param.")
+
+    def initialize_lookup_dicts(self):
+        self.iparams_dict = {k.name: i for i, k in enumerate(self.iparams)}
+        complog.debug(f"{self.name}: iparams dict: {self.iparams_dict}")
+        self.oparams_dict = {k.name: i for i, k in enumerate(self.oparams)}
+        complog.debug(f"{self.name}: iparams dict: {self.oparams_dict}")
+
+    @staticmethod
+    def is_cls(obj, clas):
         try:
-            self.iparams = None
-            self.oparams = None
-            self.recipients = None
-            try:
-                if self.category == "Params":
-                    self.obj = IGH_Param(obj)
-                    self.iparams = [GHParam(self.obj)]
-                    self.oparams = [GHParam(self.obj)]
-                else:
-                    self.obj = IGH_Component(obj)
-                    self.iparams = [GHParam(p) for p in self.obj.Params.Input]
-                    self.oparams = [GHParam(p) for p in self.obj.Params.Output]
-                self.recipients = [(param.name, [GHParam(p).parent for p in param.recipients]) for param in self.oparams
-                                   if param.recipients is not None]
-            except TypeError as e:
-                logging.warning(f"COMPONENT {self.name},{self.id[-5:]}  failed initial assignment of parameters: {e}")
-                try:
-                    self.obj = IGH_Param(obj)
-                    self.iparams = [GHParam(self.obj)]
-                    self.oparams = [GHParam(self.obj)]
-                    logging.info(
-                        f"COMPONENT {self.name},{self.id[-5:]} successfully assigned parameters: {self.iparams}, {self.oparams}")
-                except TypeError as e:
-                    print(e)
-                    logging.warning(
-                        f"COMPONENT {self.name},{self.id[-5:]} DID NOT EXTRACT PARAMETERS, not added to components table")
-                    print(f"DID NOT ADD {self.name}")
-        except TypeError as e:
-            print(e)
+            clas(obj)
+            return True
+        except Exception:
+            return False
+    @staticmethod
+    def convert_cls(obj, clas):
         try:
-            self.iparams_dict = {k.name: i for i, k in enumerate(self.iparams)}
-            self.oparams_dict = {k.name: i for i, k in enumerate(self.oparams)}
-        except TypeError as e:
-            logging.warning(f"COMPONENT {self.name}, doesnt process")
+            return clas(obj)
+        except Exception:
+            return None
+
 
     def get_connections(self, canvas):
         """Returns the source and recipient connections for this component"""
-
         source_connections = []
         recipient_connections = []
 
@@ -676,11 +821,17 @@ class GHComponent(GHNode):
 
         return source_connections, recipient_connections
 
+    def print_conns(self, canvas):
+        source_conns, recipient_conns = self.get_connections(canvas)
+        print(f"Component: {self.name}")
+        print(f"Sources: {source_conns}")
+        print(f"Recipients: {recipient_conns}")
+
     def __str__(self):
-        return f"{self.name} ({self.category})"
+        return f"Comp:{self.name}"
 
     def __repr__(self):
-        return f"<GHComponent {self.__str__()}>"
+        return f"<GHNComponent {self.__str__()}>"
 
 
 class Canvas:
@@ -738,14 +889,19 @@ class Canvas:
 
 class GraphConnection:
 
-    def __init__(self, v1n, v1i, v2n, v2i, edge):
+    def __init__(self, x1, y1, v1n, v1i, x2, y2, v2n, v2i, edge):
+        self.x1 = x1
+        self.y1 = y1
         self.v1n = v1n
         self.v1i = v1i
+        self.x2 = x2
+        self.y2 = y2
         self.v2n = v2n
         self.v2i = v2i
         self.e1 =  edge[0]
         self.e2 = edge[1]
-        self.tensor = torch.tensor([self.v1n, self.v1i, self.e1, self.v2n, self.v2i, self.e2], dtype=torch.int16)
+        self.tensor = torch.tensor( [x1, y1, v1n, v1i, edge[0], x2, y2, v2n, v2i, edge[1]],
+                                    dtype=torch.int16)
 
     @property
     def edge(self):
@@ -756,55 +912,91 @@ class GraphConnection:
         return (self.e1, self.e2)
 
     def __str__(self):
-        return f"GC({self.v1n}-{self.v1i}, {self.v2n}-{self.v2i})"
+        return f"GC({self.v1n}-{self.v1i}[{self.e1}], {self.v2n}-{self.v2i}[{self.e2}])"
 
     def __repr__(self):
         return f"GraphConn ({self.v1n}-{self.v1i}, {self.v2n}-{self.v2i})"
 
 
 class GraphNode:
-    def __init__(self, graph_id: Tuple[int, int], canvas: Canvas):
-        self.graph_id: Tuple[int, int] = graph_id
-        self.component: GHComponent = canvas.graph_id_to_component.get(graph_id)
+    def __init__(self, component, canvas: Canvas):
+        self.graph_id: Tuple[int, int] = component.graph_id
+        self.component = component
         self.canvas: Canvas = canvas
+        self.X = component.obj.Attributes.Pivot.X
+        self.Y = component.obj.Attributes.Pivot.Y
+        self.pos = (self.X, self.Y)
 
     def edges(self, bidirectional=False):
         """:Returns the edge tuple in the form (int, int), (int,int) where
         the tuple describes the graph node id. If bidirectional is true, both the sources and recipient
         edges are returned, otherwise only the recipient edges are returned"""
 
-        sources, recipients = self.component.get_connections(self.canvas)
-        connections = self.get_graph_connections(sources, recipients)
+        connections = self.get_graph_connections()
         if bidirectional:
             return connections['sources'] + connections['recipients']
         else:
             return connections['recipients']
 
-    def get_graph_connections(self, sources, recipients):
+    def get_graph_connections(self):
+        sources, recipients = self.component.get_connections(self.canvas)
+
         graph_connections = {
             "sources": [],
             "recipients": []
         }
 
         # Process recipient connections (outgoing)
-        for connection in recipients:
-            v2 = connection.get("to")
-            v1n, v1i = self.graph_id
-            v2n, v2i = v2.graph_id
-            edge = connection.get("edge")
-            # we need to ensuure that none of the above values are None, becasue they will be inserted into a tensor
-            # when instantiating a graph connections
-            graph_connections["recipients"].append(GraphConnection(v1n, v1i, v2n, v2i, edge))
+        if recipients:
+            complog.debug(f"Recipients: {recipients}")
+            for connection in recipients:
+                v2 = connection.get("to")
+
+                v1n, v1i = self.graph_id
+                x1= int(self.X)
+                y1 = int(self.Y)
+                v2n, v2i = v2.graph_id
+                edge = connection.get("edge")
+                x2 = int(v2.X)
+                y2 = int(v2.Y)
+                graph_connections["recipients"].append(GraphConnection(x1 ,y1, v1n, v1i, x2, y2,v2n, v2i, edge))
 
         # Process source connections (incoming)
-        for connection in sources:
-            v1 = connection.get("from")
-            v1n, v1i = v1.graph_id
-            v2n, v2i = self.graph_id  # For incoming, self.id is the destination
-            edge = [int(x) for x in connection.get("edge")]
-            graph_connections["sources"].append(GraphConnection(v1n, v1i, v2n, v2i, edge))
+        if sources:
+            complog.debug(f"Sources: {sources}")
+            for connection in sources:
+                v1 = connection.get("from")
+                v1n, v1i = v1.graph_id
+                x1 = int(v1.X)
+                y1 = int(v1.Y)
+                v2n, v2i = self.graph_id  # For incoming, self.id is the destination
+                x2= int(self.X)
+                y2 = int(self.Y)
+                edge = [int(x) for x in connection.get("edge")]
+                graph_connections["sources"].append(GraphConnection(x1 ,y1, v1n, v1i, x2, y2,v2n, v2i, edge))
 
         return graph_connections
+    @property
+    def feature_vector(self):
+        connections = self.edges()
+        # Check if 'connections' is not empty
+        if connections:
+            # Verify each 'conn' in 'connections' has a '.tensor' attribute that is a tensor
+            for conn in connections:
+                if not hasattr(conn, 'tensor'):
+                    print("Missing 'tensor' attribute.")
+                elif not isinstance(conn.tensor, torch.Tensor):
+                    print("The 'tensor' attribute is not a PyTorch Tensor.")
+            connection_tensor = torch.stack([conn.tensor for conn in connections])
+            return connection_tensor
+        else:
+            return torch.tensor([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], dtype=torch.int16)
+        return None
+    def __str__(self):
+        return f"GraphNode: {self.component.name}"
+
+    def __repr__(self):
+        return f"<GraphNode {self.__str__()}>"
 
 
 class GHGraph:
@@ -814,97 +1006,61 @@ class GHGraph:
 
     @property
     def nodes(self) -> List[GraphNode]:
-        return [GraphNode(component.graph_id, self.canvas) for component in self.components]
+        return [GraphNode(component, self.canvas) for component in self.components]
 
     def nxGraph(self, bidirectional=False) -> nx.Graph:
-        try:
-            gx = nx.DiGraph()
+        gx = nx.DiGraph()
+        # Step 1: Add all nodes to the graph
+        for node in self.nodes:
+            node_id = node.graph_id  # Ensure this is a simple, hashable type
+            gx.add_node(node_id, identifier = node_id[0], X=node.X, Y=node.Y)  # Explicitly add nodes
 
+        # Step 2: Add edges to the graph
+        for node in self.nodes:
+            for edge in node.edges():
+                if edge:
+                    # Ensure the tuples are hashable and correspond to actual node identifiers
+                    gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
 
-            # Step 1: Add all nodes to the graph
-            for node in self.nodes:
-                node_id = node.graph_id  # Ensure this is a simple, hashable type
-                gx.add_node(node_id)  # Explicitly add nodes
+        return gx
 
-            # Step 2: Add edges to the graph
-            for node in self.nodes:
-                for edge in node.edges():
-                    if edge:
-                        # Ensure the tuples are hashable and correspond to actual node identifiers
-                        gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
-
-            return gx
-
-        except AttributeError as e:
-            ename = self.canvas.env.environment_name
-            name = self.canvas.name
-            logging.warning(f"#{ename}${name} did not process into a directed graph")
-            try:
-                gx = nx.Graph()
-
-                # Step 1: Add all nodes to the graph
-                for node in self.nodes:
-                    node_id = node.graph_id  # Ensure this is a simple, hashable type
-                    gx.add_node(node_id)  # Explicitly add nodes
-
-                # Step 2: Add edges to the graph
-                for node in self.nodes:
-                    for edge in node.edges():
-                        if edge:
-                            # Ensure the tuples are hashable and correspond to actual node identifiers
-                            gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
-                return gx
-            except AttributeError as e:
-                logging.warning(f"#{ename}${name} did not process into a generic graph")
-
-    def show_graph(self, savename=None):
-
-
-        plt.figure(figsize=(20, 12))  # Increase the figure size
+    def graph_img(self, save_path, show=True):
+        # Create a figure and axis object for a consistent plotting context
+        fig, ax = plt.subplots(figsize=(20, 12))
         gx = self.nxGraph()
 
         # Generate category color map and assign colors
         category_color_map = self.generate_category_color_map()
-        # Adjusted line for node_colors with a safety check for missing categories
-        # First, ensure every node has a default color
-        default_color = "grey"  # or any other color as fallback
-        node_colors = [default_color for _ in range(len(gx.nodes))]  # Pre-fill with default color
-
-        # Now, iterate over the nodes and set colors where applicable
-        for i, graph_id in enumerate(gx.nodes):
-            component = self.canvas.graph_id_to_component.get(graph_id)
-            if component is not None:
-                # If there's a specific category color, use it
-                category = component.category
-                node_colors[i] = category_color_map.get(category, default_color)
-            # If the component is None, node_colors[i] remains the default color
+        default_color = "grey"  # Default color as fallback
+        node_colors = [category_color_map.get(self.canvas.graph_id_to_component.get(node).category,
+                                              default_color) if self.canvas.graph_id_to_component.get(
+            node) else default_color for node in gx.nodes]
 
         # Initialize default labels for all nodes
         default_label = "Unknown"  # Default label for nodes without specific data
-        custom_labels = {node: default_label for node in gx.nodes}  # Pre-fill with default labels
-
-        # Now, iterate over the nodes and set specific labels where applicable
-        for node in gx.nodes:
-            component = self.canvas.graph_id_to_component.get(node)
-            if component is not None:
-                # Update the label with specific data if available
-                custom_labels[node] = component.name  # Assuming each component has a 'name' attribute
-            # If the component is None, custom_labels[node] remains the default label
+        custom_labels = {node: (
+            self.canvas.graph_id_to_component.get(node).name if self.canvas.graph_id_to_component.get(
+                node) else default_label) for node in gx.nodes}
 
         # Choose a different layout to spread out nodes more
-        pos = nx.kamada_kawai_layout(gx)  # Alternative layout
+        pos = {node.graph_id: node.pos for node in self.nodes}  # Using custom positions from nodes
 
-        # Draw the graph with node colors and custom labels
+        # Draw the graph with node colors and custom labels on the created axis
         nx.draw(gx, pos, with_labels=True, labels=custom_labels, node_color=node_colors, node_size=1000,
-                edge_color="gray", linewidths=0.5, font_size=10)
+                edge_color="gray", linewidths=0.5, font_size=10, ax=ax)
 
-        # Create a legend for the categories
+        # Create a legend for the categories and ensure it's properly displayed
         legend_handles = [Patch(color=color, label=category) for category, color in category_color_map.items()]
-        plt.legend(handles=legend_handles, title='Categories', bbox_to_anchor=(1, 1), loc='upper left')
+        ax.legend(handles=legend_handles, title='Categories', loc='upper left', bbox_to_anchor=(1, 1), borderaxespad=0)
 
-        if savename:
-            plt.savefig(Path(self.canvas.env.dirs["graphml"]) / savename)  # Save the large figure if needed
-        plt.show()
+        # Save the figure before showing it to avoid clearing it
+        fig.savefig(str(save_path), bbox_inches="tight")
+
+        if show:
+            plt.show()
+
+
+
 
     def generate_category_color_map(self):
         categories = sorted(GHComponentTable.view_all_categories())
@@ -916,10 +1072,11 @@ class GHGraph:
             category_color_map[category] = color
         return category_color_map
 
-    def save_graph(self, location):
+    def save_graph(self, location: Path):
+        if location.suffix != '.graphml':
+            location = location.with_suffix('.graphml')  # Correctly adds the .graphml extension
         gx = self.nxGraph()
-
-        nx.write_graphml(gx, location)
+        nx.write_graphml(gx, location.as_posix())  # Convert Path object to string if necessary
 
 
 class GHProcessor:
