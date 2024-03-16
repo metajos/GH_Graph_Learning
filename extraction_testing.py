@@ -116,9 +116,11 @@ class MyTestCase(unittest.TestCase):
         GHComponentTable.initialise()
         folder = Path(env.dirs['files'])
         error_bin = Path(env.dirs['logs'])
-        files = list(folder.glob("*.gh"))[:10]
+        files = list(folder.glob("*.gh"))[370:]
         for i, file in enumerate(files):
+            print(f"Preprocessing {file.name}...")
             ghpp = GHDocumentPreprocessor(str(file), error_bin)
+            filelogger.info(f"processing: {file}")
             doc =ghpp.process_folder_or_file(illegals_dict)
             try:
                 canvas = Canvas("canvas", doc, env)
@@ -133,7 +135,32 @@ class MyTestCase(unittest.TestCase):
 
         print("done" + str(file))
 
+    def test_multiplication_issues(self):
 
+        name = "240308-initial_test"
+        env = load_create_environment(name)
+        GHComponentTable.initialise()
+        errorbin = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\TTD\test multiplication issues\errors"
+        def preprocess(folder: Path, overwrite=True):
+            assert isinstance(folder, Path), "The folder must be a Path object"
+            illegals_dict = {
+                "Bifocals": "aced9701-8be9-4860-bc37-7e22622afff4",
+                "Group": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+                "Sketch": "2844fec5-142d-4381-bd5d-4cbcef6d6fed",
+                "Cluster": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+                "Scribble": "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe"
+            }
+            for i, file in enumerate(folder.iterdir()):
+                if file.suffix == ".gh":
+                    print(f"Preprocessing {file.name}...")
+                    doc = GHProcessor.get_ghdoc(str(file))
+                    ghpp = GHDocumentPreprocessor(str(file), errorbin)
+                    doc = ghpp.preprocess_and_replace(doc, file, illegals_dict=illegals_dict, overwrite=overwrite)
+                    print(f"Preprocessing of {file.name} complete.")
+            print("finished processing all files")
+
+        folder = Path(r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\TTD\test multiplication issues")
+        preprocess(folder)
 
 if __name__ == '__main__':
     unittest.main()

@@ -379,7 +379,7 @@ class GHComponentTable:
         cls.vanilla_proxies = {obj.sys_guid: obj for obj in cls.load_vanilla_gh_proxies(vanilla_components_location)}
         cls.object_proxies = [GHComponentProxy(obj) for obj in cls.cs]
         cls.non_native_proxies = sorted(
-            [ghp for ghp in cls.object_proxies if not cls.is_native(ghp) and not ghp.obj_proxy.Obsolete],
+            [ghp for ghp in cls.object_proxies if not cls.is_native(ghp)],
             key=lambda x: str(x))
         cls.object_proxies = list(cls.vanilla_proxies.values()) + cls.non_native_proxies
         env = EnvironmentManager.get_environment()
@@ -592,20 +592,25 @@ class GHDocumentPreprocessor:
             self.rewire_connections(old_component, new_component)
             doc.RemoveObject(old_component, True)
             return True
+        print(f"no new component, did not replace {old_component.Name}")
         return False
 
     def replace_obsolete_components(self, doc):
         for component in list(doc.Objects):
-            if hasattr(component, 'Obsolete') and component.Obsolete:
+            if component.Obsolete:
+                testcomp = component
                 component_type = self.get_component_type(component)
                 if component_type:
+                    print(f"old component: {component_type}")
                     new_component = self.create_new_component(component_type)
-                    if not self.replace_component(doc, component, new_component):
-                        print(f"Could not replace obsolete component: {component.Name}")
+                    print(f"new component: {new_component}")
+                    if new_component:
+                        if not self.replace_component(doc, component, new_component):
+                            print(f"Could not replace obsolete component: {component.Name}")
         print("Replacement of obsolete components complete.")
         return doc
 
-    def remove_placeholder_components(self, doc, update=True):
+    def remove_placeholder_components(self, doc, update=False):
         placeholders = []
         for component in doc.Objects:
             a = GHComponentTable.get_guid_to_idx(str(component.ComponentGuid))
