@@ -86,6 +86,8 @@ def debug_obj(obj):
 
 complog = create_named_logger('components', Path(logging_location) / 'complog.log')
 complog.info('Loggging started')
+filelogger = create_named_logger("file_logger", Path(logging_location) / "file_logger.log")
+filelogger.info('Loggging started')
 class EnvironmentManager:
     _environments = {}  # Stores Environment instances keyed by environment_name
 
@@ -101,7 +103,7 @@ class EnvironmentManager:
     }
 
     GHPATH = r"C:\Users\jossi\AppData\Roaming\Grasshopper\Libraries"
-    VANILLA_PATH = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240307-CoreComponents\vanilla_components.csv"
+    VANILLA_PATH = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240318-VanillaComponents\240318 vanilla_components.csv"
     GH_FILE_PATH = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\GHData"
 
     class Environment:
@@ -112,8 +114,22 @@ class EnvironmentManager:
             self.base_path.mkdir(parents=True, exist_ok=True)
             # Initialize directories based on the class-level DIR_STRUCTURE
             self.dirs = {name: self.base_path / dirname for name, dirname in EnvironmentManager.DIR_STRUCTURE.items()}
-            for path in self.dirs.values():
+            new_dirs = {}
+            for path in list(self.dirs.values()):  # Make a copy of the values list
                 path.mkdir(parents=True, exist_ok=True)
+                if path.name == "03-GH_Files":
+                    raw = "03a-Raw"
+                    raw_path = path / raw
+                    raw_path.mkdir(parents=True, exist_ok=True)
+                    new_dirs["raw"] = raw_path
+                    processed = "03b-Processed"
+                    processed_path = path / processed
+                    processed_path.mkdir(parents=True, exist_ok=True)
+                    new_dirs["processed"] = processed_path
+
+            self.dirs.update(new_dirs)  # Update the original dictionary after the loop
+
+
 
             self.gh_path = Path(EnvironmentManager.GHPATH)
             self.initialise()
@@ -217,6 +233,11 @@ class EnvironmentManager:
             else:
                 print("Reinstate cancelled")
 
+        @staticmethod
+        def export_gh_table(filepath):
+
+            GHComponentTable.to_csv(filepath)
+
         def view_gh_environment(self):
             for root, dirs, files in os.walk(self.dirs["ghlib"]):
                 for file in files:
@@ -267,7 +288,7 @@ class EnvironmentManager:
                 for root, dirs, files in os.walk(EnvironmentManager.GH_FILE_PATH):
                     for file in files:
                         if file.endswith(".gh"):
-                            shutil.copy(os.path.join(root, file), self.dirs["files"])
+                            shutil.copy(os.path.join(root, file), self.dirs["raw"])
             except PermissionError as e:
                 print(f"Permission error on {e}")
 
@@ -364,6 +385,7 @@ class GHComponentProxy:
 
 class GHComponentTable:
     cs = Grasshopper.Instances.ComponentServer.ObjectProxies
+    compserver = Grasshopper.Instances.ComponentServer
     component_dict = {component.Guid: component for component in cs}
     vanilla_proxies = {}
     object_proxies = []
@@ -375,7 +397,7 @@ class GHComponentTable:
     @classmethod
     def initialise(cls, vanilla_components_location=None):
         if vanilla_components_location is None:
-            vanilla_components_location = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240307-CoreComponents"
+            vanilla_components_location = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240318-VanillaComponents"
         cls.vanilla_proxies = {obj.sys_guid: obj for obj in cls.load_vanilla_gh_proxies(vanilla_components_location)}
         cls.object_proxies = [GHComponentProxy(obj) for obj in cls.cs]
         cls.non_native_proxies = sorted(
@@ -388,11 +410,10 @@ class GHComponentTable:
         cls.df = cls.table_to_pandas(df_directory, 'all_components')
         cls.to_csv()
 
-
     @classmethod
     def to_csv(cls, location=None, name="grasshopper_components.csv"):
         if location is None:
-            location = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240211-AllComponents"
+            location = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240318-AllComponents"
         filename = Path(location) / name
         if not filename.exists():
             with open(filename, mode='w', newline='', encoding='utf-8') as file:
@@ -402,6 +423,32 @@ class GHComponentTable:
                     writer.writerow(header)
                     for proxy in cls.object_proxies:
                         writer.writerow(proxy.to_dict().values())
+
+
+    @classmethod
+    def export_vanilla_gh_table(cls, filepath):
+        datetime_str = datetime.datetime.now().strftime("%y%m%d")
+        filename = Path(filepath) / str(str(datetime_str) + " vanilla_components.csv")
+        if not filename.exists():
+            with open(filename, mode='w', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                if cls.object_proxies:
+                    header = cls.object_proxies[0].to_dict().keys()
+                    writer.writerow(header)
+                    for proxy in cls.object_proxies:
+                        writer.writerow(proxy.to_dict().values())
+                        print(f"Exported vanilla components to CSV: {filename}")
+                else:
+                    cls.object_proxies = sorted([GHComponentProxy(obj) for obj in cls.cs], key=lambda x: x.type)
+                    with open(filename, mode='w', newline='', encoding='utf-8') as file:
+                        writer = csv.writer(file)
+                        if cls.object_proxies:
+                            header = cls.object_proxies[0].to_dict().keys()
+                            writer.writerow(header)
+                            for proxy in cls.object_proxies:
+                                writer.writerow(proxy.to_dict().values())
+                            print(f"Exported vanilla components to CSV: {filename}")
+
 
     @classmethod
     def search_component_by_guid(cls, guid: System.Guid):
@@ -543,9 +590,10 @@ class GHDocumentPreprocessor:
             doc.RemoveObject(obj, True)
         return doc
 
-    def doc_save(self, doc):
+    def doc_save(self, doc, location):
         ghdio = GH_DocumentIO(doc)
-        ghdio.Save()
+        ghdio.SaveQuiet(str(location))
+
 
     def get_component_type(self, component):
         pattern = r"^(.*?)_OBSOLETE"
@@ -595,18 +643,33 @@ class GHDocumentPreprocessor:
         print(f"no new component, did not replace {old_component.Name}")
         return False
 
+    def manual_replace_obsolete_components(self, obj, doc):
+
+        component = obj
+        component_type = self.get_component_type(obj)
+        if component_type:
+            print(f"old component: {component_type}")
+            new_component = self.create_new_component(component_type)
+            print(f"new component: {new_component}")
+            if new_component:
+                if not self.replace_component(doc, component, new_component):
+                    print(f"Could not replace obsolete component: {component.Name}")
+        return doc
+
     def replace_obsolete_components(self, doc):
-        for component in list(doc.Objects):
-            if component.Obsolete:
-                testcomp = component
-                component_type = self.get_component_type(component)
-                if component_type:
-                    print(f"old component: {component_type}")
-                    new_component = self.create_new_component(component_type)
-                    print(f"new component: {new_component}")
-                    if new_component:
-                        if not self.replace_component(doc, component, new_component):
-                            print(f"Could not replace obsolete component: {component.Name}")
+        components = [obj for obj in doc.Objects]
+        for obj in components:
+            if obj.Obsolete:
+                upgrader = GHComponentTable.compserver.FindUpgrader(obj.ComponentGuid)
+                if upgrader:
+                    upgrader.Upgrade(obj, doc)
+                    print(f"Upgraded {obj.Name}")
+                else:
+                    temp_doc = self.manual_replace_obsolete_components(obj,doc)
+                    if temp_doc:
+                        doc = temp_doc
+                    else:
+                        print(f"No upgrader found for {obj.Name}")
         print("Replacement of obsolete components complete.")
         return doc
 
@@ -621,7 +684,6 @@ class GHDocumentPreprocessor:
 
         for placeholder in placeholders:
             doc.RemoveObject(placeholder, False)
-
         return doc
 
     def move_file_to_error_bin(self, file: Path, error_message: str = ""):
@@ -649,11 +711,11 @@ class GHDocumentPreprocessor:
         doc = self.remove_unwanted_items(doc=doc, illegals_dict=illegals_dict)
         doc = self.replace_obsolete_components(doc)
         doc = self.remove_placeholder_components(doc)
-
         if overwrite:
             try:
-                self.doc_save(doc)
+                self.doc_save(doc, location=EnvironmentManager.get_environment().dirs['processed']/file.name)
             except Exception as e:
+                print(f"Failed to save file: {e}, moved {file} to error bin.")
                 self.move_file_to_error_bin(file, e)
 
         print("Preprocessing, replacement, and placeholder removal complete.")
