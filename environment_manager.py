@@ -103,7 +103,7 @@ class EnvironmentManager:
     }
 
     GHPATH = r"C:\Users\jossi\AppData\Roaming\Grasshopper\Libraries"
-    VANILLA_PATH = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240318-VanillaComponents\240318 vanilla_components.csv"
+    VANILLA_PATH = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\Grasshopper Components\240318-VanillaComponents\vanilla_components.csv"
     GH_FILE_PATH = r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\GHData"
 
     class Environment:
@@ -539,6 +539,11 @@ class GHComponentTable:
         return cls.df["nickname"].iloc[idx]
 
     @classmethod
+    def idx_to_component2(cls, idx):
+        return cls.df["name"].iloc[idx]
+
+
+    @classmethod
     def get_guid_by_type(cls, type_search):
         # this is used when preprocessing a file and returns the component id given the object type
         matches = cls.df[cls.df['type'] == type_search]
@@ -734,7 +739,7 @@ class GHNode:
         if self.pos:
             self.X = self.pos.X
             self.Y = self.pos.Y
-        self.uid = f"{self.category}_{self.name}_{self.id[-5:]}"
+        self.uid = str(obj.ComponentGuid)
         # Assuming global_idx is somehow related to GHComponentTable, which might need instance reference
         self.global_idx = GHComponentTable.component_to_idx(self)  # This requires GHComponentTable method adjustment
         self.graph_id = None
@@ -744,7 +749,7 @@ class GHNode:
         pass
 
     def __str__(self):
-        return f"{self.uid}"
+        return f"{self.name}"
 
     def __repr__(self):
         return f"<GHNode {self.__str__()}>"
@@ -1004,8 +1009,9 @@ class GraphConnection:
 
 
 class GraphNode:
-    def __init__(self, component, canvas: Canvas):
+    def __init__(self, component:GHComponent, canvas: Canvas):
         self.graph_id: Tuple[int, int] = component.graph_id
+        self.compid = component.uid
         self.component = component
         self.canvas: Canvas = canvas
         self.X = component.obj.Attributes.Pivot.X
@@ -1097,15 +1103,16 @@ class GHGraph:
         gx = nx.DiGraph()
         # Step 1: Add all nodes to the graph
         for node in self.nodes:
-            node_id = node.graph_id  # Ensure this is a simple, hashable type
-            gx.add_node(node_id, identifier = node_id[0], X=node.X, Y=node.Y)  # Explicitly add nodes
+            node_id = node.graph_id# Ensure this is a simple, hashable type
+
+            gx.add_node(node_id, X=node.X, Y=node.Y, guid = node.compid)  # Explicitly add nodes
 
         # Step 2: Add edges to the graph
         for node in self.nodes:
             for edge in node.edges():
                 if edge:
                     # Ensure the tuples are hashable and correspond to actual node identifiers
-                    gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i))
+                    gx.add_edge((edge.v1n, edge.v1i), (edge.v2n, edge.v2i), connection = f"{edge.e1},{edge.e2}")
 
         return gx
 
