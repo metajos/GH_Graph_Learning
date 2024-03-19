@@ -114,13 +114,14 @@ class MyTestCase(unittest.TestCase):
         }
         env = load_create_environment(name)
         GHComponentTable.initialise()
-        folder = Path(env.dirs['raw'])
+        folder = Path(env.dirs['processed'])
         error_bin = Path(env.dirs['logs'])
         files = list(folder.glob("*.gh"))
         for i, file in enumerate(files):
             print(f"Preprocessing {file.name}...")
             ghpp = GHDocumentPreprocessor(str(file), error_bin)
             filelogger.info(f"processing: {file}")
+
             doc =ghpp.process_folder_or_file(illegals_dict)
             try:
                 canvas = Canvas("canvas", doc, env)
@@ -131,7 +132,7 @@ class MyTestCase(unittest.TestCase):
             except Exception as e:
                 filelogger.warning(f"ERROR : {i}/{len(files)} : {file}")
                 ghpp.move_file_to_error_bin(file, e)
-                print("error" + str(file))
+            print("error" + str(file))
 
             print("done" + str(file))
 

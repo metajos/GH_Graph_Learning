@@ -1,21 +1,20 @@
 import datetime
 import pickle
+import shutil
+
 import rhinoinside
 rhinoinside.load()
 import clr
 import sys
 import System
-import io
 import csv
-import pandas as pd
 import os
-import shutil
+import matplotlib.colors as mcolors
+
 
 import torch
 
 import matplotlib
-from matplotlib.patches import Patch
-import matplotlib.cm as cm
 path = r"C:\Program Files\Rhino 8\Plug-ins\Grasshopper"
 sys.path.append(path)
 clr.AddReference("Grasshopper")
@@ -25,11 +24,13 @@ clr.AddReference("GH_Util")
 import Grasshopper
 import Grasshopper.GUI
 import Grasshopper.Kernel as ghk
+from Grasshopper.Kernel import GH_Document
 from Grasshopper.Kernel import IGH_Component
 from Grasshopper.Kernel import IGH_Param
 from Grasshopper.Kernel import GH_DocumentIO
 from typing import Dict, List, Tuple, Union
 import numpy as np
+import pandas as pd
 import logging
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -1218,7 +1219,91 @@ class GHProcessor:
         print("preprocessing complete")
 
 
+def create_and_save_graph(env: EnvironmentManager.Environment, doc: GH_Document, filename: Path = None,
+                          show: bool = False):
+    components = []
+    # extract all the components from the document
+    for obj in doc.Objects:
+        try:
+            components.append(GHComponent(obj))
+        except TypeError:
+            print(f"Error in {obj}")
+            continue
+    canvas = Canvas(components, doc, env)
+    # Create a directed graph
+    graph = nx.DiGraph()
 
+    pos = {}  # Dictionary to store the positions of nodes
+    cat = {}  # Dictionary to store the categories of nodes
+
+    # get all the connections from the graph
+    for comp in components:
+        instance_id = comp.id
+        component_id = comp.uid
+        recipient_components = []
+        connections_list = comp.get_connections(canvas)[1]
+
+        pos[instance_id] = (comp.X, comp.Y)  # Store the position of the current node
+        cat[instance_id] = comp.category  # Store the category of the current node
+
+        graph.add_node(instance_id, x=comp.X, y=comp.Y, globidx=component_id, category=comp.category)
+
+        if connections_list:
+            for connection in connections_list:
+                comp_obs = connection['to']
+                edge = connection['edge']
+                recipient_components.append({'instance_id': comp_obs.id,
+                                             'component_id': comp_obs.uid,
+                                             'conparam': edge})
+
+                # Add the connected node to the graph if it doesn't exist
+                if comp_obs.id not in graph.nodes:
+                    graph.add_node(comp_obs.id, x=comp_obs.X, y=comp_obs.Y, globidx=comp_obs.uid,
+                                   category=comp_obs.category)
+                    pos[comp_obs.id] = (comp_obs.X, comp_obs.Y)  # Store the position of the connected node
+                    cat[comp_obs.id] = comp_obs.category  # Store the category of the connected node
+
+                # Add the edge to the graph, with the chosen features
+                graph.add_edge(instance_id, comp_obs.id, paramfrom=edge[0], paramto=edge[1])
+
+    # Create a figure
+    fig = plt.figure(figsize=(10, 8))  # Adjust the width and height as needed
+
+    # Get the unique categories
+    categories = set(cat.values())
+
+    # Create a color map based on the number of categories
+    num_colors = len(categories)
+    color_map = plt.cm.get_cmap('viridis', num_colors)
+
+    # Create a dictionary mapping categories to colors
+    category_colors = {}
+    for i, category in enumerate(categories):
+        category_colors[category] = mcolors.to_hex(color_map(i))
+
+    # Create a list of colors based on the node categories
+    node_colors = [category_colors[cat[node]] for node in graph.nodes()]
+
+    # Draw the graph using the stored positions and colors
+    nx.draw(graph, pos=pos, with_labels=False, font_weight='bold', node_size=10, node_color=node_colors,
+            edge_color='gray', arrowsize=5)
+
+    # Create a legend
+    legend_elements = [plt.Line2D([0], [0], marker='o', color='w', label=category,
+                                  markerfacecolor=color, markersize=8)
+                       for category, color in category_colors.items()]
+    plt.legend(handles=legend_elements, title='Categories', loc='upper right')
+    plt.axis('equal')
+
+    if show:
+        plt.show()
+
+    if filename:
+        plt.savefig(f"{filename}.png", dpi=300, bbox_inches='tight')
+        # Save the graph as a GraphML file
+        nx.write_graphml(graph, f"{filename}.graphml")
+
+    plt.close(fig)
 
 def load_create_environment(environment_name):
     # Load or create the environment
