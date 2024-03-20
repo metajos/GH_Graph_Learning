@@ -556,9 +556,8 @@ class GHComponentTable:
 
 
 class GHDocumentPreprocessor:
-    def __init__(self, folder_path: str, error_bin: str):
+    def __init__(self, folder_path: str):
         self.folder_path = Path(folder_path)
-        self.error_bin = Path(error_bin)
 
     def process_folder_or_file(self, illegals_dict ,overwrite: bool = True):
         if self.folder_path.is_file() and self.folder_path.suffix == ".gh":
@@ -693,19 +692,14 @@ class GHDocumentPreprocessor:
         return doc
 
     def move_file_to_error_bin(self, file: Path, error_message: str = ""):
-        """
-        Moves the specified file to the error_bin directory and logs the error message.
-
-        Parameters:
-            file (Path): The file to be moved.
-            error_message (str): An optional error message to log.
-        """
+        errorbin = EnvironmentManager.get_environment().dirs['processed']/ "error_bin"
+        if not errorbin.exists():
+            errorbin.mkdir()
         try:
             if not file.exists():
                 print(f"File does not exist: {file}")
                 return
-
-            new_file_path = self.error_bin / file.name
+            new_file_path = errorbin / file.name
             shutil.move(str(file), str(new_file_path))
             if error_message:
                 print(error_message)
@@ -773,9 +767,10 @@ class GHParam:
         self.parent = GHNode(ghk.IGH_DocumentObject(obj).Attributes.GetTopLevel.DocObject)
         self.name = obj.Name
         self.datamapping = int(obj.DataMapping)  # enumerator 0:none, 1:Flatten, 2:Graft
+        self.access = int(obj.Access)  # the access: item, list, tree
         self.pkind = obj.Kind  # the kind: floating (top level), input (parameter tied to component as input), output (parameter tied to a component as an output
         self.dataEmitter = obj.IsDataProvider  # boolean stating whether this object is able to emit data
-
+        self.optional = int(obj.Optional)  # gets whether this parameter is optional to the functioning of the component
         self.typname = obj.TypeName  # human-readable descriptor of this parameter
         self.optional = obj.Optional  # gets whether this parameter is optional to the functioning of the component
         # logging.info(f'GHComponent {self.parent.name} Params: {self.log_properties()}')
@@ -867,7 +862,6 @@ class GHComponent(GHNode):
         except Exception:
             return None
 
-
     def get_connections(self, canvas):
         """Returns the source and recipient connections for this component"""
         source_connections = []
@@ -877,26 +871,57 @@ class GHComponent(GHNode):
         if self.oparams is not None:
             for i, oparam in enumerate(self.oparams):  # Iterate over output parameters
                 if oparam.recipients:  # Ensure there are recipients to consider
+                    this_access = oparam.access
+                    this_datamapping = oparam.datamapping
+                    this_optional = oparam.optional
+                    source_datamapping = {'instanceid': self.id,
+                                          'compid': self.uid,
+                                          "paramidx": i,
+                                          'access': this_access,
+                                          'dm': this_datamapping,
+                                          'optional': this_optional}
                     for r in oparam.recipients:
                         recipient = GHParam(r)
+                        recipient_access = recipient.access
+                        recipient_datamapping = recipient.datamapping
+                        recipient_optional = recipient.optional
+
                         # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
-                        recipient_component = canvas.find_object_by_guid(str(recipient.parent.obj.Attributes.InstanceGuid))
+                        recipient_component = canvas.find_object_by_guid(
+                            str(recipient.parent.obj.Attributes.InstanceGuid))
                         if recipient_component is not None:
                             parent_instance = canvas.find_object_by_guid(recipient_component.id)
                             if parent_instance is not None:
                                 recipient_parameter_index = recipient_component.iparams_dict.get(recipient.name)
                                 if recipient_parameter_index is not None:
-                                    recipient_conn = {
-                                        'to': parent_instance,
-                                        'edge': (i, recipient_parameter_index)
-                                    }
-                                    recipient_connections.append(recipient_conn)
+                                    recipient_datamapping = {'instanceid': parent_instance.id,
+                                                             'compid': recipient_component.uid,
+                                                             'paramidx': recipient_parameter_index,
+                                                             'access': recipient_access,
+                                                             'dm': recipient_datamapping,
+                                                             'optional': recipient_optional}
+                                    connection = {"source": source_datamapping, "recipient": recipient_datamapping}
+                                    recipient_connections.append(connection)
+
         if self.iparams is not None:
             # Handle connections from sources to this component's input parameters
             for i, iparam in enumerate(self.iparams):  # Iterate over input parameters
                 if iparam.sources:  # Ensure there are sources to consider
+                    this_access = iparam.access
+                    this_datamapping = iparam.datamapping
+                    this_optional = iparam.optional
+                    recipient_datamapping = {'instanceid': self.id,
+                                             'compid': self.uid,
+                                             'paramidx': i,
+                                             'access': this_access,
+                                             'dm': this_datamapping,
+                                             'optional': this_optional}
                     for s in iparam.sources:
                         source = GHParam(s)
+                        source_access = source.access
+                        source_datamapping = source.datamapping
+                        source_optional = source.optional
+
                         # Search the canvas for the corresponding objects. Remember to convert the InstanceGUID into a str
                         source_component = canvas.find_object_by_guid(str(source.parent.obj.Attributes.InstanceGuid))
                         if source_component is not None:
@@ -904,11 +929,14 @@ class GHComponent(GHNode):
                             if source_instance is not None:
                                 source_parameter_index = source_component.oparams_dict.get(source.name)
                                 if source_parameter_index is not None:
-                                    source_conn = {
-                                        'from': source_instance,
-                                        'edge': (source_parameter_index, i)
-                                    }
-                                    source_connections.append(source_conn)
+                                    source_datamapping = {'instanceid': source_instance.id,
+                                                          'compid': source_component.uid,
+                                                          'paramidx': source_parameter_index,
+                                                          'access': source_access,
+                                                          'dm': source_datamapping,
+                                                          'optional': source_optional}
+                                    connection = {"source": source_datamapping, "recipient": recipient_datamapping}
+                                    source_connections.append(connection)
 
         return source_connections, recipient_connections
 
@@ -926,14 +954,11 @@ class GHComponent(GHNode):
 
 
 class Canvas:
-    def __init__(self, name, doc, environment, n=None):
-        self.name = name
-        GHComponentTable.initialise(environment.dirs['vanilla'])
+    def __init__(self, doc, environment, n=None):
         self.doc = doc
         self.components = []  # Initialize as empty
         self.guid_to_component = {}  # Initialize as empty
         self.initialize_components(n)
-        self.graph_id_to_component = self.process_mappings()
         self.env = environment
 
     def initialize_components(self, n=None):
@@ -948,29 +973,13 @@ class Canvas:
                     except TypeError:
                         logging.warning(f"Incompatible Component: {o.Name}")
                         print(f"Incompatible Component: {o.Name}")
-
                 self.guid_to_component = {c.id: c for c in self.components}
         except TypeError:
             print("Can't initialise")
-            logging.warning(f"Can't initialise {self.name} because a component is creating an error")
+            logging.warning(f"Can't initialise canvas because a component is creating an error")
 
     def find_object_by_guid(self, guid: str) -> GHComponent:
         return self.guid_to_component.get(guid)
-
-    def process_mappings(self):
-        idx_set = set([component.global_idx for component in self.components])
-        idx_lookup = {K: [] for K in idx_set}
-        graph_id_to_component = {}
-        # ensure there are still incremeting the size of the list
-        for component in self.components:
-            component_table_idx = GHComponentTable.component_to_idx(component)
-            existing_list = idx_lookup[component_table_idx]
-            x = (component.global_idx, len(existing_list))
-            existing_list.append(x)
-            component.graph_id = x
-            graph_id_to_component[component.graph_id] = component
-        return graph_id_to_component
-
     def __str__(self):
         return str(self.components)
 
