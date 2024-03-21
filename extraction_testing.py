@@ -92,14 +92,14 @@ class MyTestCase(unittest.TestCase):
 
     def test_graph_feature_vector(self):
         name = "240308-initial_test"
-        env = load_create_environment(name)
-        GHComponentTable.initialise()
-        filepath = Path(r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\TTD\bigboy\01533-Bridge Alignment-Option 1.gh")
-        doc = GHProcessor.get_ghdoc(str(filepath))
-        canvas = Canvas("canvas", doc, env)
-        gh_graph = GHGraph(canvas)
-        for node in gh_graph.nodes:
-            print(node.feature_vector)
+                env = load_create_environment(name)
+                GHComponentTable.initialise()
+                filepath = Path(r"C:\Users\jossi\Dropbox\Office_Work\Jos\GH_Graph_Learning\TTD\bigboy\01533-Bridge Alignment-Option 1.gh")
+                doc = GHProcessor.get_ghdoc(str(filepath))
+                canvas = Canvas("canvas", doc, env)
+                gh_graph = GHGraph(canvas)
+                for node in gh_graph.nodes:
+                    print(node.feature_vector)
 
 
     def test_exporting_folder(self):
