@@ -511,6 +511,15 @@ class GHComponentTable:
         cls._idx_to_guid = {idx: row['guid'] for idx, row in df.iterrows()}
         return df
 
+
+    @classmethod
+    def guid_to_component_name(cls, guid, category=True):
+        if type(guid) != System.Guid:
+            guid = System.Guid(guid)
+        proxy = cls.component_dict.get(guid)
+        if category:
+            return f"{proxy.Desc.Category}:{proxy.Desc.Name}"
+        return f":{proxy.Desc.Name}"
     @classmethod
     def get_guid_to_idx(cls, guid: System.Guid) -> int:
         return cls._guid_to_idx.get(str(guid), None)
